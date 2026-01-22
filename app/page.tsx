@@ -10,6 +10,9 @@ import Modal, { ModalItem } from "./components/Modal";
 export default function Home() {
   const [selectedItem, setSelectedItem] = useState<ModalItem | null>(null);
 
+  const truncate = (text: string, max: number = 120) =>
+    text.length > max ? text.slice(0, max).trimEnd() + "..." : text;
+
   const apisItems = [
     {
       imageSrc: "placeholders/api-1.svg",
@@ -37,23 +40,23 @@ export default function Home() {
   const landingItems = [
     {
       imageSrc: "placeholders/landing1.png",
-      title: "Landing SaaS",
+      title: "Página Corporativa Media Digital Group",
       description:
-        "Hero persuasivo, pricing claro, testimonios y CTA optimizados. Performance y SEO cuidados.",
+        "Portal corporativo del negocio de VAS (Value Added Services), diseñado como punto único de contacto para clientes y partners. Desarrollada con Astro y React, consumiendo APIs internas y externas para gestionar consultas, formularios, catálogos y soporte; integra autenticación, trazabilidad de tickets y analítica.",
       videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     },
     {
       imageSrc: "placeholders/landing2.png",
-      title: "Landing Producto",
+      title: "Página agencia Intelli.Dev",
       description:
-        "Presentación del valor del producto con comparativas, beneficios clave y secciones de conversión.",
+        "Agencia dedicada al desarrollo y soluciones tecnológicas. Implementada con tecnologías vanilla (HTML, CSS y JavaScript), integrando un chatbot con IA para asistencia en tiempo real y consumo de diversas APIs (correo, mapas, analítica y pricing). Incluye formularios validados, rendimiento optimizado y buenas prácticas de accesibilidad.",
       videoUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ",
     },
     {
       imageSrc: "placeholders/landing3.png",
-      title: "Landing Evento",
+      title: "Página Save The Date",
       description:
-        "Registro integrado, agenda, ponentes y analítica de campañas. Diseño adaptable.",
+        "Plataforma para crear invitaciones digitales únicas para bodas, cumpleaños y eventos corporativos. Desarrollada con Next.js y React, apoyada en librerías y APIs para RSVP, agenda, cuenta regresiva, galería y notificaciones. Diseño adaptable, SEO cuidado y métricas integradas para medir asistencia y engagement.",
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     },
   ];
@@ -63,14 +66,14 @@ export default function Home() {
       imageSrc: "placeholders/aplicacion.png",
       title: "App Admin Dashboard",
       description:
-        "Visualización de métricas con charts interactivos, filtros en tiempo real y exportación de datos.",
+        "Panel centralizado para gestionar solicitudes de desarrollo: permite visualizar en tiempo real, filtrar y priorizar peticiones, además de aceptarlas, rechazarlas o pausarlas con registro de motivo. Incluye estados y SLA, historial de cambios, exportación de datos y auditoría por roles; se integra con notificaciones y reportes para optimizar el flujo del equipo de IT.",
       videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     },
     {
       imageSrc: "placeholders/aplicacion1.png",
       title: "App Dev Request",
       description:
-        "Catálogo, carrito persistente, checkout seguro y notificaciones de pedido. Escalable y modular.",
+        "Aplicación para que las áreas de negocio generen peticiones de desarrollo mediante un formulario guiado con tipos de solicitud, validaciones y adjuntos. Permite seguimiento del estado, notificaciones y comentarios, y se integra con el Admin Dashboard para que IT priorice y gestione cada requerimiento, mejorando el flujo y la trazabilidad del proceso.",
       videoUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ",
     },
     {
@@ -85,23 +88,23 @@ export default function Home() {
   const botsItems = [
     {
       imageSrc: "aplicacion.png",
-      title: "Bot de WhatsApp",
+      title: "n8n/Bot de WhatsAPP",
       description:
-        "Atención automática con menús, derivación a agente y respuestas rápidas. Integración con CRM.",
+        "Bot de WhatsApp integrado con IA capaz de informar al cliente, persuadirlo o que tenga el comportamiento que nosotros necesitemos.",
       videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     },
     {
       imageSrc: "aplicacion1.png",
-      title: "Bot de Telegram",
+      title: "n8n/Bot de Telegram",
       description:
-        "Comandos, suscripciones y envío de notificaciones. Webhooks confiables y almacenamiento.",
+        "Bot de Telegram con IA que informa, resuelve dudas y orienta a los usuarios para que realicen las acciones que definamos, integrado a flujos n8n y servicios externos.",
       videoUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ",
     },
     {
       imageSrc: "logoWhite.png",
-      title: "Automatización n8n",
+      title: "Zapier/Bot de Discord",
       description:
-        "Flujos con disparadores (cron/webhook), manejo de errores y logs. Integración multi-API.",
+        "Bot de Discord vía Zapier que notifica cuando se generan conversiones en diferentes campañas de Google Ads; además comunica novedades y habilita distintas funcionalidades.",
       videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     },
   ];
@@ -163,7 +166,7 @@ export default function Home() {
                     <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
-                      <p>{it.description}</p>
+                      <p>{truncate(it.description)}</p>
                     </div>
                   </div>
                 ))}
@@ -189,7 +192,7 @@ export default function Home() {
                     <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
-                      <p>{it.description}</p>
+                      <p>{truncate(it.description, 140)}</p>
                     </div>
                   </div>
                 ))}
@@ -270,9 +273,10 @@ export default function Home() {
                   Medimos el comportamiento real de tus usuarios, detectamos oportunidades y
                   optimizamos continuamente para aumentar conversiones, retención y valor de negocio.
                   Configuro eventos clave, embudos y dashboards accionables para que tomes decisiones
-                  con datos, no con suposiciones.
+                  con datos, no con suposiciones. Trabajo con GA4, un plan de etiquetado claro y,
+                  cuando aplica, medición server‑side para mejorar la calidad del dato. Alineo KPIs
+                  con objetivos del negocio y entrego insights periódicos y reportes personalizados.
                 </p>
-                <a className={style.workLink} href="#contacto">Solicita una auditoría gratuita</a>
               </div>
             </div>
           </article>
@@ -294,9 +298,10 @@ export default function Home() {
                 Diseño y gestiono campañas orientadas a resultados: segmentación precisa,
                 creatividades testeadas A/B y optimización continua de pujas y conversiones.
                 Entrego dashboards y métricas clave para escalar inversión con confianza,
-                mejorar el CPA y maximizar el ROAS.
+                mejorar el CPA y maximizar el ROAS. Trabajo con estructuras escalables, audiencias y
+                palabras clave de intención, además de conversiones mejoradas y automatizaciones
+                para mantener el crecimiento con control del gasto.
               </p>
-              <a className={style.workLink} href="#contacto">Solicita una revisión de campañas</a>
             </div>
           </div>
         </article>
