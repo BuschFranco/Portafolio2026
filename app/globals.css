@@ -5,7 +5,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #111;
     --foreground: #ededed;
   }
 }
@@ -14,6 +14,26 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+}
+
+.logo{
+  position: absolute;
+  top: 24px;
+  left: 24px;
+}
+
+@media (max-width: 600px) {
+  .logo {
+    position: static;
+    display: block;
+    margin: 12px auto 8px;
+    width: 72px;
+    height: auto;
+  }
+}
+/* Desplazamiento suave para anclas */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -38,5 +58,37 @@ a {
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
+  }
+}
+
+/* Reveal scroll effect */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  filter: blur(4px);
+  transition: opacity 500ms ease, transform 500ms ease, filter 500ms ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+/* Variante: entrada desde la izquierda */
+.revealLeft {
+  transform: translateX(-24px);
+  filter: blur(3px);
+}
+
+.revealVisible {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+  filter: blur(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .revealLeft {
+    opacity: 1;
+    transform: none;
+    filter: none;
+    transition: none;
   }
 }
