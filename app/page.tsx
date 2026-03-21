@@ -169,7 +169,7 @@ export default function Home() {
       <div className={style.description}>
         <p>
           Desarrollador de software con foco en la industria tecnológica y el marketing digital.
-          Construyo productos web — desde landing pages y APIs hasta automatizaciones y los mido con datos.
+          Construyo productos web, desde landing pages y APIs hasta automatizaciones y los mido con datos.
           Certificado en Marketing Digital, E-Commerce y Gestión de Proyectos por Google.
         </p>
            <a
