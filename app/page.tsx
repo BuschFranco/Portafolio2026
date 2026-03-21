@@ -113,7 +113,7 @@ export default function Home() {
       link: "https://github.com/BuschFranco/ArcgameUnity",
     },
     {
-      imageSrc: "placeholders/aplicacion.png",
+      imageSrc: "placeholders/jamo-panel.png",
       title: "JAMO — Panel de Operaciones",
       description:
         "Panel web interno para la agencia Just a Marketing Office. Permite prospectar empresas en Google Maps, extraer emails/Instagram/LinkedIn desde sus sitios web, analizar cada prospecto con IA (Claude) y gestionar el outreach por WhatsApp, Email, LinkedIn e Instagram desde una sola interfaz. Stack: Node.js, Express, Notion API, Google Maps API, Anthropic API.",
