@@ -612,14 +612,21 @@ a.secondary {
 }
 
 .certsGrid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 16px;
 }
 
+.certsGrid > * {
+  flex: 0 0 calc(33.333% - 16px);
+  max-width: calc(33.333% - 16px);
+}
+
 @media (min-width: 640px) {
-  .certsGrid {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  .certsGrid > * {
+    flex: 0 0 200px;
+    max-width: 200px;
   }
 }
 
