@@ -24,29 +24,6 @@ export default function Home() {
   const truncate = (text: string, max: number = 120) =>
     text.length > max ? text.slice(0, max).trimEnd() + "..." : text;
 
-  const apisItems: WorkItem[] = [
-    {
-      imageSrc: "placeholders/api-1.svg",
-      title: "ServerNest — API NestJS",
-      description:
-        "Servidor backend desarrollado con NestJS y TypeScript. Incluye el módulo SimuMDG para simulación de servicios VAS y el módulo HE-MDG para gestión de servicios internos. Arquitectura modular con controllers, services y entities propias.",
-      link: "https://github.com/BuschFranco/ServerNest",
-    },
-    {
-      imageSrc: "placeholders/api-2.svg",
-      title: "NodeSQLRestAPI — REST + SQL",
-      description:
-        "API REST construida con Node.js y SQL. Incluye gestión de empleados con controllers y routes separados, configuración de base de datos relacional y estructura MVC limpia. Diseñada para ser base reutilizable en proyectos internos.",
-      link: "https://github.com/BuschFranco/NodeSQLRestAPI",
-    },
-    {
-      imageSrc: "placeholders/api-3.svg",
-      title: "API Analytics",
-      description:
-        "Endpoints agregados con caching, métricas de uso y segmentación para reportes. Optimizada para alto volumen.",
-    },
-  ];
-
   const landingItems: WorkItem[] = [
     {
       imageSrc: "placeholders/landing1.png",
@@ -135,6 +112,14 @@ export default function Home() {
         "Juego arcade desarrollado en Unity con C#. El jugador recorre un bosque recolectando ítems contra el reloj con 3 vidas, con dinámica de riesgo vs recompensa al buscar puntos de score adicionales. Sistema de puntuación, múltiples niveles y gestión de estado del jugador.",
       link: "https://github.com/BuschFranco/ArcgameUnity",
     },
+    {
+      imageSrc: "placeholders/aplicacion.png",
+      title: "JAMO — Panel de Operaciones",
+      description:
+        "Panel web interno para la agencia Just a Marketing Office. Permite prospectar empresas en Google Maps, extraer emails/Instagram/LinkedIn desde sus sitios web, analizar cada prospecto con IA (Claude) y gestionar el outreach por WhatsApp, Email, LinkedIn e Instagram desde una sola interfaz. Stack: Node.js, Express, Notion API, Google Maps API, Anthropic API.",
+      badge: "Proyecto propio",
+      link: "https://github.com/BuschFranco/just-a-marketing-office",
+    },
   ];
 
   const botsItems: WorkItem[] = [
@@ -190,7 +175,6 @@ export default function Home() {
           {/* Enlaces a subsecciones */}
           <nav className={style.workLinks} aria-label="Subsecciones de Mi Trabajo">
             <a href="#landing-pages" className={style.workLink}>Sitios Web</a>
-            <a href="#apis" className={style.workLink}>Apis</a>
             <a href="#aplicaciones" className={style.workLink}>Aplicaciones</a>
             <a href="#automatizaciones" className={style.workLink}>Automatizaciones/Bots</a>
           </nav>
@@ -242,32 +226,6 @@ export default function Home() {
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
                       <p>{truncate(it.description, 140)}</p>
-                    </div>
-                  </div>
-                ))}
-              </AutoCarousel>
-            </Reveal>
-          </article>
-
-          <article id="apis" className={style.workCard}>
-            <Reveal className="revealLeft" delay={240}>
-              <h3>Apis</h3>
-              <AutoCarousel className={style.carousel}>
-                {apisItems.map((it, idx) => (
-                  <div
-                    key={`api-${idx}`}
-                    className={style.thumbItem}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
-                    }}
-                  >
-                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
-                    <div className={style.thumbOverlay}>
-                      <h4>{it.title}</h4>
-                      <p>{it.description}</p>
                     </div>
                   </div>
                 ))}
