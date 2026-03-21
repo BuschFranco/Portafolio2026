@@ -4,108 +4,157 @@ import style from "./page.module.css";
 import Typewriter from "./components/Typewriter";
 import Reveal from "./components/Reveal";
 import ContactForm from "./components/ContactForm";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Modal, { ModalItem } from "./components/Modal";
+import AutoCarousel from "./components/AutoCarousel";
 
 export default function Home() {
   const [selectedItem, setSelectedItem] = useState<ModalItem | null>(null);
+  const [selectedCert, setSelectedCert] = useState<{ src: string; title: string } | null>(null);
+
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setSelectedCert(null); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+
+  type WorkItem = { imageSrc: string; title: string; description: string; badge?: string; link?: string };
 
   const truncate = (text: string, max: number = 120) =>
     text.length > max ? text.slice(0, max).trimEnd() + "..." : text;
 
-  const apisItems = [
+  const apisItems: WorkItem[] = [
     {
       imageSrc: "placeholders/api-1.svg",
-      title: "API de Clientes",
+      title: "ServerNest — API NestJS",
       description:
-        "CRUD seguro con JWT, validaciones robustas y limitación de tasa para proteger los endpoints. Documentada con OpenAPI.",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+        "Servidor backend desarrollado con NestJS y TypeScript. Incluye el módulo SimuMDG para simulación de servicios VAS y el módulo HE-MDG para gestión de servicios internos. Arquitectura modular con controllers, services y entities propias.",
+      link: "https://github.com/BuschFranco/ServerNest",
     },
     {
       imageSrc: "placeholders/api-2.svg",
-      title: "API de Pagos",
+      title: "NodeSQLRestAPI — REST + SQL",
       description:
-        "Integración de pagos con webhooks confiables, firma HMAC y manejo de reintentos. Includes estado de transacciones.",
-      videoUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ",
+        "API REST construida con Node.js y SQL. Incluye gestión de empleados con controllers y routes separados, configuración de base de datos relacional y estructura MVC limpia. Diseñada para ser base reutilizable en proyectos internos.",
+      link: "https://github.com/BuschFranco/NodeSQLRestAPI",
     },
     {
       imageSrc: "placeholders/api-3.svg",
       title: "API Analytics",
       description:
         "Endpoints agregados con caching, métricas de uso y segmentación para reportes. Optimizada para alto volumen.",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     },
   ];
 
-  const landingItems = [
+  const landingItems: WorkItem[] = [
     {
       imageSrc: "placeholders/landing1.png",
       title: "Página Corporativa Media Digital Group",
       description:
         "Portal corporativo del negocio de VAS (Value Added Services), diseñado como punto único de contacto para clientes y partners. Desarrollada con Astro y React, consumiendo APIs internas y externas para gestionar consultas, formularios, catálogos y soporte; integra autenticación, trazabilidad de tickets y analítica.",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     },
     {
-      imageSrc: "placeholders/landing2.png",
+      imageSrc: "placeholders/landing-intelli.png",
       title: "Página agencia Intelli.Dev",
       description:
         "Agencia dedicada al desarrollo y soluciones tecnológicas. Implementada con tecnologías vanilla (HTML, CSS y JavaScript), integrando un chatbot con IA para asistencia en tiempo real y consumo de diversas APIs (correo, mapas, analítica y pricing). Incluye formularios validados, rendimiento optimizado y buenas prácticas de accesibilidad.",
-      videoUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ",
+      link: "https://buschfranco.github.io/Intelli.dev/",
     },
     {
-      imageSrc: "placeholders/landing3.png",
-      title: "Página Save The Date",
+      imageSrc: "placeholders/landing-portuauto.png",
+      title: "Landing Concesionario Fiat — PortuAuto",
       description:
-        "Plataforma para crear invitaciones digitales únicas para bodas, cumpleaños y eventos corporativos. Desarrollada con Next.js y React, apoyada en librerías y APIs para RSVP, agenda, cuenta regresiva, galería y notificaciones. Diseño adaptable, SEO cuidado y métricas integradas para medir asistencia y engagement.",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "Landing page para concesionario oficial Fiat desarrollada con Astro. Muestra catálogo de modelos (Argo, Cronos, Mobi) con imágenes optimizadas en WebP, formulario de contacto y sección de planes. Deploy automático en Vercel.",
+      link: "https://portuauto.vercel.app",
+    },
+    {
+      imageSrc: "/placeholders/jamo.png",
+      title: "Just a Marketing Office — Agencia de Leads",
+      description:
+        "Landing page de JAMO, agencia de adquisición de leads a comisión. Desarrollada con Astro, i18n en 3 idiomas (ES/EN/PT), Google Tag Manager, GA4 y modo oscuro nativo. El modelo: landing page + Google Ads + Analytics, sin retainer los primeros 3 meses. Incluye arquitectura screaming, SEO, formulario de contacto y deploy automático en Vercel vía GitHub Actions.",
+      badge: "Proyecto propio",
+      link: "https://justamarketingoffice.vercel.app/",
+    },
+    {
+      imageSrc: "placeholders/landing-norton.png",
+      title: "MDG Download Center — Norton",
+      description:
+        "Centro de descargas de manuales para productos Norton (Mobile Security, VPN, 360 Standard y Deluxe). Desarrollado con Astro, cubre múltiples países (Kuwait, Bahrain, Oman, Qatar, Chile, Brasil) y operadores de telecomunicaciones (STC, Ooredoo). Soporte en inglés, portugués y árabe.",
+      link: "https://norton-help.xipio.online/",
+    },
+    {
+      imageSrc: "placeholders/landing-magplus-at.png",
+      title: "MagPlus Austria — Portal de Revistas",
+      description:
+        "Landing y portal de suscripción para MagPlus en el mercado austríaco/alemán, desarrollado con Astro. Acceso ilimitado a revistas internacionales en categorías de lifestyle, fitness, tech, moda y viajes. Diseño mobile-first, componentes hidratables y prueba gratuita sin compromiso.",
+      link: "https://themagplus-at.com/",
+    },
+    {
+      imageSrc: "placeholders/landing-epic-play.png",
+      title: "Epic Play — Plataforma de Gaming",
+      description:
+        "Sitio web para una plataforma de entretenimiento y juegos online. Desarrollado con WordPress + Kubio builder e integración de WooCommerce para comercio electrónico. Diseño responsive con paleta vibrante (azules, naranja, verde menta), animaciones CSS, tipografías display y cumplimiento GDPR.",
+      link: "https://epic-play.com/",
     },
   ];
 
-  const appItems = [
+  const appItems: WorkItem[] = [
+    {
+      imageSrc: "placeholders/app-recaap.png",
+      title: "Recaap — Resúmenes de Libros con Audio",
+      description:
+        "Plataforma de resúmenes de libros en español con lectura y audio sincronizado entre dispositivos. Incluye modo offline, seguimiento de progreso, sistema de desafíos (racha de 21 días, maratón de lectura), logros y niveles. Más de 9 categorías: negocios, tecnología, biografía, ficción y más. Integra Google Analytics y GTM.",
+      link: "https://www.recaap.ai/",
+    },
+    {
+      imageSrc: "placeholders/app-magplus.png",
+      title: "MagPlus — Plataforma de Revistas Digitales",
+      description:
+        "Plataforma global de distribución de revistas digitales con presencia en Oriente Medio, Europa, África y Asia. Sistema de autenticación, gestión de suscripciones, soporte multilingüe y multi-región, notificaciones push con OneSignal. Categorías: negocios, gastronomía, deportes, tecnología, bienestar y viajes. Integra GA4.",
+      link: "https://magplus.club/",
+    },
     {
       imageSrc: "placeholders/aplicacion.png",
-      title: "App Admin Dashboard",
+      title: "DashboardMDG — Panel de Administración",
       description:
-        "Panel centralizado para gestionar solicitudes de desarrollo: permite visualizar en tiempo real, filtrar y priorizar peticiones, además de aceptarlas, rechazarlas o pausarlas con registro de motivo. Incluye estados y SLA, historial de cambios, exportación de datos y auditoría por roles; se integra con notificaciones y reportes para optimizar el flujo del equipo de IT.",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
+        "Panel de administración interno para Media Digital Group. Desarrollado con Astro y MongoDB, gestiona solicitudes de desarrollo con flujo de aprobación/rechazo por token. Incluye panel admin protegido, endpoints `/api/requests` y `/api/update-approval`, desplegado en Vercel.",
+      link: "https://github.com/BuschFranco/DashboardMDG",
     },
+
     {
-      imageSrc: "placeholders/aplicacion1.png",
-      title: "App Dev Request",
-      description:
-        "Aplicación para que las áreas de negocio generen peticiones de desarrollo mediante un formulario guiado con tipos de solicitud, validaciones y adjuntos. Permite seguimiento del estado, notificaciones y comentarios, y se integra con el Admin Dashboard para que IT priorice y gestione cada requerimiento, mejorando el flujo y la trazabilidad del proceso.",
-      videoUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ",
-    },
-    {
-      imageSrc: "placeholders/app-3.svg",
+      imageSrc: "/placeholders/aplicacion.png",
       title: "App Admin",
       description:
-        "Gestión de usuarios con roles y permisos, auditoría de acciones y paneles de configuración.",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
+        "Panel de administración central con gestión de roles y permisos, auditoría de acciones por usuario, configuración del sistema y paneles de métricas. Permite a los administradores controlar accesos, revisar logs y gestionar la configuración de las apps del ecosistema desde una interfaz unificada. Desarrollado con React, integración con APIs REST y control de sesiones con JWT.",
+    },
+    {
+      imageSrc: "placeholders/aplicacion2.png",
+      title: "ArcgameUnity — Juego Arcade",
+      description:
+        "Juego arcade desarrollado en Unity con C#. El jugador recorre un bosque recolectando ítems contra el reloj con 3 vidas, con dinámica de riesgo vs recompensa al buscar puntos de score adicionales. Sistema de puntuación, múltiples niveles y gestión de estado del jugador.",
+      link: "https://github.com/BuschFranco/ArcgameUnity",
     },
   ];
 
-  const botsItems = [
+  const botsItems: WorkItem[] = [
     {
-      imageSrc: "aplicacion.png",
+      imageSrc: "/placeholders/aplicacion.png",
       title: "n8n/Bot de WhatsAPP",
       description:
         "Bot de WhatsApp integrado con IA capaz de informar al cliente, persuadirlo o que tenga el comportamiento que nosotros necesitemos.",
-      videoUrl: "https://www.w3schools.com/html/mov_bbb.mp4",
     },
     {
-      imageSrc: "aplicacion1.png",
+      imageSrc: "/placeholders/aplicacion1.png",
       title: "n8n/Bot de Telegram",
       description:
         "Bot de Telegram con IA que informa, resuelve dudas y orienta a los usuarios para que realicen las acciones que definamos, integrado a flujos n8n y servicios externos.",
-      videoUrl: "https://www.youtube.com/embed/aqz-KE-bpKQ",
     },
     {
-      imageSrc: "logoWhite.png",
+      imageSrc: "/placeholders/aplicacion.png",
       title: "Zapier/Bot de Discord",
       description:
         "Bot de Discord vía Zapier que notifica cuando se generan conversiones en diferentes campañas de Google Ads; además comunica novedades y habilita distintas funcionalidades.",
-      videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
     },
   ];
 
@@ -119,10 +168,9 @@ export default function Home() {
 
       <div className={style.description}>
         <p>
-          Mi enfoque profesional se centra en la programación, el comercio y en la tecnología.
-          Estudiante y Certificado en Marketing Digital. E-Commerce y Gestión de Proyectos por parte de Google.
-
-          Soy un Desarrollador con experiencia en tecnologías como Astro, Node y React Native, así como en los entornos de Dynamics 365 (D365) y WordPress. Me apasiona la industria tecnológica y el Marketing Digital. Siempre busco oportunidades para aprender y crecer profesionalmente, ya que estoy convencido de que la evolución constante es vital para ofrecer mejores soluciones. Me entusiasma mucho la idea de contribuir en proyectos innovadores y retadores, donde pueda seguir desarrollándome como profesional aprendiendo nuevas habilidades y técnicas para mejorar, pulir y alcanzar tanto los objetivos empresariales como los personales.
+          Desarrollador de software con foco en la industria tecnológica y el marketing digital.
+          Construyo productos web — desde landing pages y APIs hasta automatizaciones — y los mido con datos.
+          Certificado en Marketing Digital, E-Commerce y Gestión de Proyectos por Google.
         </p>
            <a
             className={style.downloadBtn}
@@ -137,12 +185,12 @@ export default function Home() {
       <hr className={style.separator} />
 
       <section className={style.workSection}>
-        <div style={{backgroundColor: "white", color: "black", padding: "1.5rem"}}>
-           <h2 style={{marginBottom: "0"}}>Mis Trabajos Destacados</h2>
+        <div className={style.workHeader}>
+          <h2 style={{marginBottom: "0"}}>Mis Trabajos Destacados</h2>
           {/* Enlaces a subsecciones */}
           <nav className={style.workLinks} aria-label="Subsecciones de Mi Trabajo">
+            <a href="#landing-pages" className={style.workLink}>Sitios Web</a>
             <a href="#apis" className={style.workLink}>Apis</a>
-            <a href="#landing-pages" className={style.workLink}>Landing Pages</a>
             <a href="#aplicaciones" className={style.workLink}>Aplicaciones</a>
             <a href="#automatizaciones" className={style.workLink}>Automatizaciones/Bots</a>
           </nav>
@@ -150,43 +198,44 @@ export default function Home() {
 
          <article id="landing-pages" className={style.workCard}>
             <Reveal className="revealLeft" delay={120}>
-              <h3>Landing Pages</h3>
-              <div className={style.carousel}>
+              <h3>Sitios Web</h3>
+              <AutoCarousel className={style.carousel}>
                 {landingItems.map((it, idx) => (
                   <div
                     key={`landing-${idx}`}
                     className={style.thumbItem}
                     role="button"
                     tabIndex={0}
-                    onClick={() => setSelectedItem({ title: it.title, description: it.description, videoUrl: it.videoUrl })}
+                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
                     onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, videoUrl: it.videoUrl });
+                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
                     <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
+                    {it.badge && <span className={style.projectBadge}>{it.badge}</span>}
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
                       <p>{truncate(it.description)}</p>
                     </div>
                   </div>
                 ))}
-              </div>
+              </AutoCarousel>
             </Reveal>
           </article>
-       
+
           <article id="aplicaciones" className={style.workCard}>
-            <Reveal className="revealLeft" delay={240}>
+            <Reveal className="revealLeft" delay={0}>
               <h3>Aplicaciones</h3>
-              <div className={style.carousel}>
+              <AutoCarousel className={style.carousel}>
                 {appItems.map((it, idx) => (
                   <div
                     key={`app-${idx}`}
                     className={style.thumbItem}
                     role="button"
                     tabIndex={0}
-                    onClick={() => setSelectedItem({ title: it.title, description: it.description, videoUrl: it.videoUrl })}
+                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
                     onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, videoUrl: it.videoUrl });
+                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
                     <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
@@ -196,50 +245,23 @@ export default function Home() {
                     </div>
                   </div>
                 ))}
-              </div>
+              </AutoCarousel>
             </Reveal>
           </article>
 
-          <article id="automatizaciones" className={style.workCard}>
-            <Reveal className="revealLeft" delay={360}>
-              <h3>Automatizaciones/Bots</h3>
-              <div className={style.carousel}>
-                {botsItems.map((it, idx) => (
-                  <div
-                    key={`bot-${idx}`}
-                    className={style.thumbItem}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setSelectedItem({ title: it.title, description: it.description, videoUrl: it.videoUrl })}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, videoUrl: it.videoUrl });
-                    }}
-                  >
-                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
-                    <div className={style.thumbOverlay}>
-                      <h4>{it.title}</h4>
-                      <p>{it.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </Reveal>
-          </article>
-
-           <div className={style.workGrid}>
           <article id="apis" className={style.workCard}>
-            <Reveal className="revealLeft" delay={0}>
+            <Reveal className="revealLeft" delay={240}>
               <h3>Apis</h3>
-              <div className={style.carousel}>
+              <AutoCarousel className={style.carousel}>
                 {apisItems.map((it, idx) => (
                   <div
                     key={`api-${idx}`}
                     className={style.thumbItem}
                     role="button"
                     tabIndex={0}
-                    onClick={() => setSelectedItem({ title: it.title, description: it.description, videoUrl: it.videoUrl })}
+                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
                     onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, videoUrl: it.videoUrl });
+                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
                     <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
@@ -249,11 +271,36 @@ export default function Home() {
                     </div>
                   </div>
                 ))}
-              </div>
+              </AutoCarousel>
             </Reveal>
           </article>
-        </div>
-        
+
+          <article id="automatizaciones" className={style.workCard}>
+            <Reveal className="revealLeft" delay={360}>
+              <h3>Automatizaciones/Bots</h3>
+              <AutoCarousel className={style.carousel}>
+                {botsItems.map((it, idx) => (
+                  <div
+                    key={`bot-${idx}`}
+                    className={style.thumbItem}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
+                    }}
+                  >
+                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
+                    <div className={style.thumbOverlay}>
+                      <h4>{it.title}</h4>
+                      <p>{it.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </AutoCarousel>
+            </Reveal>
+          </article>
+
         <div className={style.google}>
           <article id="analytics" className={style.workCard}>
             <div className={`${style.footerGrid} ${style.analyticsGrid}`}>
@@ -305,6 +352,49 @@ export default function Home() {
             </div>
           </div>
         </article>
+
+        <article id="certificados" className={style.workCard}>
+          <h3 className={style.certSectionTitle}>Certificados Profesionales</h3>
+          <div className={style.certsBadgeWrap}>
+            <img
+              src="/google-digital-marketing-badge.png"
+              alt="Google Digital Marketing and E-commerce Badge"
+              className={style.certsBadge}
+            />
+          </div>
+          <div className={style.certsGrid}>
+            {[
+              { src: "/certificates/GoogleDigitalMarketingandE-commerceSpecializationCertificate.webp", title: "Google Digital Marketing and E-commerce Specialization" },
+              { src: "/certificates/FoundationsofProjectManagement.webp", title: "Foundations of Project Management" },
+              { src: "/certificates/SatisfactionGuaranteedDevelopCustomerLoyaltyOnline.webp", title: "Satisfaction Guaranteed: Develop Customer Loyalty Online" },
+              { src: "/certificates/MakeTheSale.webp", title: "Make The Sale: Build, Launch, and Manage E-commerce Stores" },
+              { src: "/certificates/AssessForSuccess.webp", title: "Assess for Success: Marketing Analytics and Measurement" },
+              { src: "/certificates/AttractAndEngage.webp", title: "Attract and Engage Customers with Digital Marketing" },
+              { src: "/certificates/EmailMarketing.webp", title: "Think Outside the Inbox: Email Marketing" },
+              { src: "/certificates/FromLikesToLeads.webp", title: "From Likes to Leads: Interact with Customers Online" },
+              { src: "/certificates/GoogleAI.webp", title: "Google AI Essentials" },
+              { src: "/certificates/FoundationsDigitalMarketing.webp", title: "Foundations of Digital Marketing and E-commerce" },
+              { src: "/certificates/GoogleDigitalMarketingandE-commerceBadge.webp", title: "Google Digital Marketing and E-commerce Badge" },
+              { src: "/certificates/Programacion.webp", title: "Desarrollo Web con HTML5, CSS3, JS, AJAX, PHP y MySQL" },
+              { src: "/certificates/Laravel9API.webp", title: "Curso de Laravel 9 desde cero + APIs RESTful" },
+              { src: "/certificates/frontend-fullstack-js.webp", title: "Universidad Desarrollo Web — FrontEnd Web Developer" },
+              { src: "/certificates/php-sql-certificado.webp", title: "Desarrolla un sistema web POS desde cero con PHP Nativo" },
+              { src: "/certificates/CSharpBasic.webp", title: "Visual Studio 2022 C# — Nivel Básico" },
+            ].map((cert, i) => (
+              <div
+                key={i}
+                className={style.certCard}
+                role="button"
+                tabIndex={0}
+                onClick={() => setSelectedCert(cert)}
+                onKeyDown={(e) => { if (e.key === "Enter") setSelectedCert(cert); }}
+              >
+                <img src={cert.src} alt={cert.title} className={style.certImg} />
+                <p className={style.certTitle}>{cert.title}</p>
+              </div>
+            ))}
+          </div>
+        </article>
          </div>
       </section>
       
@@ -328,7 +418,7 @@ export default function Home() {
              <span className={style.techItem}>TypeScript</span>
              <span className={style.techItem}>React</span>
              <span className={style.techItem}>Next.js</span>
-             <span className={style.techItem}>Node.js</span>
+             <span className={style.techItem}>NestJs</span>
              <span className={style.techItem}>Astro</span>
              <span className={style.techItem}>Python</span>
              <span className={style.techItem}>Tailwind CSS</span>
@@ -341,7 +431,7 @@ export default function Home() {
              <span className={style.techItem}>TypeScript</span>
              <span className={style.techItem}>React</span>
              <span className={style.techItem}>Next.js</span>
-             <span className={style.techItem}>Node.js</span>
+             <span className={style.techItem}>NestJs</span>
              <span className={style.techItem}>Astro</span>
              <span className={style.techItem}>Python</span>
              <span className={style.techItem}>Tailwind CSS</span>
@@ -422,6 +512,24 @@ export default function Home() {
 
       {/* Modal de detalle */}
       <Modal open={!!selectedItem} item={selectedItem} onClose={() => setSelectedItem(null)} />
+
+      {/* Lightbox de certificados */}
+      {selectedCert && (
+        <div
+          className={style.certLightbox}
+          onClick={() => setSelectedCert(null)}
+          role="dialog"
+          aria-modal="true"
+          aria-label={selectedCert.title}
+        >
+          <img
+            src={selectedCert.src}
+            alt={selectedCert.title}
+            className={style.certLightboxImg}
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
 
     </main>
   );

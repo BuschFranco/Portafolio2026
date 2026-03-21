@@ -149,18 +149,23 @@ a.secondary {
   width: 90%;
   padding: 0 10rem;
   margin: 1rem auto;
-}.titleContainer h3{
-  font-size: clamp(2.4rem, 6vw, 5rem);
 }
-.titleContainer h4{
+.titleContainer h3 {
+  font-size: clamp(2.4rem, 6vw, 5rem);
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+}
+.titleContainer h4 {
   font-size: clamp(1.4rem, 3.5vw, 2.2rem);
+  letter-spacing: -0.01em;
 }
 
-.separator{
+.separator {
   margin: clamp(0.75rem, 3vw, 2rem);
+  border: none;
   height: 1px;
-  opacity: 0.5;
-  border-color: #111;
+  background: linear-gradient(to right, transparent, currentColor 20%, currentColor 80%, transparent);
+  opacity: 0.12;
 }
 
 .typewriterCaret {
@@ -186,16 +191,55 @@ a.secondary {
   }
 }
 
+.description {
+  max-width: 100ch;
+  line-height: 1.65;
+  margin-top: 0.75rem;
+}
+
+.description p {
+  color: var(--text-secondary);
+  font-size: clamp(0.95rem, 2vw, 1.1rem);
+  margin: 0 0 1rem;
+}
+
 /* Sección Mi Trabajo */
 .workSection {
   margin-top: 32px;
   padding: 24px 0;
+  counter-reset: section-counter;
 }
 
 .workSection h2 {
   text-align: center;
   font-size: clamp(1.75rem, 4.5vw, 3rem);
   margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.workHeader {
+  background: var(--bg-surface, transparent);
+  color: var(--text-primary);
+  padding: 1.5rem 1.5rem 1.75rem;
+  border-bottom: 1px solid var(--button-secondary-border);
+}
+
+/* Línea decorativa bajo el título de sección */
+.workHeader::after {
+  content: "";
+  display: block;
+  width: 32px;
+  height: 2px;
+  background: var(--text-secondary);
+  margin: 10px auto 0;
+  opacity: 0.4;
+  border-radius: 99px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .workHeader {
+    background: transparent;
+  }
 }
 
 .workGrid {
@@ -213,42 +257,68 @@ a.secondary {
 .workCard h3 {
   margin: 0 0 8px;
   font-size: clamp(1.5rem, 4.8vw, 2.5rem);
-  text-align: Start;
+  text-align: start;
+  letter-spacing: -0.02em;
 }
 
-/* Carrusel horizontal tipo Netflix */
+/* Números de sección (01, 02...) solo en cards con carrusel */
+.workCard:has(.carousel) {
+  counter-increment: section-counter;
+}
+
+.workCard:has(.carousel) h3::before {
+  content: "0" counter(section-counter);
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 6px;
+  font-family: var(--font-geist-mono), monospace;
+  opacity: 0.65;
+}
+
+/* Carrusel horizontal — scroll 100% controlado por JS */
 .carousel {
   display: flex;
   gap: 12px;
   padding-bottom: 8px;
-  scroll-snap-type: x mandatory;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scroll-padding-inline: 12px;
-}
-
-.carousel::-webkit-scrollbar {
-  height: 8px;
+  overflow-x: hidden;
+  touch-action: pan-y; /* browser maneja scroll vertical, JS maneja el horizontal */
 }
 
 /* Item del carrusel con overlay */
 .thumbItem {
   position: relative;
-  flex: 0 0 clamp(80%, 40vw, 32%);
-  max-width: clamp(80%, 40vw, 32%);
+  flex: 0 0 46%;
+  max-width: 46%;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
   overflow: hidden;
   border: 1px solid var(--button-secondary-border);
   background: var(--foreground);
-  scroll-snap-align: start;
   transition: transform 200ms ease, box-shadow 200ms ease;
 }
 
 .thumbItem:hover {
   transform: translate(-4px, -4px);
-  box-shadow: 6px 6px 1px rgb(255, 255, 255);
+  box-shadow: 6px 6px 0px var(--text-primary);
   cursor: pointer;
+}
+
+.projectBadge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: rgba(0, 0, 0, 0.72);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.2px;
+  z-index: 2;
+  pointer-events: none;
 }
 
 .thumbImage {
@@ -256,17 +326,36 @@ a.secondary {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 420ms ease;
 }
 
 .thumbOverlay {
   position: absolute;
   top: 8px;
   left: 8px;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(0, 0, 0, 0.55);
   color: #fff;
   padding: clamp(6px, 1.2vw, 10px);
   border-radius: 8px;
   max-width: min(60%, 38ch);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* En desktop: overlay oculto por defecto, aparece en hover */
+@media (hover: hover) and (pointer: fine) {
+  .thumbOverlay {
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity 240ms ease, transform 240ms ease;
+  }
+  .thumbItem:hover .thumbOverlay {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .thumbItem:hover .thumbImage {
+    transform: scale(1.05);
+  }
 }
 
 .thumbOverlay h4 {
@@ -282,15 +371,15 @@ a.secondary {
 
 @media (min-width: 800px) {
   .thumbItem {
-    flex-basis: 32%;
-    max-width: 32%;
+    flex-basis: 30%;
+    max-width: 30%;
   }
 }
 
 @media (max-width: 600px) {
   .thumbItem {
-    flex-basis: 90%;
-    max-width: 90%;
+    flex-basis: 82%;
+    max-width: 82%;
   }
 }
 
@@ -352,6 +441,20 @@ a.secondary {
   outline-offset: 2px;
 }
 
+/* Flecha indicadora en contactLinks */
+.contactLink::after {
+  content: "↗";
+  margin-left: auto;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.contactLink:hover::after {
+  opacity: 0.55;
+  transform: translateX(0);
+}
+
 @media (prefers-color-scheme: dark) {
   .contactLink {
     background: rgba(255, 255, 255, 0.04);
@@ -398,11 +501,33 @@ a.secondary {
   display: inline-block;
   margin-top: 12px;
   padding: 10px 16px;
-  color: #333;
-  background-color: #fff;
+  color: #111;
+  background: #fff;
+  border: 1px solid rgba(0, 0, 0, 0.14);
   border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 140ms ease;
+}
+
+.downloadBtn:hover {
+  background: #111;
+  color: #fff;
+  border-color: transparent;
+  transform: translateY(-1px);
+}
+
+@media (prefers-color-scheme: dark) {
+  .downloadBtn {
+    color: #eee;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.14);
+  }
+  .downloadBtn:hover {
+    background: #fff;
+    color: #111;
+    border-color: transparent;
+  }
 }
 
 @media (max-width: 800px) {
@@ -433,7 +558,7 @@ a.secondary {
   color: rgb(104, 104, 104);
 
   &:hover {
-    color: black;
+    color: var(--text-primary);
   }
 }
 
@@ -461,6 +586,103 @@ a.secondary {
 
 .google{
   margin: 5rem auto;
+}
+
+@media (max-width: 600px) {
+  .google {
+    margin-top: 1.5rem;
+  }
+}
+
+/* ── Certificados Profesionales ─────────────────────── */
+.workCard .certSectionTitle {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.certsBadgeWrap {
+  display: flex;
+  justify-content: center;
+  margin: 0 0 20px;
+}
+
+.certsBadge {
+  width: clamp(160px, 22vw, 240px);
+  height: auto;
+}
+
+.certsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .certsGrid {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+.certCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--button-secondary-border);
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 160ms ease, box-shadow 160ms ease;
+}
+
+.certCard:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: 4px 4px 0px var(--text-primary);
+}
+
+.certImg {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  display: block;
+}
+
+.certTitle {
+  font-size: 0.78rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  padding: 0 10px 10px;
+  margin: 0;
+}
+
+/* ── Animaciones ─────────────────────────────────────── */
+@keyframes lightboxIn {
+  from { opacity: 0; transform: scale(0.88) translateY(16px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* Lightbox */
+.certLightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  padding: 24px;
+  cursor: zoom-out;
+}
+
+.certLightboxImg {
+  max-width: min(92vw, 1000px);
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5);
+  cursor: default;
+  animation: lightboxIn 280ms cubic-bezier(0.34, 1.25, 0.64, 1) both;
 }
 
 .analyticsImage {
@@ -551,7 +773,14 @@ a.secondary {
   width: 100%;
   border: 1px solid var(--button-secondary-border);
   border-radius: 12px;
-  background: #111; /* fondo sobrio para la neblina */
+  background: #111;
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.14), 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+@media (prefers-color-scheme: dark) {
+  .techCarousel {
+    box-shadow: 0 4px 28px rgba(0, 0, 0, 0.5);
+  }
 }
 
 .techCarousel::before,

@@ -8,7 +8,7 @@ type Props = {
   text: string;
   speed?: number; // ms por carácter
   startDelay?: number; // ms antes de empezar
-  as?: keyof JSX.IntrinsicElements; // etiqueta a renderizar (h1, h2, h3, span, etc.)
+  as?: keyof React.JSX.IntrinsicElements; // etiqueta a renderizar (h1, h2, h3, span, etc.)
   className?: string;
   showCaret?: boolean; // muestra el caret al final
 };

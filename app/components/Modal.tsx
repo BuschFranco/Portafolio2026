@@ -5,7 +5,9 @@ import styles from "./Modal.module.css";
 export type ModalItem = {
   title: string;
   description: string;
-  videoUrl?: string; // URL de YouTube/Vimeo (embed) o mp4
+  videoUrl?: string;
+  imageSrc?: string;
+  link?: string; // URL del proyecto en vivo o repositorio
 };
 
 type ModalProps = {
@@ -52,11 +54,9 @@ export default function Modal({ open, item, onClose }: ModalProps) {
             ) : (
               <video className={styles.videoTag} src={item.videoUrl} controls />
             )
-          ) : (
-            <div className={styles.videoFrame} style={{ display: "grid", placeItems: "center", color: "#fff" }}>
-              Video no disponible
-            </div>
-          )}
+          ) : item.imageSrc ? (
+            <img className={styles.mediaImg} src={item.imageSrc} alt={item.title} />
+          ) : null}
         </div>
         <div className={styles.contentPane}>
           <div className={styles.header}>
@@ -64,6 +64,16 @@ export default function Modal({ open, item, onClose }: ModalProps) {
             <button className={styles.closeBtn} aria-label="Cerrar" onClick={onClose}>&times;</button>
           </div>
           <p className={styles.description}>{item.description}</p>
+          {item.link && (
+            <a
+              className={styles.projectLink}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Ver proyecto →
+            </a>
+          )}
           <span className={styles.meta}>Haz click fuera del modal o presiona Esc para cerrar</span>
         </div>
       </div>
