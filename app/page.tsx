@@ -121,8 +121,8 @@ export default function Home() {
       link: "https://github.com/BuschFranco/DashboardMDG",
     },
     {
-      imageSrc: "placeholders/aplicacion2.png",
-      title: "ArcgameUnity — Juego Arcade",
+      imageSrc: "placeholders/projectunity.webp",
+      title: "Juego en Unity — Juego Arcade",
       description:
         "Juego arcade desarrollado en Unity con C#. El jugador recorre un bosque recolectando ítems contra el reloj con 3 vidas, con dinámica de riesgo vs recompensa al buscar puntos de score adicionales. Sistema de puntuación, múltiples niveles y gestión de estado del jugador.",
       link: "https://github.com/BuschFranco/ArcgameUnity",
