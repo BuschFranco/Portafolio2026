@@ -75,7 +75,7 @@ a {
   filter: blur(4px);
   transition: opacity 500ms ease, transform 500ms ease, filter 500ms ease;
   transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform, filter;
+  will-change: opacity, transform; /* filter excluido: crea capas de compositor costosas */
 }
 
 /* Variante: entrada desde la izquierda */
@@ -88,6 +88,7 @@ a {
   opacity: 1;
   transform: translateX(0) translateY(0);
   filter: blur(0);
+  will-change: auto; /* libera la capa una vez terminada la animación */
 }
 
 @media (prefers-reduced-motion: reduce) {

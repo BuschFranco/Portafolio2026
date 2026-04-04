@@ -202,7 +202,7 @@ export default function Home() {
                       if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
-                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
+                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} loading="lazy" decoding="async" />
                     {it.badge && <span className={style.projectBadge}>{it.badge}</span>}
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
@@ -229,7 +229,7 @@ export default function Home() {
                       if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
-                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
+                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} loading="lazy" decoding="async" />
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
                       <p>{truncate(it.description, 140)}</p>
@@ -284,6 +284,8 @@ export default function Home() {
                   src="/placeholders/analytics.png"
                   alt="Google Analytics – panel y métricas"
                   className={`${style.thumbImage} ${style.analyticsImage}`}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className={style.analyticsBody}>
@@ -310,6 +312,8 @@ export default function Home() {
                   src="/placeholders/gads.png"
                   alt="Google Ads – campañas y panel"
                   className={`${style.thumbImage} ${style.analyticsImage}`}
+                  loading="lazy"
+                  decoding="async"
                 />
               </div>
               <div className={style.analyticsBody}>
@@ -406,7 +410,7 @@ export default function Home() {
                 onClick={() => setSelectedCert(cert)}
                 onKeyDown={(e) => { if (e.key === "Enter") setSelectedCert(cert); }}
               >
-                <img src={cert.src} alt={cert.title} className={style.certImg} />
+                <img src={cert.src} alt={cert.title} className={style.certImg} loading="lazy" decoding="async" />
                 <p className={style.certTitle}>{cert.title}</p>
               </div>
             ))}

@@ -19,6 +19,7 @@ export default function AutoCarousel({ className, children }: Props) {
 
     let pos = 0;
     let paused = false;
+    let offscreen = false; // el carrusel está fuera del viewport
     let rafId: number;
     let resumeTimer: number;
     let dragStartX = 0;
@@ -29,7 +30,7 @@ export default function AutoCarousel({ className, children }: Props) {
     // ── Auto-scroll + drag — solo desktop ─────────────────────
     if (!isTouch) {
       const tick = () => {
-        if (!paused) {
+        if (!paused && !offscreen) {
           pos += 0.5;
           const half = el.scrollWidth / 2;
           if (half > 0 && pos >= half) pos -= half;
@@ -45,6 +46,13 @@ export default function AutoCarousel({ className, children }: Props) {
         }
         rafId = requestAnimationFrame(tick);
       };
+
+      // Pausa el scroll cuando el carrusel sale del viewport — ahorra CPU
+      const visibilityObserver = new IntersectionObserver(
+        ([entry]) => { offscreen = !entry.isIntersecting; },
+        { rootMargin: "200px" }
+      );
+      visibilityObserver.observe(el);
 
       const onEnter = () => { if (!isDragging) paused = true; };
       const onLeave = () => { if (!isDragging) paused = false; };
@@ -104,6 +112,7 @@ export default function AutoCarousel({ className, children }: Props) {
       return () => {
         cancelAnimationFrame(rafId);
         clearTimeout(resumeTimer);
+        visibilityObserver.disconnect();
         document.removeEventListener("pointermove", onDocMove);
         document.removeEventListener("pointerup", onDocUp);
         el.removeEventListener("mouseenter", onEnter);

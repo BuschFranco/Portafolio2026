@@ -55,7 +55,7 @@ export default function Modal({ open, item, onClose }: ModalProps) {
               <video className={styles.videoTag} src={item.videoUrl} controls />
             )
           ) : item.imageSrc ? (
-            <img className={styles.mediaImg} src={item.imageSrc} alt={item.title} />
+            <img className={styles.mediaImg} src={item.imageSrc} alt={item.title} loading="lazy" decoding="async" />
           ) : null}
         </div>
         <div className={styles.contentPane}>
