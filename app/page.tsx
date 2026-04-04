@@ -470,7 +470,7 @@ export default function Home() {
         <div className={style.footerInfo}>
           <div className={style.contactLinks}>
             <a 
-              href="https://linkedin.com/in/franco-busch" 
+              href="https://www.linkedin.com/in/francobusch/" 
               target="_blank" 
               rel="noopener noreferrer"
               className={style.contactLink}
