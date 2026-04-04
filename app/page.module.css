@@ -201,7 +201,7 @@ a.secondary {
 
 /* ── Sobre mí ─────────────────────────────────────────── */
 .aboutSection {
-  padding: clamp(32px, 5vw, 64px) clamp(16px, 6vw, 80px);
+  padding: 0 clamp(16px, 6vw, 80px) clamp(32px, 5vw, 64px);
   max-width: 1100px;
   margin: 0 auto;
   width: 100%;
