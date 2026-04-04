@@ -27,21 +27,6 @@ body {
   overflow-x: hidden;
 }
 
-.logo {
-  position: absolute;
-  top: 24px;
-  left: 24px;
-}
-
-@media (max-width: 600px) {
-  .logo {
-    position: static;
-    display: block;
-    margin: 12px auto 8px;
-    width: 72px;
-    height: auto;
-  }
-}
 
 /* Desplazamiento suave para anclas */
 html {

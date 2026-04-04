@@ -127,10 +127,6 @@ a.secondary {
 }
 
 @media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
   .page {
     --foreground: #000;
 
@@ -201,6 +197,148 @@ a.secondary {
   color: var(--text-secondary);
   font-size: clamp(0.95rem, 2vw, 1.1rem);
   margin: 0 0 1rem;
+}
+
+/* ── Sobre mí ─────────────────────────────────────────── */
+.aboutSection {
+  padding: clamp(32px, 5vw, 64px) clamp(16px, 6vw, 80px);
+  max-width: 1100px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.aboutTitle {
+  font-size: clamp(1.75rem, 4.5vw, 3rem);
+  letter-spacing: -0.02em;
+  margin: 0 0 clamp(20px, 3vw, 36px);
+}
+
+.aboutGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+}
+
+.aboutText {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.aboutText p {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+  line-height: 1.75;
+  color: var(--text-secondary);
+}
+
+.aboutCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.aboutCard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: clamp(16px, 2.2vw, 22px);
+  border: 1px solid var(--button-secondary-border);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+
+/* Acento de color en el top de cada card */
+.aboutCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  border-radius: 14px 14px 0 0;
+  opacity: 0;
+  transition: opacity 200ms ease;
+}
+
+.aboutCard:nth-child(1)::before { background: linear-gradient(90deg, #6366f1, #a78bfa); }
+.aboutCard:nth-child(2)::before { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
+.aboutCard:nth-child(3)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
+.aboutCard:nth-child(4)::before { background: linear-gradient(90deg, #10b981, #34d399); }
+
+.aboutCard:hover {
+  border-color: transparent;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+}
+
+.aboutCard:hover::before {
+  opacity: 1;
+}
+
+.aboutCardNum {
+  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1;
+  color: var(--text-primary);
+  font-family: var(--font-geist-mono), monospace;
+}
+
+.aboutCardLabel {
+  font-size: 0.74rem;
+  color: var(--text-secondary);
+  line-height: 1.4;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+@media (prefers-color-scheme: dark) {
+  .aboutCard:hover {
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+.aboutDisclaimer {
+  padding: 14px 18px;
+  border-left: 2px solid var(--text-primary);
+  background: rgba(0, 0, 0, 0.03);
+  border-radius: 0 10px 10px 0;
+}
+
+.aboutDisclaimer p {
+  margin: 0;
+  font-size: clamp(0.9rem, 1.6vw, 1rem) !important;
+  color: var(--text-primary) !important;
+  font-style: italic;
+  line-height: 1.65;
+}
+
+@media (prefers-color-scheme: dark) {
+  .aboutDisclaimer {
+    background: rgba(255, 255, 255, 0.04);
+  }
+}
+
+@media (max-width: 760px) {
+  .aboutGrid {
+    grid-template-columns: 1fr;
+  }
+  .aboutCards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  .aboutCard {
+    background: rgba(255, 255, 255, 0.03);
+  }
 }
 
 /* Sección Mi Trabajo */
@@ -287,10 +425,23 @@ a.secondary {
   touch-action: pan-y; /* browser maneja scroll vertical, JS maneja el horizontal */
 }
 
+@media (hover: hover) and (pointer: fine) {
+  .carousel {
+    cursor: grab;
+  }
+}
+
+/* Evita drag nativo en imágenes y selección de texto dentro del carrusel */
+.carousel img {
+  -webkit-user-drag: none;
+  pointer-events: none; /* el click sigue funcionando en el thumbItem padre */
+}
+
 /* Item del carrusel con overlay */
 .thumbItem {
   position: relative;
   flex: 0 0 46%;
+  user-select: none;
   max-width: 46%;
   aspect-ratio: 16 / 9;
   border-radius: 12px;
@@ -983,16 +1134,42 @@ a.secondary {
 
 .formStatusOk,
 .formStatusErr {
-  margin-top: 4px;
-  font-size: 0.9rem;
+  margin-top: 8px;
+  padding: 12px 16px;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 500;
+  animation: statusIn 240ms cubic-bezier(0.34, 1.3, 0.64, 1) both;
+}
+
+@keyframes statusIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .formStatusOk {
-  color: #0a8f3d;
+  background: #dcfce7;
+  color: #166534;
+  border: 1px solid #bbf7d0;
 }
 
 .formStatusErr {
-  color: #b00020;
+  background: #fee2e2;
+  color: #991b1b;
+  border: 1px solid #fecaca;
+}
+
+@media (prefers-color-scheme: dark) {
+  .formStatusOk {
+    background: rgba(22, 101, 52, 0.25);
+    color: #86efac;
+    border-color: rgba(134, 239, 172, 0.25);
+  }
+  .formStatusErr {
+    background: rgba(153, 27, 27, 0.25);
+    color: #fca5a5;
+    border-color: rgba(252, 165, 165, 0.25);
+  }
 }
 
 @media (prefers-color-scheme: dark) {

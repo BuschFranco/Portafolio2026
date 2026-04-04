@@ -1,0 +1,192 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 24px;
+  transition: background 240ms ease, border-color 240ms ease, box-shadow 240ms ease;
+  border-bottom: 1px solid transparent;
+}
+
+.nav.scrolled {
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+@media (prefers-color-scheme: dark) {
+  .nav.scrolled {
+    background: rgba(14, 14, 14, 0.88);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* ── Logo ─────────────────────────────────────────────── */
+.logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .logo { filter: invert(1); }
+}
+
+/* ── Links desktop ────────────────────────────────────── */
+.links {
+  display: flex;
+  align-items: center;
+  gap: clamp(4px, 2vw, 24px);
+}
+
+.link {
+  position: relative;
+  font-size: clamp(0.82rem, 1.6vw, 0.95rem);
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.65);
+  text-decoration: none;
+  padding: 4px 6px;
+  transition: color 160ms ease;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0;
+  height: 1.5px;
+  background: currentColor;
+  transform: translateX(-50%);
+  transition: width 200ms ease;
+  border-radius: 99px;
+}
+
+.link:hover { color: rgba(0, 0, 0, 0.9); }
+.link:hover::after { width: 80%; }
+
+@media (prefers-color-scheme: dark) {
+  .link { color: rgba(255, 255, 255, 0.55); }
+  .link:hover { color: rgba(255, 255, 255, 0.95); }
+}
+
+/* ── Hamburguesa ──────────────────────────────────────── */
+.burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 160ms ease;
+}
+
+.burger:hover {
+  background: rgba(0, 0, 0, 0.06);
+}
+
+.burger span {
+  display: block;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  border-radius: 99px;
+  transform-origin: center;
+  transition: transform 240ms ease, opacity 240ms ease, width 240ms ease;
+}
+
+/* Animación X al abrir */
+.burgerOpen span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.burgerOpen span:nth-child(2) { opacity: 0; width: 0; }
+.burgerOpen span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+@media (prefers-color-scheme: dark) {
+  .burger:hover { background: rgba(255, 255, 255, 0.08); }
+}
+
+/* ── Drawer mobile ────────────────────────────────────── */
+.drawer {
+  position: fixed;
+  top: 57px; /* altura del nav */
+  left: 0;
+  right: 0;
+  z-index: 99;
+  background: rgba(255, 255, 255, 0.96);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-8px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 220ms ease, transform 220ms ease;
+}
+
+.drawerOpen {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+@media (prefers-color-scheme: dark) {
+  .drawer {
+    background: rgba(14, 14, 14, 0.96);
+    border-bottom-color: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.5);
+  }
+}
+
+.drawerLinks {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 0 12px;
+}
+
+.drawerLink {
+  padding: 14px 24px;
+  font-size: 1rem;
+  font-weight: 500;
+  color: rgba(0, 0, 0, 0.75);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background 140ms ease, color 140ms ease;
+}
+
+.drawerLink:last-child { border-bottom: none; }
+
+.drawerLink:hover {
+  background: rgba(0, 0, 0, 0.04);
+  color: rgba(0, 0, 0, 0.95);
+}
+
+@media (prefers-color-scheme: dark) {
+  .drawerLink { color: rgba(255, 255, 255, 0.65); border-bottom-color: rgba(255, 255, 255, 0.06); }
+  .drawerLink:hover { background: rgba(255, 255, 255, 0.06); color: rgba(255, 255, 255, 0.95); }
+}
+
+/* ── Overlay ──────────────────────────────────────────── */
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 98;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* ── Responsive ───────────────────────────────────────── */
+@media (max-width: 600px) {
+  .nav { padding: 10px 16px; }
+  .links { display: none; }
+  .burger { display: flex; }
+}

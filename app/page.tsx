@@ -49,7 +49,7 @@ export default function Home() {
       imageSrc: "/placeholders/jamo.png",
       title: "Just a Marketing Office — Agencia de Leads",
       description:
-        "Landing page de JAMO, agencia de adquisición de leads a comisión. Desarrollada con Astro, i18n en 3 idiomas (ES/EN/PT), Google Tag Manager, GA4 y modo oscuro nativo. El modelo: landing page + Google Ads + Analytics, sin retainer los primeros 3 meses. Incluye arquitectura screaming, SEO, formulario de contacto y deploy automático en Vercel vía GitHub Actions.",
+        "Landing page de JAMO, agencia de adquisición de clientes B2B con fee del 15% sobre pauta y 0 retainer los primeros 3 meses. Desarrollada con Astro, i18n en ES/EN/PT, GA4 + GTM con trazabilidad completa de eventos (clics, scroll, formularios, cambio de idioma), SEO técnico y deploy automático en Vercel vía GitHub Actions.",
       badge: "Proyecto propio",
       link: "https://justamarketingoffice.vercel.app/",
     },
@@ -79,7 +79,7 @@ export default function Home() {
   const appItems: WorkItem[] = [
     {
       imageSrc: "placeholders/app-recaap.png",
-      title: "Recaap — Resúmenes de Libros con Audio",
+      title: "Recap — Resúmenes de Libros con Audio",
       description:
         "Plataforma de resúmenes de libros en español con lectura y audio sincronizado entre dispositivos. Incluye modo offline, seguimiento de progreso, sistema de desafíos (racha de 21 días, maratón de lectura), logros y niveles. Más de 9 categorías: negocios, tecnología, biografía, ficción y más. Integra Google Analytics y GTM.",
       link: "https://www.recaap.ai/",
@@ -100,10 +100,11 @@ export default function Home() {
     },
 
     {
-      imageSrc: "/placeholders/aplicacion.png",
+      imageSrc: "/placeholders/aplicacion1.png",
       title: "App Admin",
       description:
-        "Panel de administración central con gestión de roles y permisos, auditoría de acciones por usuario, configuración del sistema y paneles de métricas. Permite a los administradores controlar accesos, revisar logs y gestionar la configuración de las apps del ecosistema desde una interfaz unificada. Desarrollado con React, integración con APIs REST y control de sesiones con JWT.",
+        "Aplicación web interna para Media Digital Group que automatiza la creación y distribución de briefs de landing pages. El usuario completa un formulario con los datos de campaña (aprobación, contenido, gráfica y especificaciones técnicas), se genera un ID único en formato LP-{timestamp}-{uuid} y se envía automáticamente por email como HTML estructurado. Desarrollado con Astro, TypeScript y Nodemailer. Deploy en Vercel.",
+      link: "https://github.com/BuschFranco/UtilitiesMDG",
     },
     {
       imageSrc: "placeholders/aplicacion2.png",
@@ -116,8 +117,16 @@ export default function Home() {
       imageSrc: "placeholders/jamo-panel.png",
       title: "JAMO — Panel de Operaciones",
       description:
-        "Panel web interno para la agencia Just a Marketing Office. Permite prospectar empresas en Google Maps, extraer emails/Instagram/LinkedIn desde sus sitios web, analizar cada prospecto con IA (Claude) y gestionar el outreach por WhatsApp, Email, LinkedIn e Instagram desde una sola interfaz. Stack: Node.js, Express, Notion API, Google Maps API, Anthropic API.",
+        "Sistema interno de adquisición de clientes para JAMO. Prospecta negocios en Google Maps por rubro y ciudad, enriquece cada lead con email e Instagram (web scraping con Puppeteer + Cheerio), los carga en un CRM de Notion y gestiona el outreach por WhatsApp y secuencias de email frío en 3 pasos (Brevo). Análisis de prospectos con IA (Claude). Stack: Node.js, Express, Notion API, Google Maps Places API, Anthropic SDK, Puppeteer.",
       badge: "Proyecto propio",
+    },
+    {
+      imageSrc: "placeholders/fluxstore.png",
+      title: "FluxStore — E-commerce de Celulares",
+      description:
+        "E-commerce de celulares importados desde Paraguay para venta en Argentina. Backend con Medusa.js v2 (API headless + admin panel), storefront con Next.js 15, PostgreSQL en Neon (AWS sa-east-1), pagos con MercadoPago Checkout Pro y storage de imágenes en Cloudflare R2. Deploy en Vercel (frontend) + Render (backend). Incluye métodos de envío Andreani (domicilio y sucursal) y envío propio.",
+      badge: "Proyecto propio",
+      link: "https://fluxstore-storefront.vercel.app",
     },
   ];
 
@@ -284,31 +293,76 @@ export default function Home() {
               </div>
             </div>
           </article>
-        
-        <article id="google-ads" className={style.workCard}>
-          <div className={`${style.footerGrid} ${style.adsGrid}`}>
-            <div className={style.analyticsTitle}>
-              <h3>Rendimiento y Crecimiento con Google Ads</h3>
+
+          <article id="google-ads" className={style.workCard}>
+            <div className={`${style.footerGrid} ${style.adsGrid}`}>
+              <div className={style.analyticsTitle}>
+                <h3>Rendimiento y Crecimiento con Google Ads</h3>
+              </div>
+              <div className={style.analyticsMediaWrap}>
+                <img
+                  src="/placeholders/gads.png"
+                  alt="Google Ads – campañas y panel"
+                  className={`${style.thumbImage} ${style.analyticsImage}`}
+                />
+              </div>
+              <div className={style.analyticsBody}>
+                <p>
+                  Diseño y gestiono campañas orientadas a resultados: segmentación precisa,
+                  creatividades testeadas A/B y optimización continua de pujas y conversiones.
+                  Entrego dashboards y métricas clave para escalar inversión con confianza,
+                  mejorar el CPA y maximizar el ROAS. Trabajo con estructuras escalables, audiencias y
+                  palabras clave de intención, además de conversiones mejoradas y automatizaciones
+                  para mantener el crecimiento con control del gasto.
+                </p>
+              </div>
             </div>
-            <div className={style.analyticsMediaWrap}>
-              <img
-                src="/placeholders/gads.png"
-                alt="Google Ads – campañas y panel"
-                className={`${style.thumbImage} ${style.analyticsImage}`}
-              />
+          </article>
+        </div>
+
+        <section id="sobre-mi" className={style.aboutSection}>
+          <Reveal className="revealLeft" delay={0}>
+            <h2 className={style.aboutTitle}>Sobre mí</h2>
+            <div className={style.aboutGrid}>
+              <div className={style.aboutText}>
+                <p>
+                  Desarrollador Full Stack con más de 4 años en la industria, actualmente en un rol con foco en el frontend.
+                  Trabajo cada proyecto como si fuera propio: me hago cargo, propongo soluciones y no espero que los problemas se resuelvan solos.
+                </p>
+                <p>
+                  Soy analítico y pragmático — eso me permite mantener la cabeza fría en momentos de conflicto y tomar decisiones con criterio.
+                  Me interesa el cruce entre el desarrollo, el marketing y la analítica: construir productos que no solo funcionen, sino que generen resultados medibles.
+                </p>
+                <p>
+                  Basado en Buenos Aires, Argentina. Abierto a proyectos remotos.
+                </p>
+                <div className={style.aboutDisclaimer}>
+                  <p>
+                    No te vendo un servicio en concreto. Te ofrezco alguien con ganas de participar y sacar adelante tu proyecto como si fuera propio — con el abanico de herramientas que existen hoy para afrontar cualquier desafío y desarrollo que sea necesario.
+                  </p>
+                </div>
+              </div>
+              <div className={style.aboutCards}>
+                <div className={style.aboutCard}>
+                  <span className={style.aboutCardNum}>4+</span>
+                  <span className={style.aboutCardLabel}>años en la industria</span>
+                </div>
+                <div className={style.aboutCard}>
+                  <span className={style.aboutCardNum}>FS</span>
+                  <span className={style.aboutCardLabel}>Full Stack</span>
+                </div>
+                <div className={style.aboutCard}>
+                  <span className={style.aboutCardNum}>BA</span>
+                  <span className={style.aboutCardLabel}>Buenos Aires, Argentina</span>
+                </div>
+                <div className={style.aboutCard}>
+                  <span className={style.aboutCardNum}>16</span>
+                  <span className={style.aboutCardLabel}>certificados profesionales</span>
+                </div>
+              </div>
             </div>
-            <div className={style.analyticsBody}>
-              <p>
-                Diseño y gestiono campañas orientadas a resultados: segmentación precisa,
-                creatividades testeadas A/B y optimización continua de pujas y conversiones.
-                Entrego dashboards y métricas clave para escalar inversión con confianza,
-                mejorar el CPA y maximizar el ROAS. Trabajo con estructuras escalables, audiencias y
-                palabras clave de intención, además de conversiones mejoradas y automatizaciones
-                para mantener el crecimiento con control del gasto.
-              </p>
-            </div>
-          </div>
-        </article>
+          </Reveal>
+        </section>
 
         <article id="certificados" className={style.workCard}>
           <h3 className={style.certSectionTitle}>Certificados Profesionales</h3>
@@ -352,7 +406,6 @@ export default function Home() {
             ))}
           </div>
         </article>
-         </div>
       </section>
       
  
@@ -422,24 +475,24 @@ export default function Home() {
             >
               GitHub
             </a>
-            <a 
-              href="https://mi-agencia-web.com" 
-              target="_blank" 
+            <a
+              href="https://justamarketingoffice.vercel.app/"
+              target="_blank"
               rel="noopener noreferrer"
               className={style.contactLink}
             >
               Agencia Web
             </a>
-            <a 
-              href="https://wa.me/5491123456789" 
-              target="_blank" 
+            <a
+              href="https://wa.me/5491131506458"
+              target="_blank"
               rel="noopener noreferrer"
               className={style.contactLink}
             >
               WhatsApp
             </a>
-            <a 
-              href="mailto:franco.busch@example.com"
+            <a
+              href="mailto:francobusch130@gmail.com"
               className={style.contactLink}
             >
               Email

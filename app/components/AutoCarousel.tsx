@@ -24,8 +24,9 @@ export default function AutoCarousel({ className, children }: Props) {
     let dragStartX = 0;
     let dragStartScroll = 0;
     let isDragging = false;
+    let didDrag = false; // flag para bloquear el click tras un drag real
 
-    // ── Auto-scroll — solo desktop ─────────────────────
+    // ── Auto-scroll + drag — solo desktop ─────────────────────
     if (!isTouch) {
       const tick = () => {
         if (!paused) {
@@ -45,29 +46,70 @@ export default function AutoCarousel({ className, children }: Props) {
         rafId = requestAnimationFrame(tick);
       };
 
-      const onEnter = () => { paused = true; };
-      const onLeave = () => { paused = false; };
-      const onPointerDown = () => { clearTimeout(resumeTimer); paused = true; };
-      const onPointerUp = () => {
+      const onEnter = () => { if (!isDragging) paused = true; };
+      const onLeave = () => { if (!isDragging) paused = false; };
+
+      // pointermove y pointerup se registran en document para capturar el puntero
+      // independientemente del elemento hijo sobre el que haya iniciado el drag
+      const onDocMove = (e: PointerEvent) => {
+        const dx = dragStartX - e.clientX;
+        if (!isDragging && Math.abs(dx) > DRAG_THRESHOLD) {
+          isDragging = true;
+          didDrag = true;
+        }
+        if (isDragging) {
+          const half = el.scrollWidth / 2;
+          pos = half > 0
+            ? (((dragStartScroll + dx) % half) + half) % half
+            : dragStartScroll + dx;
+          el.scrollLeft = pos;
+        }
+      };
+
+      const onDocUp = () => {
+        document.removeEventListener("pointermove", onDocMove);
+        document.removeEventListener("pointerup", onDocUp);
+        el.style.cursor = "";
+        isDragging = false;
         resumeTimer = window.setTimeout(() => { paused = false; }, 800);
+      };
+
+      const onPointerDown = (e: PointerEvent) => {
+        clearTimeout(resumeTimer);
+        paused = true;
+        isDragging = false;
+        didDrag = false;
+        dragStartX = e.clientX;
+        dragStartScroll = pos;
+        el.style.cursor = "grabbing";
+        document.addEventListener("pointermove", onDocMove);
+        document.addEventListener("pointerup", onDocUp);
+      };
+
+      // Bloquea el click si el usuario arrastró (capture phase, antes que los onClick de los hijos)
+      const onClickCapture = (e: MouseEvent) => {
+        if (didDrag) {
+          e.stopPropagation();
+          didDrag = false;
+        }
       };
 
       el.addEventListener("mouseenter", onEnter);
       el.addEventListener("mouseleave", onLeave);
       el.addEventListener("pointerdown", onPointerDown);
-      el.addEventListener("pointerup", onPointerUp);
-      el.addEventListener("pointercancel", onPointerUp);
+      el.addEventListener("click", onClickCapture, true);
 
       rafId = requestAnimationFrame(waitForLayout);
 
       return () => {
         cancelAnimationFrame(rafId);
         clearTimeout(resumeTimer);
+        document.removeEventListener("pointermove", onDocMove);
+        document.removeEventListener("pointerup", onDocUp);
         el.removeEventListener("mouseenter", onEnter);
         el.removeEventListener("mouseleave", onLeave);
         el.removeEventListener("pointerdown", onPointerDown);
-        el.removeEventListener("pointerup", onPointerUp);
-        el.removeEventListener("pointercancel", onPointerUp);
+        el.removeEventListener("click", onClickCapture, true);
       };
     }
 
