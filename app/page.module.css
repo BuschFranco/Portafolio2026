@@ -416,6 +416,79 @@ a.secondary {
   opacity: 0.65;
 }
 
+/* ── Bots ─────────────────────────────────────────────── */
+.botsTitle {
+  text-align: center !important;
+}
+
+.botsIntro {
+  font-size: clamp(0.92rem, 1.8vw, 1.02rem);
+  color: var(--text-secondary);
+  line-height: 1.7;
+  margin: 0 0 20px;
+  text-align: center;
+}
+
+.botsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.botItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--button-secondary-border);
+  border-radius: 12px;
+  transition: border-color 160ms ease, background 160ms ease;
+}
+
+.botItem:hover {
+  border-color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.02);
+}
+
+@media (prefers-color-scheme: dark) {
+  .botItem:hover { background: rgba(255, 255, 255, 0.03); }
+}
+
+.botTag {
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  font-family: var(--font-geist-mono), monospace;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--button-secondary-border);
+  color: var(--text-secondary);
+  background: rgba(0, 0, 0, 0.03);
+}
+
+@media (prefers-color-scheme: dark) {
+  .botTag { background: rgba(255, 255, 255, 0.05); }
+}
+
+.botItem strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: var(--text-primary);
+}
+
+.botItem p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
 /* Carrusel horizontal — scroll 100% controlado por JS */
 .carousel {
   display: flex;

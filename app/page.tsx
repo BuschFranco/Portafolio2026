@@ -32,20 +32,6 @@ export default function Home() {
         "Portal corporativo del negocio de VAS (Value Added Services), diseñado como punto único de contacto para clientes y partners. Desarrollada con Astro y React, consumiendo APIs internas y externas para gestionar consultas, formularios, catálogos y soporte; integra autenticación, trazabilidad de tickets y analítica.",
     },
     {
-      imageSrc: "placeholders/landing-intelli.png",
-      title: "Página agencia Intelli.Dev",
-      description:
-        "Agencia dedicada al desarrollo y soluciones tecnológicas. Implementada con tecnologías vanilla (HTML, CSS y JavaScript), integrando un chatbot con IA para asistencia en tiempo real y consumo de diversas APIs (correo, mapas, analítica y pricing). Incluye formularios validados, rendimiento optimizado y buenas prácticas de accesibilidad.",
-      link: "https://buschfranco.github.io/Intelli.dev/",
-    },
-    {
-      imageSrc: "placeholders/landing-portuauto.png",
-      title: "Landing Concesionario Fiat — PortuAuto",
-      description:
-        "Landing page para concesionario oficial Fiat desarrollada con Astro. Muestra catálogo de modelos (Argo, Cronos, Mobi) con imágenes optimizadas en WebP, formulario de contacto y sección de planes. Deploy automático en Vercel.",
-      link: "https://portuauto.vercel.app",
-    },
-    {
       imageSrc: "/placeholders/jamo.png",
       title: "Just a Marketing Office — Agencia de Leads",
       description:
@@ -54,11 +40,11 @@ export default function Home() {
       link: "https://justamarketingoffice.vercel.app/",
     },
     {
-      imageSrc: "placeholders/landing-norton.png",
-      title: "MDG Download Center — Norton",
+      imageSrc: "placeholders/landing-intelli.png",
+      title: "Página agencia Intelli.Dev",
       description:
-        "Centro de descargas de manuales para productos Norton (Mobile Security, VPN, 360 Standard y Deluxe). Desarrollado con Astro, cubre múltiples países (Kuwait, Bahrain, Oman, Qatar, Chile, Brasil) y operadores de telecomunicaciones (STC, Ooredoo). Soporte en inglés, portugués y árabe.",
-      link: "https://norton-help.xipio.online/",
+        "Agencia dedicada al desarrollo y soluciones tecnológicas. Implementada con tecnologías vanilla (HTML, CSS y JavaScript), integrando un chatbot con IA para asistencia en tiempo real y consumo de diversas APIs (correo, mapas, analítica y pricing). Incluye formularios validados, rendimiento optimizado y buenas prácticas de accesibilidad.",
+      link: "https://buschfranco.github.io/Intelli.dev/",
     },
     {
       imageSrc: "placeholders/landing-magplus-at.png",
@@ -74,44 +60,29 @@ export default function Home() {
         "Sitio web para una plataforma de entretenimiento y juegos online. Desarrollado con WordPress + Kubio builder e integración de WooCommerce para comercio electrónico. Diseño responsive con paleta vibrante (azules, naranja, verde menta), animaciones CSS, tipografías display y cumplimiento GDPR.",
       link: "https://epic-play.com/",
     },
+    {
+      imageSrc: "placeholders/landing-portuauto.png",
+      title: "Landing Concesionario Fiat — PortuAuto",
+      description:
+        "Landing page para concesionario oficial Fiat desarrollada con Astro. Muestra catálogo de modelos (Argo, Cronos, Mobi) con imágenes optimizadas en WebP, formulario de contacto y sección de planes. Deploy automático en Vercel.",
+      link: "https://portuauto.vercel.app",
+    },
+    {
+      imageSrc: "placeholders/landing-norton.png",
+      title: "MDG Download Center — Norton",
+      description:
+        "Centro de descargas de manuales para productos Norton (Mobile Security, VPN, 360 Standard y Deluxe). Desarrollado con Astro, cubre múltiples países (Kuwait, Bahrain, Oman, Qatar, Chile, Brasil) y operadores de telecomunicaciones (STC, Ooredoo). Soporte en inglés, portugués y árabe.",
+      link: "https://norton-help.xipio.online/",
+    },
   ];
 
   const appItems: WorkItem[] = [
-    {
-      imageSrc: "placeholders/app-recaap.png",
-      title: "Recap — Resúmenes de Libros con Audio",
-      description:
-        "Plataforma de resúmenes de libros en español con lectura y audio sincronizado entre dispositivos. Incluye modo offline, seguimiento de progreso, sistema de desafíos (racha de 21 días, maratón de lectura), logros y niveles. Más de 9 categorías: negocios, tecnología, biografía, ficción y más. Integra Google Analytics y GTM.",
-      link: "https://www.recaap.ai/",
-    },
     {
       imageSrc: "placeholders/app-magplus.png",
       title: "MagPlus — Plataforma de Revistas Digitales",
       description:
         "Plataforma global de distribución de revistas digitales con presencia en Oriente Medio, Europa, África y Asia. Sistema de autenticación, gestión de suscripciones, soporte multilingüe y multi-región, notificaciones push con OneSignal. Categorías: negocios, gastronomía, deportes, tecnología, bienestar y viajes. Integra GA4.",
       link: "https://magplus.club/",
-    },
-    {
-      imageSrc: "placeholders/aplicacion.png",
-      title: "DashboardMDG — Panel de Administración",
-      description:
-        "Panel de administración interno para Media Digital Group. Desarrollado con Astro y MongoDB, gestiona solicitudes de desarrollo con flujo de aprobación/rechazo por token. Incluye panel admin protegido, endpoints `/api/requests` y `/api/update-approval`, desplegado en Vercel.",
-      link: "https://github.com/BuschFranco/DashboardMDG",
-    },
-
-    {
-      imageSrc: "/placeholders/aplicacion1.png",
-      title: "App Admin",
-      description:
-        "Aplicación web interna para Media Digital Group que automatiza la creación y distribución de briefs de landing pages. El usuario completa un formulario con los datos de campaña (aprobación, contenido, gráfica y especificaciones técnicas), se genera un ID único en formato LP-{timestamp}-{uuid} y se envía automáticamente por email como HTML estructurado. Desarrollado con Astro, TypeScript y Nodemailer. Deploy en Vercel.",
-      link: "https://github.com/BuschFranco/UtilitiesMDG",
-    },
-    {
-      imageSrc: "placeholders/aplicacion2.png",
-      title: "ArcgameUnity — Juego Arcade",
-      description:
-        "Juego arcade desarrollado en Unity con C#. El jugador recorre un bosque recolectando ítems contra el reloj con 3 vidas, con dinámica de riesgo vs recompensa al buscar puntos de score adicionales. Sistema de puntuación, múltiples niveles y gestión de estado del jugador.",
-      link: "https://github.com/BuschFranco/ArcgameUnity",
     },
     {
       imageSrc: "placeholders/jamo-panel.png",
@@ -127,6 +98,34 @@ export default function Home() {
         "E-commerce de celulares importados desde Paraguay para venta en Argentina. Backend con Medusa.js v2 (API headless + admin panel), storefront con Next.js 15, PostgreSQL en Neon (AWS sa-east-1), pagos con MercadoPago Checkout Pro y storage de imágenes en Cloudflare R2. Deploy en Vercel (frontend) + Render (backend). Incluye métodos de envío Andreani (domicilio y sucursal) y envío propio.",
       badge: "Proyecto propio",
       link: "https://fluxstore-storefront.vercel.app",
+    },
+    {
+      imageSrc: "placeholders/app-recaap.png",
+      title: "Recap — Resúmenes de Libros con Audio",
+      description:
+        "Plataforma de resúmenes de libros en español con lectura y audio sincronizado entre dispositivos. Incluye modo offline, seguimiento de progreso, sistema de desafíos (racha de 21 días, maratón de lectura), logros y niveles. Más de 9 categorías: negocios, tecnología, biografía, ficción y más. Integra Google Analytics y GTM.",
+      link: "https://www.recaap.ai/",
+    },
+    {
+      imageSrc: "/placeholders/aplicacion1.png",
+      title: "App Admin",
+      description:
+        "Aplicación web interna para Media Digital Group que automatiza la creación y distribución de briefs de landing pages. El usuario completa un formulario con los datos de campaña (aprobación, contenido, gráfica y especificaciones técnicas), se genera un ID único en formato LP-{timestamp}-{uuid} y se envía automáticamente por email como HTML estructurado. Desarrollado con Astro, TypeScript y Nodemailer. Deploy en Vercel.",
+      link: "https://github.com/BuschFranco/UtilitiesMDG",
+    },
+    {
+      imageSrc: "placeholders/aplicacion.png",
+      title: "DashboardMDG — Panel de Administración",
+      description:
+        "Panel de administración interno para Media Digital Group. Desarrollado con Astro y MongoDB, gestiona solicitudes de desarrollo con flujo de aprobación/rechazo por token. Incluye panel admin protegido, endpoints `/api/requests` y `/api/update-approval`, desplegado en Vercel.",
+      link: "https://github.com/BuschFranco/DashboardMDG",
+    },
+    {
+      imageSrc: "placeholders/aplicacion2.png",
+      title: "ArcgameUnity — Juego Arcade",
+      description:
+        "Juego arcade desarrollado en Unity con C#. El jugador recorre un bosque recolectando ítems contra el reloj con 3 vidas, con dinámica de riesgo vs recompensa al buscar puntos de score adicionales. Sistema de puntuación, múltiples niveles y gestión de estado del jugador.",
+      link: "https://github.com/BuschFranco/ArcgameUnity",
     },
   ];
 
@@ -243,27 +242,34 @@ export default function Home() {
 
           <article id="automatizaciones" className={style.workCard}>
             <Reveal className="revealLeft" delay={360}>
-              <h3>Automatizaciones/Bots</h3>
-              <AutoCarousel className={style.carousel}>
-                {botsItems.map((it, idx) => (
-                  <div
-                    key={`bot-${idx}`}
-                    className={style.thumbItem}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
-                    }}
-                  >
-                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} />
-                    <div className={style.thumbOverlay}>
-                      <h4>{it.title}</h4>
-                      <p>{it.description}</p>
-                    </div>
+              <h3 className={style.botsTitle}>Automatizaciones / Bots</h3>
+              <p className={style.botsIntro}>
+                He desarrollado bots e integraciones para distintos canales y plataformas, automatizando
+                procesos de comunicación, notificaciones y atención al cliente con IA.
+              </p>
+              <div className={style.botsList}>
+                <div className={style.botItem}>
+                  <span className={style.botTag}>n8n</span>
+                  <div>
+                    <strong>Bot de WhatsApp</strong>
+                    <p>Bot integrado con IA capaz de informar al cliente, persuadirlo o comportarse según las reglas que definamos.</p>
                   </div>
-                ))}
-              </AutoCarousel>
+                </div>
+                <div className={style.botItem}>
+                  <span className={style.botTag}>n8n</span>
+                  <div>
+                    <strong>Bot de Telegram</strong>
+                    <p>Bot con IA que informa, resuelve dudas y orienta a los usuarios hacia las acciones que definamos, integrado a flujos n8n y servicios externos.</p>
+                  </div>
+                </div>
+                <div className={style.botItem}>
+                  <span className={style.botTag}>Zapier</span>
+                  <div>
+                    <strong>Bot de Discord</strong>
+                    <p>Notifica en tiempo real cuando se generan conversiones en campañas de Google Ads, comunica novedades y habilita funcionalidades del servidor.</p>
+                  </div>
+                </div>
+              </div>
             </Reveal>
           </article>
 
