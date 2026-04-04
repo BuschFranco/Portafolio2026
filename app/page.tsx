@@ -478,7 +478,7 @@ export default function Home() {
               LinkedIn
             </a>
             <a 
-              href="https://github.com/franco-busch" 
+              href="https://github.com/BuschFranco" 
               target="_blank" 
               rel="noopener noreferrer"
               className={style.contactLink}
