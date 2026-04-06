@@ -2,18 +2,7 @@
 import { useEffect, useState } from "react";
 import style from "./GtmManager.module.css";
 
-const GTM_ID = "GTM-KSTCPG4P";
 const EU_EXTRA = ["Atlantic/Canary", "Atlantic/Faroe", "Atlantic/Madeira", "Atlantic/Reykjavik"];
-
-function loadGTM() {
-  const w = window as any;
-  w.dataLayer = w.dataLayer || [];
-  w.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-  const s = document.createElement("script");
-  s.async = true;
-  s.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-  document.head.appendChild(s);
-}
 
 function isEU(): boolean {
   try {
@@ -28,23 +17,25 @@ export default function GtmManager() {
   const [showBanner, setShowBanner] = useState(false);
 
   useEffect(() => {
-    const eu = isEU();
-    if (!eu) {
-      loadGTM();
-      return;
-    }
+    // GTM y consent default ya fueron configurados en el <head>.
+    // Aquí solo decidimos si mostrar el banner (usuarios EU sin preferencia guardada).
+    if (!isEU()) return;
     const stored = localStorage.getItem("cookie-consent");
-    if (stored === "accepted") {
-      loadGTM();
-    } else if (!stored) {
-      setShowBanner(true);
-    }
+    if (!stored) setShowBanner(true);
   }, []);
 
   const accept = () => {
     localStorage.setItem("cookie-consent", "accepted");
     setShowBanner(false);
-    loadGTM();
+    // Consent Mode v2: actualiza el estado y carga GTM
+    const w = window as any;
+    w.gtag?.("consent", "update", {
+      analytics_storage:  "granted",
+      ad_storage:         "granted",
+      ad_user_data:       "granted",
+      ad_personalization: "granted",
+    });
+    w.loadGTM?.();
   };
 
   const decline = () => {
