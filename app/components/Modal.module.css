@@ -24,9 +24,8 @@
 }
 
 .videoPane {
-  background: #000;
   position: relative;
-  height: 100%; /* asegura que el video ocupe todo el alto */
+  height: 100%;
 }
 
 .videoFrame,
@@ -42,7 +41,6 @@
   height: 100%;
   object-fit: contain;
   display: block;
-  background: #000;
 }
 
 .contentPane {
@@ -115,11 +113,16 @@
 @media (max-width: 900px) {
   .modal {
     grid-template-columns: 1fr;
+    grid-template-rows: 48vh 1fr;
     width: 96vw;
-    height: auto; /* en móvil dejamos que se adapte */
+    height: 90vh;
   }
 
   .videoPane { height: 48vh; }
+
+  .contentPane {
+    min-height: 0; /* permite que el grid child se encoja y active overflow-y */
+  }
 }
 
 @media (prefers-color-scheme: dark) {
