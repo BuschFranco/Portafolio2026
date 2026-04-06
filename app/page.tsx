@@ -528,6 +528,13 @@ export default function Home() {
         </div>
       </div>
       <ContactForm />
+      <div className={style.footerLegal}>
+        <span>© {new Date().getFullYear()} Franco Busch · Buenos Aires, Argentina</span>
+        <div className={style.footerLegalLinks}>
+          <a href="/privacidad">Política de Privacidad</a>
+          <a href="/terminos">Términos y Condiciones</a>
+        </div>
+      </div>
     </footer>
 
       {/* Modal de detalle */}

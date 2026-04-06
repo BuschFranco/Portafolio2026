@@ -94,6 +94,11 @@ export default function ContactForm() {
           </button>
         </div>
 
+        <p className={style.formPrivacyNote}>
+          Al enviar aceptás que tus datos se almacenen para responder tu consulta.{" "}
+          <a href="/privacidad" className={style.formPrivacyLink}>Política de Privacidad</a>.
+        </p>
+
         {status && (
           <p className={status.ok ? style.formStatusOk : style.formStatusErr} role="status">
             {status.msg}

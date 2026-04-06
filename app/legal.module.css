@@ -1,0 +1,77 @@
+.page {
+  max-width: 780px;
+  margin: 0 auto;
+  padding: clamp(80px, 12vw, 120px) clamp(20px, 5vw, 40px) clamp(60px, 10vw, 100px);
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.9rem;
+  color: inherit;
+  opacity: 0.55;
+  text-decoration: none;
+  margin-bottom: 2.5rem;
+  transition: opacity 150ms ease;
+}
+
+.back:hover {
+  opacity: 1;
+}
+
+.title {
+  font-size: clamp(2rem, 6vw, 3.5rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+}
+
+.updated {
+  font-size: 0.875rem;
+  opacity: 0.45;
+  margin-bottom: 3rem;
+}
+
+.section {
+  margin-bottom: 2.5rem;
+}
+
+.section h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+}
+
+.section p,
+.section li {
+  font-size: 0.975rem;
+  line-height: 1.75;
+  opacity: 0.75;
+}
+
+.section ul {
+  padding-left: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.section a {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  margin: 2.5rem 0;
+}
+
+@media (prefers-color-scheme: dark) {
+  .divider {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+}
