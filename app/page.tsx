@@ -30,6 +30,7 @@ export default function Home() {
       title: "Página Corporativa Media Digital Group",
       description:
         "Portal corporativo del negocio de VAS (Value Added Services), diseñado como punto único de contacto para clientes y partners. Desarrollada con Astro y React, consumiendo APIs internas y externas para gestionar consultas, formularios, catálogos y soporte; integra autenticación, trazabilidad de tickets y analítica.",
+      link: "https://mediadigitalgroup.com/",
     },
     {
       imageSrc: "/placeholders/jamo.webp",
