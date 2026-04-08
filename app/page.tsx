@@ -26,13 +26,13 @@ export default function Home() {
 
   const landingItems: WorkItem[] = [
     {
-      imageSrc: "placeholders/landing1.png",
+      imageSrc: "placeholders/landing1.webp",
       title: "Página Corporativa Media Digital Group",
       description:
         "Portal corporativo del negocio de VAS (Value Added Services), diseñado como punto único de contacto para clientes y partners. Desarrollada con Astro y React, consumiendo APIs internas y externas para gestionar consultas, formularios, catálogos y soporte; integra autenticación, trazabilidad de tickets y analítica.",
     },
     {
-      imageSrc: "/placeholders/jamo.png",
+      imageSrc: "/placeholders/jamo.webp",
       title: "Just a Marketing Office — Agencia de Leads",
       description:
         "Landing page de JAMO, agencia de adquisición de clientes B2B con fee del 15% sobre pauta y 0 retainer los primeros 3 meses. Desarrollada con Astro, i18n en ES/EN/PT, GA4 + GTM con trazabilidad completa de eventos (clics, scroll, formularios, cambio de idioma), SEO técnico y deploy automático en Vercel vía GitHub Actions.",
@@ -40,35 +40,35 @@ export default function Home() {
       link: "https://justamarketingoffice.vercel.app/",
     },
     {
-      imageSrc: "placeholders/landing-intelli.png",
+      imageSrc: "placeholders/landing-intelli.webp",
       title: "Página agencia Intelli.Dev",
       description:
         "Agencia dedicada al desarrollo y soluciones tecnológicas. Implementada con tecnologías vanilla (HTML, CSS y JavaScript), integrando un chatbot con IA para asistencia en tiempo real y consumo de diversas APIs (correo, mapas, analítica y pricing). Incluye formularios validados, rendimiento optimizado y buenas prácticas de accesibilidad.",
       link: "https://buschfranco.github.io/Intelli.dev/",
     },
     {
-      imageSrc: "placeholders/landing-magplus-at.png",
+      imageSrc: "placeholders/landing-magplus-at.webp",
       title: "MagPlus Austria — Portal de Revistas",
       description:
         "Landing y portal de suscripción para MagPlus en el mercado austríaco/alemán, desarrollado con Astro. Acceso ilimitado a revistas internacionales en categorías de lifestyle, fitness, tech, moda y viajes. Diseño mobile-first, componentes hidratables y prueba gratuita sin compromiso.",
       link: "https://themagplus-at.com/",
     },
     {
-      imageSrc: "placeholders/landing-epic-play.png",
+      imageSrc: "placeholders/landing-epic-play.webp",
       title: "Epic Play — Plataforma de Gaming",
       description:
         "Sitio web para una plataforma de entretenimiento y juegos online. Desarrollado con WordPress + Kubio builder e integración de WooCommerce para comercio electrónico. Diseño responsive con paleta vibrante (azules, naranja, verde menta), animaciones CSS, tipografías display y cumplimiento GDPR.",
       link: "https://epic-play.com/",
     },
     {
-      imageSrc: "placeholders/landing-portuauto.png",
+      imageSrc: "placeholders/landing-portuauto.webp",
       title: "Landing Concesionario Fiat — PortuAuto",
       description:
         "Landing page para concesionario oficial Fiat desarrollada con Astro. Muestra catálogo de modelos (Argo, Cronos, Mobi) con imágenes optimizadas en WebP, formulario de contacto y sección de planes. Deploy automático en Vercel.",
       link: "https://portuauto.vercel.app",
     },
     {
-      imageSrc: "placeholders/landing-norton.png",
+      imageSrc: "placeholders/landing-norton.webp",
       title: "MDG Download Center — Norton",
       description:
         "Centro de descargas de manuales para productos Norton (Mobile Security, VPN, 360 Standard y Deluxe). Desarrollado con Astro, cubre múltiples países (Kuwait, Bahrain, Oman, Qatar, Chile, Brasil) y operadores de telecomunicaciones (STC, Ooredoo). Soporte en inglés, portugués y árabe.",
@@ -78,21 +78,21 @@ export default function Home() {
 
   const appItems: WorkItem[] = [
     {
-      imageSrc: "placeholders/app-magplus.png",
+      imageSrc: "placeholders/app-magplus.webp",
       title: "MagPlus — Plataforma de Revistas Digitales",
       description:
         "Plataforma global de distribución de revistas digitales con presencia en Oriente Medio, Europa, África y Asia. Sistema de autenticación, gestión de suscripciones, soporte multilingüe y multi-región, notificaciones push con OneSignal. Categorías: negocios, gastronomía, deportes, tecnología, bienestar y viajes. Integra GA4.",
       link: "https://magplus.club/",
     },
     {
-      imageSrc: "placeholders/jamo-panel.png",
+      imageSrc: "placeholders/jamo-panel.webp",
       title: "JAMO — Panel de Operaciones",
       description:
         "Sistema interno de adquisición de clientes para JAMO. Prospecta negocios en Google Maps por rubro y ciudad, enriquece cada lead con email e Instagram (web scraping con Puppeteer + Cheerio), los carga en un CRM de Notion y gestiona el outreach por WhatsApp y secuencias de email frío en 3 pasos (Brevo). Análisis de prospectos con IA (Claude). Stack: Node.js, Express, Notion API, Google Maps Places API, Anthropic SDK, Puppeteer.",
       badge: "Proyecto propio",
     },
     {
-      imageSrc: "placeholders/fluxstore.png",
+      imageSrc: "placeholders/fluxstore.webp",
       title: "FluxStore — E-commerce de Celulares",
       description:
         "E-commerce de celulares importados desde Paraguay para venta en Argentina. Backend con Medusa.js v2 (API headless + admin panel), storefront con Next.js 15, PostgreSQL en Neon (AWS sa-east-1), pagos con MercadoPago Checkout Pro y storage de imágenes en Cloudflare R2. Deploy en Vercel (frontend) + Render (backend). Incluye métodos de envío Andreani (domicilio y sucursal) y envío propio.",
@@ -100,21 +100,21 @@ export default function Home() {
       link: "https://fluxstore-storefront.vercel.app",
     },
     {
-      imageSrc: "placeholders/app-recaap.png",
+      imageSrc: "placeholders/app-recaap.webp",
       title: "Recap — Resúmenes de Libros con Audio",
       description:
         "Plataforma de resúmenes de libros en español con lectura y audio sincronizado entre dispositivos. Incluye modo offline, seguimiento de progreso, sistema de desafíos (racha de 21 días, maratón de lectura), logros y niveles. Más de 9 categorías: negocios, tecnología, biografía, ficción y más. Integra Google Analytics y GTM.",
       link: "https://www.recaap.ai/",
     },
     {
-      imageSrc: "/placeholders/aplicacion1.png",
+      imageSrc: "/placeholders/aplicacion1.webp",
       title: "App Admin",
       description:
         "Aplicación web interna para Media Digital Group que automatiza la creación y distribución de briefs de landing pages. El usuario completa un formulario con los datos de campaña (aprobación, contenido, gráfica y especificaciones técnicas), se genera un ID único en formato LP-{timestamp}-{uuid} y se envía automáticamente por email como HTML estructurado. Desarrollado con Astro, TypeScript y Nodemailer. Deploy en Vercel.",
       link: "https://github.com/BuschFranco/UtilitiesMDG",
     },
     {
-      imageSrc: "placeholders/aplicacion.png",
+      imageSrc: "placeholders/aplicacion.webp",
       title: "DashboardMDG — Panel de Administración",
       description:
         "Panel de administración interno para Media Digital Group. Desarrollado con Astro y MongoDB, gestiona solicitudes de desarrollo con flujo de aprobación/rechazo por token. Incluye panel admin protegido, endpoints `/api/requests` y `/api/update-approval`, desplegado en Vercel.",
@@ -131,19 +131,19 @@ export default function Home() {
 
   const botsItems: WorkItem[] = [
     {
-      imageSrc: "/placeholders/aplicacion.png",
+      imageSrc: "/placeholders/aplicacion.webp",
       title: "n8n/Bot de WhatsAPP",
       description:
         "Bot de WhatsApp integrado con IA capaz de informar al cliente, persuadirlo o que tenga el comportamiento que nosotros necesitemos.",
     },
     {
-      imageSrc: "/placeholders/aplicacion1.png",
+      imageSrc: "/placeholders/aplicacion1.webp",
       title: "n8n/Bot de Telegram",
       description:
         "Bot de Telegram con IA que informa, resuelve dudas y orienta a los usuarios para que realicen las acciones que definamos, integrado a flujos n8n y servicios externos.",
     },
     {
-      imageSrc: "/placeholders/aplicacion.png",
+      imageSrc: "/placeholders/aplicacion.webp",
       title: "Zapier/Bot de Discord",
       description:
         "Bot de Discord vía Zapier que notifica cuando se generan conversiones en diferentes campañas de Google Ads; además comunica novedades y habilita distintas funcionalidades.",
@@ -281,7 +281,7 @@ export default function Home() {
               </div>
               <div className={style.analyticsMediaWrap}>
                 <img
-                  src="/placeholders/analytics.png"
+                  src="/placeholders/analytics.webp"
                   alt="Google Analytics – panel y métricas"
                   className={`${style.thumbImage} ${style.analyticsImage}`}
                   loading="lazy"
@@ -309,7 +309,7 @@ export default function Home() {
               </div>
               <div className={style.analyticsMediaWrap}>
                 <img
-                  src="/placeholders/gads.png"
+                  src="/placeholders/gads.webp"
                   alt="Google Ads – campañas y panel"
                   className={`${style.thumbImage} ${style.analyticsImage}`}
                   loading="lazy"
@@ -378,7 +378,7 @@ export default function Home() {
           <h3 className={style.certSectionTitle}>Certificados Profesionales</h3>
           <div className={style.certsBadgeWrap}>
             <img
-              src="/google-digital-marketing-badge.png"
+              src="/google-digital-marketing-badge.webp"
               alt="Google Digital Marketing and E-commerce Badge"
               className={style.certsBadge}
             />

@@ -20,7 +20,7 @@ export const metadata: Metadata = {
   title: "Busch Franco | Portafolio",
   description: "Desarrollador de Software",
   icons: {
-    icon: "/logoWhite.png",
+    icon: "/logoWhite.webp",
   },
 };
 
