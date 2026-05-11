@@ -650,6 +650,7 @@ a.secondary {
   border: 1px solid var(--button-secondary-border);
   border-radius: 12px;
   background: rgba(255, 255, 255, 0.02);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   transition: all 0.2s ease;
   font-weight: bold;
 }
@@ -859,13 +860,15 @@ a.secondary {
   flex-direction: column;
   gap: 8px;
   border: 1px solid var(--button-secondary-border);
-  overflow: hidden;
   cursor: pointer;
-  transition: transform 160ms ease, box-shadow 160ms ease;
+  transition: transform 160ms ease;
 }
 
 .certCard:hover {
   transform: translate(-3px, -3px);
+}
+
+.certCard:hover .certImg {
   box-shadow: 4px 4px 0px var(--text-primary);
 }
 
@@ -874,6 +877,7 @@ a.secondary {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   display: block;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 .certTitle {
@@ -1084,7 +1088,7 @@ a.secondary {
   border: 1px solid var(--button-secondary-border);
   border-radius: 999px;
   background: rgba(255,255,255,0.06);
-  color: var(--text-primary);
+  color: #fff;
   font-weight: 500;
   white-space: nowrap;
   font-size: clamp(0.85rem, 1.8vw, 1rem);
@@ -1126,6 +1130,7 @@ a.secondary {
   border: 1px solid rgba(0, 0, 0, 0.08);
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: saturate(1.2) blur(6px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
 }
 
 .formRow {
@@ -1187,7 +1192,7 @@ a.secondary {
   font-size: 0.95rem;
   font-weight: 600;
   letter-spacing: 0.2px;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.35);
   transition: transform 140ms ease, box-shadow 160ms ease, background 160ms ease, border-color 160ms ease;
 }
 
