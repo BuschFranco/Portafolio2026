@@ -17,8 +17,30 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Busch Franco | Portafolio",
-  description: "Desarrollador de Software",
+  title: "Franco Busch | Desarrollador Full Stack — Portafolio 2026",
+  description:
+    "Desarrollador de Software Full Stack especializado en Next.js, React y marketing digital. Portfolio de proyectos web, apps, automatizaciones y campañas de Google Ads.",
+  metadataBase: new URL("https://buschfranco.com"),
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    title: "Franco Busch | Desarrollador Full Stack",
+    description:
+      "Portfolio de Franco Busch — proyectos web, apps, automatizaciones y marketing digital. Certificado Google Digital Marketing & E-commerce.",
+    url: "https://buschfranco.com",
+    siteName: "Franco Busch Portfolio",
+    images: [{ url: "/logoWhite.webp" }],
+    locale: "es_AR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Franco Busch | Desarrollador Full Stack",
+    description:
+      "Portfolio de Franco Busch — proyectos web, apps, automatizaciones y marketing digital.",
+    images: ["/logoWhite.webp"],
+  },
   icons: {
     icon: "/logoWhite.webp",
   },
@@ -30,7 +52,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="es" suppressHydrationWarning>
       <head>
         {/* Google Consent Mode v2 — debe correr sincrónicamente antes que GTM */}
         <script dangerouslySetInnerHTML={{ __html: `
@@ -79,8 +101,26 @@ export default function RootLayout({
             loadGTM();
           }
         `}} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Franco Busch",
+              url: "https://buschfranco.com",
+              jobTitle: "Desarrollador Full Stack",
+              sameAs: [
+                "https://www.linkedin.com/in/francobusch/",
+                "https://github.com/BuschFranco",
+              ],
+              knowsAbout: ["Next.js", "React", "TypeScript", "Google Ads", "Marketing Digital"],
+            }),
+          }}
+        />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <a href="#main-content" className="skip-link">Saltar al contenido</a>
         <GtmManager />
         <Nav />
         <Preloader />

@@ -152,11 +152,10 @@ export default function Home() {
   ];
 
   return (
-    <main>
+    <main id="main-content">
       <div className={style.titleContainer}>
-        {/* Efecto de escritura para el nombre y el rol */}
-        <Typewriter as="h3" text="Busch Franco" speed={110} showCaret={true} />
-        <Typewriter as="h4" text="Desarrollador de Software" speed={60} showCaret={false} />
+        <Typewriter as="h1" text="Franco Busch" speed={110} showCaret={true} />
+        <Typewriter as="p" text="Desarrollador de Software" speed={60} showCaret={false} />
      
 
       <div className={style.description}>
@@ -382,6 +381,7 @@ export default function Home() {
               src="/google-digital-marketing-badge.webp"
               alt="Google Digital Marketing and E-commerce Badge"
               className={style.certsBadge}
+              loading="lazy"
             />
           </div>
           <div className={style.certsGrid}>

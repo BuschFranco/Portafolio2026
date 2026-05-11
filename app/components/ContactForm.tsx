@@ -61,6 +61,8 @@ export default function ContactForm() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Tu nombre"
+            required
+            aria-required="true"
           />
         </div>
 
@@ -73,6 +75,8 @@ export default function ContactForm() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="tu@email.com"
+            required
+            aria-required="true"
           />
         </div>
 
@@ -85,6 +89,8 @@ export default function ContactForm() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             placeholder="¿En qué te puedo ayudar?"
+            required
+            aria-required="true"
           />
         </div>
 
