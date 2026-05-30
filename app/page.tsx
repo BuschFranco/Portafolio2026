@@ -108,6 +108,13 @@ export default function Home() {
       link: "https://www.recaap.ai/",
     },
     {
+      imageSrc: "placeholders/sumry.webp",
+      title: "Sumry — Resúmenes de Libros en Texto y Audio",
+      description:
+        "Plataforma web de resúmenes de libros en texto y audio (estilo Blinkist/Headway) desarrollada para Media Digital Group, orientada a nuevos mercados europeos (Polonia y Austria). Incluye biblioteca personal con registro automático, reproductor multimedia con audio en streaming y lectura sincronizada entre dispositivos, autenticación OTP por teléfono y soporte por WhatsApp. Multilingüe (español, inglés, polaco y alemán), con arquitectura serverless y replicable por configuración. Stack: Next.js (App Router) con SSG/RSC, i18n y enfoque GDPR / WCAG 2.1 AA.",
+      link: "https://sumry.online/en",
+    },
+    {
       imageSrc: "/placeholders/aplicacion1.webp",
       title: "App Admin",
       description:
