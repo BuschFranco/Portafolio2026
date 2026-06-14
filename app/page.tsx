@@ -115,6 +115,13 @@ export default function Home() {
       link: "https://sumry.online/en",
     },
     {
+      imageSrc: "placeholders/libravo.webp",
+      title: "Libravo — Audiolibros y Resúmenes por Suscripción",
+      description:
+        "Plataforma de suscripción de audiolibros y resúmenes de libros (+300 títulos) desarrollada para Media Digital Group, orientada a mercados europeos. Incluye biblioteca personal con seguimiento de progreso y favoritos, reproductor multimedia con audio en streaming y lectura de texto sincronizada, modo oscuro, autenticación OTP por teléfono y soporte por WhatsApp + Centro de Ayuda. Catálogo en 11 categorías (ficción, autoayuda, negocios, psicología, clásicos y más) y multilingüe (español, inglés, polaco, ruso y búlgaro). Stack: Next.js 16 (App Router) con RSC, next-intl (i18n), React 19, Tailwind 4 y PostgreSQL, con enfoque GDPR.",
+      link: "https://libravo.online/es",
+    },
+    {
       imageSrc: "/placeholders/aplicacion1.webp",
       title: "App Admin",
       description:
