@@ -122,13 +122,6 @@ export default function Home() {
       link: "https://libravo.online/es",
     },
     {
-      imageSrc: "/placeholders/aplicacion1.webp",
-      title: "App Admin",
-      description:
-        "Aplicación web interna para Media Digital Group que automatiza la creación y distribución de briefs de landing pages. El usuario completa un formulario con los datos de campaña (aprobación, contenido, gráfica y especificaciones técnicas), se genera un ID único en formato LP-{timestamp}-{uuid} y se envía automáticamente por email como HTML estructurado. Desarrollado con Astro, TypeScript y Nodemailer. Deploy en Vercel.",
-      link: "https://github.com/BuschFranco/UtilitiesMDG",
-    },
-    {
       imageSrc: "placeholders/aplicacion.webp",
       title: "DashboardMDG — Panel de Administración",
       description:
