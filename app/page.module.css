@@ -1354,3 +1354,53 @@ a.secondary {
     align-items: flex-start;
   }
 }
+
+
+/* CV tabs */
+.cvTabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.cvTab {
+  padding: 7px 14px;
+  font-size: 13px;
+  font-weight: bold;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--button-secondary-border);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 140ms ease;
+}
+
+.cvTab:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--text-primary);
+  transform: translateY(-1px);
+}
+
+.cvTab:focus-visible {
+  outline: 2px solid var(--text-primary);
+  outline-offset: 2px;
+}
+
+.cvTabActive {
+  background: #fff;
+  color: #111;
+  border-color: transparent;
+}
+
+.cvTabActive:hover {
+  background: #fff;
+  color: #111;
+}
+
+@media (prefers-color-scheme: dark) {
+  .cvTabActive {
+    background: #fff;
+    color: #111;
+  }
+}

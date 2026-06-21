@@ -11,6 +11,14 @@ import AutoCarousel from "./components/AutoCarousel";
 export default function Home() {
   const [selectedItem, setSelectedItem] = useState<ModalItem | null>(null);
   const [selectedCert, setSelectedCert] = useState<{ src: string; title: string } | null>(null);
+  const [cvTab, setCvTab] = useState("general");
+  const cvOptions = [
+    { id: "general", label: "General", file: "BuschFrancoCV.pdf" },
+    { id: "dev", label: "Full Stack", file: "CV-FullStack.pdf" },
+    { id: "growth", label: "Growth", file: "CV-Growth.pdf" },
+    { id: "ops", label: "Operativo", file: "CV-Operativo.pdf" },
+  ];
+  const activeCv = cvOptions.find((o) => o.id === cvTab) ?? cvOptions[0];
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setSelectedCert(null); };
@@ -519,19 +527,34 @@ export default function Home() {
         </div>
         <div className={style.footerCv}>
           <h3>Curriculum</h3>
+          <div className={style.cvTabs} role="tablist" aria-label="Versiones del CV">
+            {cvOptions.map((o) => (
+              <button
+                key={o.id}
+                type="button"
+                role="tab"
+                aria-selected={cvTab === o.id}
+                className={`${style.cvTab} ${cvTab === o.id ? style.cvTabActive : ""}`}
+                onClick={() => setCvTab(o.id)}
+              >
+                {o.label}
+              </button>
+            ))}
+          </div>
           <div className={style.cvPreview}>
             <iframe
+              key={activeCv.file}
               className={style.cvFrame}
-              src="BuschFrancoCV.pdf"
-              title="Previsualización del CV"
+              src={activeCv.file}
+              title={`Previsualización del CV — ${activeCv.label}`}
             ></iframe>
           </div>
           <a
             className={style.downloadBtn}
-            href="BuschFrancoCV.pdf"
+            href={activeCv.file}
             download
           >
-            Descargar CV
+            Descargar CV — {activeCv.label}
           </a>
         </div>
       </div>
