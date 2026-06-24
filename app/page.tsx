@@ -130,11 +130,11 @@ export default function Home() {
       link: "https://libravo.online/es",
     },
     {
-      imageSrc: "placeholders/aplicacion.webp",
-      title: "DashboardMDG — Panel de Administración",
+      imageSrc: "placeholders/pressly.webp",
+      title: "Pressly — Plataforma de Revistas Digitales",
       description:
-        "Panel de administración interno para Media Digital Group. Desarrollado con Astro y MongoDB, gestiona solicitudes de desarrollo con flujo de aprobación/rechazo por token. Incluye panel admin protegido, endpoints `/api/requests` y `/api/update-approval`, desplegado en Vercel.",
-      link: "https://github.com/BuschFranco/DashboardMDG",
+        "Servicio de suscripción de revistas digitales que ofrece acceso ilimitado a publicaciones globales (Vogue, National Geographic, Forbes, Harper's Bazaar, ELLE, Esquire, ¡HOLA! y más) desde el celular, sin descargas y con lectura instantánea. Actualizaciones semanales de contenido en múltiples categorías (noticias, moda, deportes, tecnología, bienestar, viajes y negocios), con más de 1 millón de usuarios. Suscripción con billing por operador (cargo a la factura del teléfono) y autenticación de usuario. Multilingüe (inglés, español, alemán, neerlandés y polaco).",
+      link: "https://presslyonline.com/en",
     },
     {
       imageSrc: "placeholders/projectunity.webp",
