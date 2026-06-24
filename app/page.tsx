@@ -76,13 +76,6 @@ export default function Home() {
         "Landing page para concesionario oficial Fiat desarrollada con Astro. Muestra catálogo de modelos (Argo, Cronos, Mobi) con imágenes optimizadas en WebP, formulario de contacto y sección de planes. Deploy automático en Vercel.",
       link: "https://portuauto.vercel.app",
     },
-    {
-      imageSrc: "placeholders/landing-norton.webp",
-      title: "MDG Download Center — Norton",
-      description:
-        "Centro de descargas de manuales para productos Norton (Mobile Security, VPN, 360 Standard y Deluxe). Desarrollado con Astro, cubre múltiples países (Kuwait, Bahrain, Oman, Qatar, Chile, Brasil) y operadores de telecomunicaciones (STC, Ooredoo). Soporte en inglés, portugués y árabe.",
-      link: "https://norton-help.xipio.online/",
-    },
   ];
 
   const appItems: WorkItem[] = [
@@ -135,13 +128,6 @@ export default function Home() {
       description:
         "Servicio de suscripción de revistas digitales que ofrece acceso ilimitado a publicaciones globales (Vogue, National Geographic, Forbes, Harper's Bazaar, ELLE, Esquire, ¡HOLA! y más) desde el celular, sin descargas y con lectura instantánea. Actualizaciones semanales de contenido en múltiples categorías (noticias, moda, deportes, tecnología, bienestar, viajes y negocios), con más de 1 millón de usuarios. Suscripción con billing por operador (cargo a la factura del teléfono) y autenticación de usuario. Multilingüe (inglés, español, alemán, neerlandés y polaco).",
       link: "https://presslyonline.com/en",
-    },
-    {
-      imageSrc: "placeholders/projectunity.webp",
-      title: "Juego en Unity — Juego Arcade",
-      description:
-        "Juego arcade desarrollado en Unity con C#. El jugador recorre un bosque recolectando ítems contra el reloj con 3 vidas, con dinámica de riesgo vs recompensa al buscar puntos de score adicionales. Sistema de puntuación, múltiples niveles y gestión de estado del jugador.",
-      link: "https://github.com/BuschFranco/ArcgameUnity",
     },
   ];
 
