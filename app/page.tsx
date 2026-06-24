@@ -80,20 +80,6 @@ export default function Home() {
 
   const appItems: WorkItem[] = [
     {
-      imageSrc: "placeholders/app-magplus.webp",
-      title: "MagPlus — Plataforma de Revistas Digitales",
-      description:
-        "Plataforma global de distribución de revistas digitales con presencia en Oriente Medio, Europa, África y Asia. Sistema de autenticación, gestión de suscripciones, soporte multilingüe y multi-región, notificaciones push con OneSignal. Categorías: negocios, gastronomía, deportes, tecnología, bienestar y viajes. Integra GA4.",
-      link: "https://magplus.club/",
-    },
-    {
-      imageSrc: "placeholders/jamo-panel.webp",
-      title: "JAMO — Panel de Operaciones",
-      description:
-        "Sistema interno de adquisición de clientes para JAMO. Prospecta negocios en Google Maps por rubro y ciudad, enriquece cada lead con email e Instagram (web scraping con Puppeteer + Cheerio), los carga en un CRM de Notion y gestiona el outreach por WhatsApp y secuencias de email frío en 3 pasos (Brevo). Análisis de prospectos con IA (Claude). Stack: Node.js, Express, Notion API, Google Maps Places API, Anthropic SDK, Puppeteer.",
-      badge: "Proyecto propio",
-    },
-    {
       imageSrc: "placeholders/fluxstore.webp",
       title: "FluxStore — E-commerce de Celulares",
       description:
@@ -128,6 +114,20 @@ export default function Home() {
       description:
         "Servicio de suscripción de revistas digitales que ofrece acceso ilimitado a publicaciones globales (Vogue, National Geographic, Forbes, Harper's Bazaar, ELLE, Esquire, ¡HOLA! y más) desde el celular, sin descargas y con lectura instantánea. Actualizaciones semanales de contenido en múltiples categorías (noticias, moda, deportes, tecnología, bienestar, viajes y negocios), con más de 1 millón de usuarios. Suscripción con billing por operador (cargo a la factura del teléfono) y autenticación de usuario. Multilingüe (inglés, español, alemán, neerlandés y polaco).",
       link: "https://presslyonline.com/en",
+    },
+    {
+      imageSrc: "placeholders/app-magplus.webp",
+      title: "MagPlus — Plataforma de Revistas Digitales",
+      description:
+        "Plataforma global de distribución de revistas digitales con presencia en Oriente Medio, Europa, África y Asia. Sistema de autenticación, gestión de suscripciones, soporte multilingüe y multi-región, notificaciones push con OneSignal. Categorías: negocios, gastronomía, deportes, tecnología, bienestar y viajes. Integra GA4.",
+      link: "https://magplus.club/",
+    },
+    {
+      imageSrc: "placeholders/jamo-panel.webp",
+      title: "JAMO — Panel de Operaciones",
+      description:
+        "Sistema interno de adquisición de clientes para JAMO. Prospecta negocios en Google Maps por rubro y ciudad, enriquece cada lead con email e Instagram (web scraping con Puppeteer + Cheerio), los carga en un CRM de Notion y gestiona el outreach por WhatsApp y secuencias de email frío en 3 pasos (Brevo). Análisis de prospectos con IA (Claude). Stack: Node.js, Express, Notion API, Google Maps Places API, Anthropic SDK, Puppeteer.",
+      badge: "Proyecto propio",
     },
   ];
 
