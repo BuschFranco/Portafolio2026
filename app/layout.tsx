@@ -5,6 +5,7 @@ import Preloader from "./components/Preloader";
 import Nav from "./components/Nav";
 import BackToTop from "./components/BackToTop";
 import GtmManager from "./components/GtmManager";
+import SmoothScroll from "./components/SmoothScroll";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,15 +18,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Franco Busch | Desarrollador Full Stack — Portafolio 2026",
+  title: "Franco Busch | Desarrollador de Producto — Portafolio 2026",
   description:
-    "Desarrollador de Software Full Stack especializado en Next.js, React y marketing digital. Portfolio de proyectos web, apps, automatizaciones y campañas de Google Ads.",
+    "Desarrollador de Producto especializado en Next.js, React y marketing digital. Portfolio de proyectos web, apps, automatizaciones y campañas de Google Ads.",
   metadataBase: new URL("https://buschfranco.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
-    title: "Franco Busch | Desarrollador Full Stack",
+    title: "Franco Busch | Desarrollador de Producto",
     description:
       "Portfolio de Franco Busch — proyectos web, apps, automatizaciones y marketing digital. Certificado Google Digital Marketing & E-commerce.",
     url: "https://buschfranco.com",
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Franco Busch | Desarrollador Full Stack",
+    title: "Franco Busch | Desarrollador de Producto",
     description:
       "Portfolio de Franco Busch — proyectos web, apps, automatizaciones y marketing digital.",
     images: ["/logoWhite.webp"],
@@ -109,7 +110,7 @@ export default function RootLayout({
               "@type": "Person",
               name: "Franco Busch",
               url: "https://buschfranco.com",
-              jobTitle: "Desarrollador Full Stack",
+              jobTitle: "Desarrollador de Producto",
               sameAs: [
                 "https://www.linkedin.com/in/francobusch/",
                 "https://github.com/BuschFranco",
@@ -121,6 +122,7 @@ export default function RootLayout({
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <a href="#main-content" className="skip-link">Saltar al contenido</a>
+        <SmoothScroll />
         <GtmManager />
         <Nav />
         <Preloader />

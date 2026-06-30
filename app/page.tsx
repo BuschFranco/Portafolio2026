@@ -131,27 +131,6 @@ export default function Home() {
     },
   ];
 
-  const botsItems: WorkItem[] = [
-    {
-      imageSrc: "/placeholders/aplicacion.webp",
-      title: "n8n/Bot de WhatsAPP",
-      description:
-        "Bot de WhatsApp integrado con IA capaz de informar al cliente, persuadirlo o que tenga el comportamiento que nosotros necesitemos.",
-    },
-    {
-      imageSrc: "/placeholders/aplicacion1.webp",
-      title: "n8n/Bot de Telegram",
-      description:
-        "Bot de Telegram con IA que informa, resuelve dudas y orienta a los usuarios para que realicen las acciones que definamos, integrado a flujos n8n y servicios externos.",
-    },
-    {
-      imageSrc: "/placeholders/aplicacion.webp",
-      title: "Zapier/Bot de Discord",
-      description:
-        "Bot de Discord vía Zapier que notifica cuando se generan conversiones en diferentes campañas de Google Ads; además comunica novedades y habilita distintas funcionalidades.",
-    },
-  ];
-
   return (
     <main id="main-content">
       <div className={style.titleContainer}>
@@ -179,12 +158,13 @@ export default function Home() {
 
       <section className={style.workSection}>
         <div className={style.workHeader}>
-          <h2 style={{marginBottom: "0"}}>Mis Trabajos Destacados</h2>
+          <h2 style={{marginBottom: "0"}}>Parte de mi Esfuerzo</h2>
           {/* Enlaces a subsecciones */}
           <nav className={style.workLinks} aria-label="Subsecciones de Mi Trabajo">
             <a href="#landing-pages" className={style.workLink}>Sitios Web</a>
             <a href="#aplicaciones" className={style.workLink}>Aplicaciones</a>
-            <a href="#automatizaciones" className={style.workLink}>Automatizaciones/Bots</a>
+            <a href="#certificados" className={style.workLink}>Certificaciones</a>
+            <a href="#analytics" className={style.workLink}>Análisis/Ads</a>
           </nav>
         </div>
 
@@ -238,39 +218,6 @@ export default function Home() {
                   </div>
                 ))}
               </AutoCarousel>
-            </Reveal>
-          </article>
-
-          <article id="automatizaciones" className={style.workCard}>
-            <Reveal className="revealLeft" delay={360}>
-              <h3 className={style.botsTitle}>Automatizaciones / Bots</h3>
-              <p className={style.botsIntro}>
-                He desarrollado bots e integraciones para distintos canales y plataformas, automatizando
-                procesos de comunicación, notificaciones y atención al cliente con IA.
-              </p>
-              <div className={style.botsList}>
-                <div className={style.botItem}>
-                  <span className={style.botTag}>n8n</span>
-                  <div>
-                    <strong>Bot de WhatsApp</strong>
-                    <p>Bot integrado con IA capaz de informar al cliente, persuadirlo o comportarse según las reglas que definamos.</p>
-                  </div>
-                </div>
-                <div className={style.botItem}>
-                  <span className={style.botTag}>n8n</span>
-                  <div>
-                    <strong>Bot de Telegram</strong>
-                    <p>Bot con IA que informa, resuelve dudas y orienta a los usuarios hacia las acciones que definamos, integrado a flujos n8n y servicios externos.</p>
-                  </div>
-                </div>
-                <div className={style.botItem}>
-                  <span className={style.botTag}>Zapier</span>
-                  <div>
-                    <strong>Bot de Discord</strong>
-                    <p>Notifica en tiempo real cuando se generan conversiones en campañas de Google Ads, comunica novedades y habilita funcionalidades del servidor.</p>
-                  </div>
-                </div>
-              </div>
             </Reveal>
           </article>
 
@@ -337,12 +284,13 @@ export default function Home() {
             <div className={style.aboutGrid}>
               <div className={style.aboutText}>
                 <p>
-                  Desarrollador Full Stack con más de 4 años en la industria, actualmente en un rol con foco en el frontend.
-                  Trabajo cada proyecto como si fuera propio: me hago cargo, propongo soluciones y no espero que los problemas se resuelvan solos.
+                  Desarrollador de Producto con más de 4 años en la industria. Actualmente soy Responsable Técnico
+                  de los productos internos y externos: lidero el desarrollo de punta a punta, defino prioridades
+                  y me hago cargo de que cada producto llegue a buen puerto.
                 </p>
                 <p>
                   Soy analítico y pragmático — eso me permite mantener la cabeza fría en momentos de conflicto y tomar decisiones con criterio.
-                  Me interesa el cruce entre el desarrollo, el marketing y la analítica: construir productos que no solo funcionen, sino que generen resultados medibles.
+                  Me interesa el cruce entre el producto, el marketing y la analítica: construir productos que no solo funcionen, sino que generen resultados medibles.
                 </p>
                 <p>
                   Basado en Buenos Aires, Argentina. Abierto a proyectos remotos.
@@ -359,8 +307,8 @@ export default function Home() {
                   <span className={style.aboutCardLabel}>años en la industria</span>
                 </div>
                 <div className={style.aboutCard}>
-                  <span className={style.aboutCardNum}>FS</span>
-                  <span className={style.aboutCardLabel}>Full Stack</span>
+                  <span className={style.aboutCardNum}>RT</span>
+                  <span className={style.aboutCardLabel}>Responsable Técnico de Producto</span>
                 </div>
                 <div className={style.aboutCard}>
                   <span className={style.aboutCardNum}>BA</span>

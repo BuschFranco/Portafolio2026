@@ -11,7 +11,15 @@ export default function BackToTop() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const scrollUp = () => window.scrollTo({ top: 0, behavior: "smooth" });
+  const scrollUp = () => {
+    // Usa Lenis si está activo para mantener el scroll con inercia;
+    // si no, recurre al comportamiento nativo.
+    if (window.__lenis) {
+      window.__lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  };
 
   return (
     <button
