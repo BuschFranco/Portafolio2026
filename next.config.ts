@@ -11,7 +11,7 @@ const nextConfig: NextConfig = {
   },
   compress: true,
   ...(isGhPages
-    ? { output: "export" as const, basePath, assetPrefix: `${basePath}/`, trailingSlash: true }
+    ? { output: "export" as const, basePath, assetPrefix: `${basePath}/`, trailingSlash: false }
     : {}),
 };
 
