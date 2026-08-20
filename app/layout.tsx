@@ -6,6 +6,7 @@ import Nav from "./components/Nav";
 import BackToTop from "./components/BackToTop";
 import GtmManager from "./components/GtmManager";
 import SmoothScroll from "./components/SmoothScroll";
+import { withBase } from "./basePath";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -43,7 +44,7 @@ export const metadata: Metadata = {
     images: ["/logoWhite.webp"],
   },
   icons: {
-    icon: "/logoWhite.webp",
+    icon: withBase("/logoWhite.webp"),
   },
 };
 

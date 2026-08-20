@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import style from "../legal.module.css";
+import { withBase } from "../basePath";
 
 export const metadata: Metadata = {
   title: "Política de Privacidad | Busch Franco",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 export default function PrivacidadPage() {
   return (
     <main className={style.page}>
-      <a href="/" className={style.back}>← Volver al inicio</a>
+      <a href={withBase("/")} className={style.back}>← Volver al inicio</a>
 
       <h1 className={style.title}>Política de Privacidad</h1>
       <p className={style.updated}>Última actualización: abril 2026</p>

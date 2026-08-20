@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import style from "./Nav.module.css";
+import { withBase } from "../basePath";
 
 const links = [
   { label: "Inicio",       href: "#" },
@@ -34,7 +34,7 @@ export default function Nav() {
     <>
       <header className={`${style.nav} ${scrolled || open ? style.scrolled : ""}`}>
         <a href="#" className={style.logo} aria-label="Inicio" onClick={close}>
-          <Image src="/logoWhite.webp" alt="Logo" width={36} height={36} priority />
+          <img src={withBase("/logoWhite.webp")} alt="Logo" width={36} height={36} />
         </a>
 
         {/* Links desktop */}

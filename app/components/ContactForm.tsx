@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import style from "../page.module.css";
+import { withBase } from "../basePath";
+
+const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
 
 export default function ContactForm() {
   const [name, setName] = useState("");
@@ -28,7 +31,7 @@ export default function ContactForm() {
     setStatus(null);
 
     try {
-      const res = await fetch("/api/contact", {
+      const res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ name, email, message }),
@@ -102,7 +105,7 @@ export default function ContactForm() {
 
         <p className={style.formPrivacyNote}>
           Al enviar aceptás que tus datos se almacenen para responder tu consulta.{" "}
-          <a href="/privacidad" className={style.formPrivacyLink}>Política de Privacidad</a>.
+          <a href={withBase("/privacidad")} className={style.formPrivacyLink}>Política de Privacidad</a>.
         </p>
 
         {status && (

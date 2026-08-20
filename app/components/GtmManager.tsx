@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import style from "./GtmManager.module.css";
+import { withBase } from "../basePath";
 
 const EU_EXTRA = ["Atlantic/Canary", "Atlantic/Faroe", "Atlantic/Madeira", "Atlantic/Reykjavik"];
 
@@ -51,7 +52,7 @@ export default function GtmManager() {
         <p className={style.text}>
           Este sitio usa cookies analíticas (Google Analytics) para entender cómo se usa.
           Podés aceptarlas o rechazarlas.{" "}
-          <a href="/privacidad" className={style.link}>Política de Privacidad</a>.
+          <a href={withBase("/privacidad")} className={style.link}>Política de Privacidad</a>.
         </p>
         <div className={style.actions}>
           <button className={style.btnAccept} onClick={accept}>Aceptar</button>
