@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import style from "./page.module.css";
+import { withBase } from "./basePath";
 import Typewriter from "./components/Typewriter";
 import Reveal from "./components/Reveal";
 import ContactForm from "./components/ContactForm";
@@ -80,6 +81,13 @@ export default function Home() {
 
   const appItems: WorkItem[] = [
     {
+      imageSrc: "placeholders/gamio.webp",
+      title: "Gamio — Plataforma de Juegos Online",
+      description:
+        "Plataforma web de juegos jugables desde el navegador en mobile y desktop, desarrollada para Media Digital Group bajo la marca Epicplay. Catálogo público navegable sin registro en 12 categorías (acción, aventura, carreras, deportes, disparos, estrategia, multijuego, música, lucha, plataformas, puzzle e imagen), con carrusel de recomendados, colecciones curadas, novedades y buscador con filtros. Incluye autenticación por número de teléfono (MSISDN), biblioteca personal con \"Continuar jugando\", panel de estadísticas de usuario y soporte por WhatsApp. Multilingüe (inglés, español y polaco). Stack: Next.js (App Router), TypeScript, Tailwind CSS, next-intl (i18n), GA4 vía GTM y hosting en AWS.",
+      link: "https://gamio.online/en",
+    },
+    {
       imageSrc: "placeholders/fluxstore.webp",
       title: "FluxStore — E-commerce de Celulares",
       description:
@@ -131,6 +139,24 @@ export default function Home() {
     },
   ];
 
+  const mobileAppItems: WorkItem[] = [
+    {
+      imageSrc: "placeholders/1of1.webp",
+      title: "1OF1 - Basket Hub",
+      description:
+        "App móvil para encontrar canchas de básquet, armar pickups y competir con otros jugadores. Detecta partidos automáticamente vía GPS y registra tiempo de juego, mapas de calor, % de tiros, velocidad y verticalidad; incluye ranking \"King of the Court\" por temporadas semestrales, chat social, mapa colaborativo de canchas cargado por la comunidad e integración con smartwatch (Health Connect) para métricas físicas. Monorepo con app en Flutter/Dart, backend NestJS + Prisma sobre Supabase Postgres (deploy en Render) y landing en Astro con i18n ES/EN. Actualmente en etapa previa al lanzamiento en App Store y Google Play.",
+      badge: "Proyecto propio",
+      link: "https://buschfranco.github.io/1of1/",
+    },
+    {
+      imageSrc: "placeholders/shooterloop.webp",
+      title: "ShooterLoop — Auto-Shooter Roguelite (Prototipo)",
+      description:
+        "Juego auto-shooter tipo roguelite/survivor en desarrollo activo, con estética neón 100% vectorial (sin sprites) generada por código, con glow y grid de fondo. El jugador dispara automáticamente al enemigo más cercano en rondas de 60 segundos (cada 5ª ronda es un boss sin límite de tiempo), con racha de kills que multiplica hasta x2.5 la XP y las monedas, 11 tipos de enemigos —incluyendo variantes élite con modificadores como vampírico, blindado o explosivo—, 7 clases de build que se activan automáticamente según las estadísticas del jugador, catálogo de más de 20 mejoras por rareza, eventos aleatorios de ronda (zona que se encoge, lluvia de misiles, niebla, campo minado) y un balanceador de dificultad adaptativo. Stack: Godot Engine 4.7 con C# sobre .NET 8. Prototipo jugable en desarrollo activo, aún sin publicar.",
+      badge: "Proyecto propio",
+    },
+  ];
+
   return (
     <main id="main-content">
       <div className={style.titleContainer}>
@@ -163,6 +189,7 @@ export default function Home() {
           <nav className={style.workLinks} aria-label="Subsecciones de Mi Trabajo">
             <a href="#landing-pages" className={style.workLink}>Sitios Web</a>
             <a href="#aplicaciones" className={style.workLink}>Aplicaciones</a>
+            <a href="#aplicaciones-moviles" className={style.workLink}>Aplicaciones Móviles</a>
             <a href="#certificados" className={style.workLink}>Certificaciones</a>
             <a href="#analytics" className={style.workLink}>Análisis/Ads</a>
           </nav>
@@ -183,7 +210,7 @@ export default function Home() {
                       if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
-                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} loading="lazy" decoding="async" />
+                    <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
                     {it.badge && <span className={style.projectBadge}>{it.badge}</span>}
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
@@ -210,7 +237,7 @@ export default function Home() {
                       if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
-                    <img className={style.thumbImage} src={it.imageSrc} alt={it.title} loading="lazy" decoding="async" />
+                    <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
                       <p>{truncate(it.description, 140)}</p>
@@ -218,6 +245,33 @@ export default function Home() {
                   </div>
                 ))}
               </AutoCarousel>
+            </Reveal>
+          </article>
+
+          <article id="aplicaciones-moviles" className={style.workCard}>
+            <Reveal className="revealLeft" delay={0}>
+              <h3>Aplicaciones Móviles</h3>
+              <div className={style.carousel}>
+                {mobileAppItems.map((it, idx) => (
+                  <div
+                    key={`mobile-${idx}`}
+                    className={style.thumbItem}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
+                    }}
+                  >
+                    <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
+                    {it.badge && <span className={style.projectBadge}>{it.badge}</span>}
+                    <div className={style.thumbOverlay}>
+                      <h4>{it.title}</h4>
+                      <p>{truncate(it.description)}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </Reveal>
           </article>
 
@@ -229,7 +283,7 @@ export default function Home() {
               </div>
               <div className={style.analyticsMediaWrap}>
                 <img
-                  src="/placeholders/analytics.webp"
+                  src={withBase("/placeholders/analytics.webp")}
                   alt="Google Analytics – panel y métricas"
                   className={`${style.thumbImage} ${style.analyticsImage}`}
                   loading="lazy"
@@ -257,7 +311,7 @@ export default function Home() {
               </div>
               <div className={style.analyticsMediaWrap}>
                 <img
-                  src="/placeholders/gads.webp"
+                  src={withBase("/placeholders/gads.webp")}
                   alt="Google Ads – campañas y panel"
                   className={`${style.thumbImage} ${style.analyticsImage}`}
                   loading="lazy"
@@ -315,7 +369,7 @@ export default function Home() {
                   <span className={style.aboutCardLabel}>Buenos Aires, Argentina</span>
                 </div>
                 <div className={style.aboutCard}>
-                  <span className={style.aboutCardNum}>16</span>
+                  <span className={style.aboutCardNum}>23</span>
                   <span className={style.aboutCardLabel}>certificados profesionales</span>
                 </div>
               </div>
@@ -327,7 +381,7 @@ export default function Home() {
           <h3 className={style.certSectionTitle}>Certificados Profesionales</h3>
           <div className={style.certsBadgeWrap}>
             <img
-              src="/google-digital-marketing-badge.webp"
+              src={withBase("/google-digital-marketing-badge.webp")}
               alt="Google Digital Marketing and E-commerce Badge"
               className={style.certsBadge}
               loading="lazy"
@@ -351,6 +405,13 @@ export default function Home() {
               { src: "/certificates/frontend-fullstack-js.webp", title: "Universidad Desarrollo Web — FrontEnd Web Developer" },
               { src: "/certificates/php-sql-certificado.webp", title: "Desarrolla un sistema web POS desde cero con PHP Nativo" },
               { src: "/certificates/CSharpBasic.webp", title: "Visual Studio 2022 C# — Nivel Básico" },
+              { src: "/certificates/AIforDataAnalysis.webp", title: "AI for Data Analysis" },
+              { src: "/certificates/AIforContentCreation.webp", title: "AI for Content Creation" },
+              { src: "/certificates/AIforWritingandCommunicating.webp", title: "AI for Writing and Communicating" },
+              { src: "/certificates/AIforResearchandInsights.webp", title: "AI for Research and Insights" },
+              { src: "/certificates/AIforBrainstormingandPlanning.webp", title: "AI for Brainstorming and Planning" },
+              { src: "/certificates/AIFundamentals.webp", title: "AI Fundamentals" },
+              { src: "/certificates/DataDataEverywhere.webp", title: "Data, Data, Everywhere" },
             ].map((cert, i) => (
               <div
                 key={i}
@@ -360,7 +421,7 @@ export default function Home() {
                 onClick={() => setSelectedCert(cert)}
                 onKeyDown={(e) => { if (e.key === "Enter") setSelectedCert(cert); }}
               >
-                <img src={cert.src} alt={cert.title} className={style.certImg} loading="lazy" decoding="async" />
+                <img src={withBase(cert.src)} alt={cert.title} className={style.certImg} loading="lazy" decoding="async" />
                 <p className={style.certTitle}>{cert.title}</p>
               </div>
             ))}
@@ -496,8 +557,8 @@ export default function Home() {
       <div className={style.footerLegal}>
         <span>© {new Date().getFullYear()} Franco Busch · Buenos Aires, Argentina</span>
         <div className={style.footerLegalLinks}>
-          <a href="/privacidad">Política de Privacidad</a>
-          <a href="/terminos">Términos y Condiciones</a>
+          <a href={withBase("/privacidad")}>Política de Privacidad</a>
+          <a href={withBase("/terminos")}>Términos y Condiciones</a>
         </div>
       </div>
     </footer>
@@ -515,7 +576,7 @@ export default function Home() {
           aria-label={selectedCert.title}
         >
           <img
-            src={selectedCert.src}
+            src={withBase(selectedCert.src)}
             alt={selectedCert.title}
             className={style.certLightboxImg}
             onClick={(e) => e.stopPropagation()}
