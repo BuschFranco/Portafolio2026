@@ -137,14 +137,6 @@ export default function Home() {
         "Sistema interno de adquisición de clientes para JAMO. Prospecta negocios en Google Maps por rubro y ciudad, enriquece cada lead con email e Instagram (web scraping con Puppeteer + Cheerio), los carga en un CRM de Notion y gestiona el outreach por WhatsApp y secuencias de email frío en 3 pasos (Brevo). Análisis de prospectos con IA (Claude). Stack: Node.js, Express, Notion API, Google Maps Places API, Anthropic SDK, Puppeteer.",
       badge: "Proyecto propio",
     },
-    {
-      imageSrc: "placeholders/infinitix.webp",
-      title: "Infinitix — Juego Arcade Roguelite",
-      description:
-        "Juego arcade roguelite para mobile con disparo automático: el jugador esquiva y sube de nivel en plena partida eligiendo mejoras (cadencia, alcance, daño, habilidades) mientras las rondas escalan sin final. Roster de pilotos personalizables. 100% offline, sin ads, sin compras ni cuentas, gratis para siempre.",
-      badge: "Proyecto propio",
-      link: "https://buschfranco.github.io/infinitix/",
-    },
   ];
 
   const mobileAppItems: WorkItem[] = [
@@ -157,11 +149,12 @@ export default function Home() {
       link: "https://buschfranco.github.io/1of1/",
     },
     {
-      imageSrc: "placeholders/shooterloop.webp",
-      title: "ShooterLoop — Auto-Shooter Roguelite (Prototipo)",
+      imageSrc: "placeholders/infinitix.webp",
+      title: "Infinitix — Auto-Shooter Roguelite",
       description:
-        "Juego auto-shooter tipo roguelite/survivor en desarrollo activo, con estética neón 100% vectorial (sin sprites) generada por código, con glow y grid de fondo. El jugador dispara automáticamente al enemigo más cercano en rondas de 60 segundos (cada 5ª ronda es un boss sin límite de tiempo), con racha de kills que multiplica hasta x2.5 la XP y las monedas, 11 tipos de enemigos —incluyendo variantes élite con modificadores como vampírico, blindado o explosivo—, 7 clases de build que se activan automáticamente según las estadísticas del jugador, catálogo de más de 20 mejoras por rareza, eventos aleatorios de ronda (zona que se encoge, lluvia de misiles, niebla, campo minado) y un balanceador de dificultad adaptativo. Stack: Godot Engine 4.7 con C# sobre .NET 8. Prototipo jugable en desarrollo activo, aún sin publicar.",
+        "Juego arcade roguelite para mobile con disparo automático: el jugador esquiva y sube de nivel en plena partida eligiendo mejoras (cadencia, alcance, daño, habilidades) mientras las rondas escalan sin final. Roster de pilotos personalizables. 100% offline, sin ads, sin compras ni cuentas, gratis para siempre. Próximamente en Google Play.",
       badge: "Proyecto propio",
+      link: "https://buschfranco.github.io/infinitix/",
     },
   ];
 
