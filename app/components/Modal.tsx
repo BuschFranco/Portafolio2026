@@ -8,6 +8,7 @@ export type ModalItem = {
   videoUrl?: string;
   imageSrc?: string;
   link?: string; // URL del proyecto en vivo o repositorio
+  glitch?: boolean; // aplica estética glitch/VHS (usado por Infinitix)
 };
 
 type ModalProps = {
@@ -41,7 +42,7 @@ export default function Modal({ open, item, onClose }: ModalProps) {
   return (
     <div className={styles.backdrop} onClick={onClose} aria-modal="true" role="dialog">
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
-        <div className={styles.videoPane}>
+        <div className={`${styles.videoPane} ${item.glitch ? styles.glitchCard : ""}`}>
           {item.videoUrl ? (
             isEmbed ? (
               <iframe
@@ -55,7 +56,25 @@ export default function Modal({ open, item, onClose }: ModalProps) {
               <video className={styles.videoTag} src={item.videoUrl} controls />
             )
           ) : item.imageSrc ? (
-            <img className={styles.mediaImg} src={item.imageSrc} alt={item.title} loading="lazy" decoding="async" />
+            <>
+              <img className={styles.mediaImg} src={item.imageSrc} alt={item.title} loading="lazy" decoding="async" />
+              {item.glitch && (
+                <>
+                  <span
+                    className={`${styles.glitchLayer} ${styles.glitchLayerRed}`}
+                    style={{ backgroundImage: `url(${item.imageSrc})` }}
+                    aria-hidden="true"
+                  />
+                  <span
+                    className={`${styles.glitchLayer} ${styles.glitchLayerCyan}`}
+                    style={{ backgroundImage: `url(${item.imageSrc})` }}
+                    aria-hidden="true"
+                  />
+                  <span className={styles.vhsScanlines} aria-hidden="true" />
+                  <span className={styles.vhsNoise} aria-hidden="true" />
+                </>
+              )}
+            </>
           ) : null}
         </div>
         <div className={styles.contentPane}>

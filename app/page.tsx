@@ -28,7 +28,7 @@ export default function Home() {
   }, []);
 
 
-  type WorkItem = { imageSrc: string; title: string; description: string; badge?: string; link?: string };
+  type WorkItem = { imageSrc: string; title: string; description: string; badge?: string; link?: string; glitch?: boolean };
 
   const truncate = (text: string, max: number = 120) =>
     text.length > max ? text.slice(0, max).trimEnd() + "..." : text;
@@ -155,6 +155,7 @@ export default function Home() {
         "Juego arcade roguelite para mobile con disparo automático: el jugador esquiva y sube de nivel en plena partida eligiendo mejoras (cadencia, alcance, daño, habilidades) mientras las rondas escalan sin final. Roster de pilotos personalizables. 100% offline, sin ads, sin compras ni cuentas, gratis para siempre. Próximamente en Google Play.",
       badge: "Proyecto propio",
       link: "https://buschfranco.github.io/infinitix/",
+      glitch: true,
     },
   ];
 
@@ -256,15 +257,31 @@ export default function Home() {
                 {mobileAppItems.map((it, idx) => (
                   <div
                     key={`mobile-${idx}`}
-                    className={style.thumbItem}
+                    className={`${style.thumbItem} ${it.glitch ? style.glitchCard : ""}`}
                     role="button"
                     tabIndex={0}
-                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
+                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link, glitch: it.glitch })}
                     onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
+                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link, glitch: it.glitch });
                     }}
                   >
                     <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
+                    {it.glitch && (
+                      <>
+                        <span
+                          className={`${style.glitchLayer} ${style.glitchLayerRed}`}
+                          style={{ backgroundImage: `url(${withBase(it.imageSrc)})` }}
+                          aria-hidden="true"
+                        />
+                        <span
+                          className={`${style.glitchLayer} ${style.glitchLayerCyan}`}
+                          style={{ backgroundImage: `url(${withBase(it.imageSrc)})` }}
+                          aria-hidden="true"
+                        />
+                        <span className={style.vhsScanlines} aria-hidden="true" />
+                        <span className={style.vhsNoise} aria-hidden="true" />
+                      </>
+                    )}
                     {it.badge && <span className={style.projectBadge}>{it.badge}</span>}
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
