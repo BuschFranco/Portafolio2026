@@ -137,6 +137,14 @@ export default function Home() {
         "Sistema interno de adquisición de clientes para JAMO. Prospecta negocios en Google Maps por rubro y ciudad, enriquece cada lead con email e Instagram (web scraping con Puppeteer + Cheerio), los carga en un CRM de Notion y gestiona el outreach por WhatsApp y secuencias de email frío en 3 pasos (Brevo). Análisis de prospectos con IA (Claude). Stack: Node.js, Express, Notion API, Google Maps Places API, Anthropic SDK, Puppeteer.",
       badge: "Proyecto propio",
     },
+    {
+      imageSrc: "placeholders/infinitix.webp",
+      title: "Infinitix — Juego Arcade Roguelite",
+      description:
+        "Juego arcade roguelite para mobile con disparo automático: el jugador esquiva y sube de nivel en plena partida eligiendo mejoras (cadencia, alcance, daño, habilidades) mientras las rondas escalan sin final. Roster de pilotos personalizables. 100% offline, sin ads, sin compras ni cuentas, gratis para siempre.",
+      badge: "Proyecto propio",
+      link: "https://buschfranco.github.io/infinitix/",
+    },
   ];
 
   const mobileAppItems: WorkItem[] = [
