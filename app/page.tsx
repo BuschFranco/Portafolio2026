@@ -430,6 +430,9 @@ export default function Home() {
               { src: "/certificates/AIforBrainstormingandPlanning.webp", title: "AI for Brainstorming and Planning" },
               { src: "/certificates/AIFundamentals.webp", title: "AI Fundamentals" },
               { src: "/certificates/DataDataEverywhere.webp", title: "Data, Data, Everywhere" },
+              { src: "/certificates/AIforAppBuilding.webp", title: "AI for App Building" },
+              { src: "/certificates/AIFluencyForBuilders.webp", title: "Claude Academy: AI Fluency for Builders" },
+              { src: "/certificates/AICapabilitiesAndLimitations.webp", title: "Claude Academy: AI Capabilities and Limitations" },
             ].map((cert, i) => (
               <div
                 key={i}
