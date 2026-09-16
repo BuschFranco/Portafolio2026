@@ -189,16 +189,42 @@ export default function Home() {
           <h2 style={{marginBottom: "0"}}>Parte de mi Esfuerzo</h2>
           {/* Enlaces a subsecciones */}
           <nav className={style.workLinks} aria-label="Subsecciones de Mi Trabajo">
-            <a href="#landing-pages" className={style.workLink}>Sitios Web</a>
             <a href="#aplicaciones" className={style.workLink}>Aplicaciones</a>
+            <a href="#landing-pages" className={style.workLink}>Sitios Web</a>
             <a href="#aplicaciones-moviles" className={style.workLink}>Aplicaciones Móviles</a>
             <a href="#certificados" className={style.workLink}>Certificaciones</a>
             <a href="#analytics" className={style.workLink}>Análisis/Ads</a>
           </nav>
         </div>
 
-         <article id="landing-pages" className={style.workCard}>
+         <article id="aplicaciones" className={style.workCard}>
             <Reveal className="revealLeft" delay={120}>
+              <h3>Aplicaciones</h3>
+              <AutoCarousel className={style.carousel}>
+                {appItems.map((it, idx) => (
+                  <div
+                    key={`app-${idx}`}
+                    className={style.thumbItem}
+                    role="button"
+                    tabIndex={0}
+                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
+                    }}
+                  >
+                    <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
+                    <div className={style.thumbOverlay}>
+                      <h4>{it.title}</h4>
+                      <p>{truncate(it.description, 140)}</p>
+                    </div>
+                  </div>
+                ))}
+              </AutoCarousel>
+            </Reveal>
+          </article>
+
+          <article id="landing-pages" className={style.workCard}>
+            <Reveal className="revealLeft" delay={0}>
               <h3>Sitios Web</h3>
               <AutoCarousel className={style.carousel}>
                 {landingItems.map((it, idx) => (
@@ -217,32 +243,6 @@ export default function Home() {
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
                       <p>{truncate(it.description)}</p>
-                    </div>
-                  </div>
-                ))}
-              </AutoCarousel>
-            </Reveal>
-          </article>
-
-          <article id="aplicaciones" className={style.workCard}>
-            <Reveal className="revealLeft" delay={0}>
-              <h3>Aplicaciones</h3>
-              <AutoCarousel className={style.carousel}>
-                {appItems.map((it, idx) => (
-                  <div
-                    key={`app-${idx}`}
-                    className={style.thumbItem}
-                    role="button"
-                    tabIndex={0}
-                    onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
-                    }}
-                  >
-                    <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
-                    <div className={style.thumbOverlay}>
-                      <h4>{it.title}</h4>
-                      <p>{truncate(it.description, 140)}</p>
                     </div>
                   </div>
                 ))}

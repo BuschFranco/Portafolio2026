@@ -5,7 +5,7 @@ import { withBase } from "../basePath";
 
 const links = [
   { label: "Inicio",       href: "#" },
-  { label: "Trabajos",     href: "#landing-pages" },
+  { label: "Trabajos",     href: "#aplicaciones" },
   { label: "Certificados", href: "#certificados" },
   { label: "Sobre mí",    href: "#sobre-mi" },
   { label: "Contacto",    href: "#contacto" },
