@@ -131,6 +131,13 @@ export default function Home() {
       link: "https://magplus.club/",
     },
     {
+      imageSrc: "placeholders/movistar-revistas.webp",
+      title: "Revistas Movistar — Portal de Suscripción para Movistar Venezuela",
+      description:
+        "Portal de revistas digitales desarrollado para el operador Movistar en Venezuela, con acceso gratuito y suscripción vía operador (billing por factura telefónica). Catálogo navegable en más de 10 categorías (actualidad, moda, bienestar, motores, deportes, espectáculos y más), con novedades y destacados actualizados a diario, buscador y autenticación de usuario. Stack: Next.js con imágenes optimizadas.",
+      link: "https://movistarve.revistasya.net/",
+    },
+    {
       imageSrc: "placeholders/jamo-panel.webp",
       title: "JAMO — Panel de Operaciones",
       description:
