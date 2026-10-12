@@ -81,6 +81,14 @@ export default function Home() {
 
   const appItems: WorkItem[] = [
     {
+      imageSrc: "placeholders/rebound.webp",
+      title: "Rebound — E-commerce de Indumentaria de Básquet",
+      description:
+        "Tienda online argentina de indumentaria y zapatillas de básquet (jerseys, shorts, zapatillas, buzos, camperas y accesorios) con envíos en CABA y Provincia de Buenos Aires. Catálogo por categorías con buscador y orden por novedades, tarjetas de producto con descuentos y etiquetas, promo 3x2 con cuenta regresiva, favoritos y carrito lateral. El pedido se arma en el carrito y se envía por WhatsApp para confirmar stock, envío y entrega, con pago contra entrega. Incluye política de cambio gratis a 30 días, garantía y botón de arrepentimiento. Stack: Next.js con imágenes optimizadas, deploy en Netlify.",
+      badge: "Proyecto propio",
+      link: "https://reboundstore.netlify.app/",
+    },
+    {
       imageSrc: "placeholders/gamio.webp",
       title: "Gamio — Plataforma de Juegos Online",
       description:
