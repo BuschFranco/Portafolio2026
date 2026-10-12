@@ -1,6 +1,7 @@
 "use client";
 import { useEffect } from "react";
 import styles from "./Modal.module.css";
+import SkeletonImg from "./SkeletonImg";
 
 export type ModalItem = {
   title: string;
@@ -57,7 +58,7 @@ export default function Modal({ open, item, onClose }: ModalProps) {
             )
           ) : item.imageSrc ? (
             <>
-              <img className={styles.mediaImg} src={item.imageSrc} alt={item.title} loading="lazy" decoding="async" />
+              <SkeletonImg className={styles.mediaImg} src={item.imageSrc} alt={item.title} loading="lazy" decoding="async" />
               {item.glitch && (
                 <>
                   <span

@@ -8,6 +8,7 @@ import ContactForm from "./components/ContactForm";
 import { useState, useEffect } from "react";
 import Modal, { ModalItem } from "./components/Modal";
 import AutoCarousel from "./components/AutoCarousel";
+import SkeletonImg from "./components/SkeletonImg";
 
 export default function Home() {
   const [selectedItem, setSelectedItem] = useState<ModalItem | null>(null);
@@ -227,7 +228,7 @@ export default function Home() {
                       if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
-                    <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
+                    <SkeletonImg className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
                       <p>{truncate(it.description, 140)}</p>
@@ -253,7 +254,7 @@ export default function Home() {
                       if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
                     }}
                   >
-                    <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
+                    <SkeletonImg className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
                     {it.badge && <span className={style.projectBadge}>{it.badge}</span>}
                     <div className={style.thumbOverlay}>
                       <h4>{it.title}</h4>
@@ -280,7 +281,7 @@ export default function Home() {
                       if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link, glitch: it.glitch });
                     }}
                   >
-                    <img className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
+                    <SkeletonImg className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
                     {it.glitch && (
                       <>
                         <span
@@ -315,9 +316,10 @@ export default function Home() {
                 <h3>Medición y Mejora Continua con Google Analytics</h3>
               </div>
               <div className={style.analyticsMediaWrap}>
-                <img
+                <SkeletonImg
                   src={withBase("/placeholders/analytics.webp")}
                   alt="Google Analytics – panel y métricas"
+                  skeletonRatio="1901 / 836"
                   className={`${style.thumbImage} ${style.analyticsImage}`}
                   loading="lazy"
                   decoding="async"
@@ -343,9 +345,10 @@ export default function Home() {
                 <h3>Rendimiento y Crecimiento con Google Ads</h3>
               </div>
               <div className={style.analyticsMediaWrap}>
-                <img
+                <SkeletonImg
                   src={withBase("/placeholders/gads.webp")}
                   alt="Google Ads – campañas y panel"
+                  skeletonRatio="1885 / 694"
                   className={`${style.thumbImage} ${style.analyticsImage}`}
                   loading="lazy"
                   decoding="async"
@@ -413,9 +416,10 @@ export default function Home() {
         <article id="certificados" className={style.workCard}>
           <h3 className={style.certSectionTitle}>Certificados Profesionales</h3>
           <div className={style.certsBadgeWrap}>
-            <img
+            <SkeletonImg
               src={withBase("/google-digital-marketing-badge.webp")}
               alt="Google Digital Marketing and E-commerce Badge"
+              skeletonRatio="1 / 1"
               className={style.certsBadge}
               loading="lazy"
             />
@@ -457,7 +461,7 @@ export default function Home() {
                 onClick={() => setSelectedCert(cert)}
                 onKeyDown={(e) => { if (e.key === "Enter") setSelectedCert(cert); }}
               >
-                <img src={withBase(cert.src)} alt={cert.title} className={style.certImg} loading="lazy" decoding="async" />
+                <SkeletonImg src={withBase(cert.src)} alt={cert.title} className={style.certImg} loading="lazy" decoding="async" />
                 <p className={style.certTitle}>{cert.title}</p>
               </div>
             ))}
@@ -611,7 +615,7 @@ export default function Home() {
           aria-modal="true"
           aria-label={selectedCert.title}
         >
-          <img
+          <SkeletonImg
             src={withBase(selectedCert.src)}
             alt={selectedCert.title}
             className={style.certLightboxImg}
