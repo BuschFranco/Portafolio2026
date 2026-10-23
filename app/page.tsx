@@ -13,12 +13,10 @@ import SkeletonImg from "./components/SkeletonImg";
 export default function Home() {
   const [selectedItem, setSelectedItem] = useState<ModalItem | null>(null);
   const [selectedCert, setSelectedCert] = useState<{ src: string; title: string } | null>(null);
-  const [cvTab, setCvTab] = useState("general");
+  const [cvTab, setCvTab] = useState("dev");
   const cvOptions = [
-    { id: "general", label: "General", file: "BuschFrancoCV.pdf" },
     { id: "dev", label: "Full Stack", file: "CV-FullStack.pdf" },
     { id: "growth", label: "Growth", file: "CV-Growth.pdf" },
-    { id: "ops", label: "Operativo", file: "CV-Operativo.pdf" },
   ];
   const activeCv = cvOptions.find((o) => o.id === cvTab) ?? cvOptions[0];
 
