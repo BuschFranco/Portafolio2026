@@ -405,7 +405,7 @@ export default function Home() {
                   <span className={style.aboutCardLabel}>Buenos Aires, Argentina</span>
                 </div>
                 <div className={style.aboutCard}>
-                  <span className={style.aboutCardNum}>23</span>
+                  <span className={style.aboutCardNum}>29</span>
                   <span className={style.aboutCardLabel}>certificados profesionales</span>
                 </div>
               </div>
@@ -452,6 +452,9 @@ export default function Home() {
               { src: "/certificates/AIforAppBuilding.webp", title: "AI for App Building" },
               { src: "/certificates/AIFluencyForBuilders.webp", title: "Claude Academy: AI Fluency for Builders" },
               { src: "/certificates/AICapabilitiesAndLimitations.webp", title: "Claude Academy: AI Capabilities and Limitations" },
+              { src: "/certificates/IntroduccionPython.webp", title: "Introducción a Python" },
+              { src: "/certificates/ProgramacionPython.webp", title: "Programación en Python" },
+              { src: "/certificates/MatematicaParaIA.webp", title: "Matemática para IA" },
             ].map((cert, i) => (
               <div
                 key={i}
