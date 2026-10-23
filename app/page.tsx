@@ -369,6 +369,11 @@ export default function Home() {
         <section id="sobre-mi" className={style.aboutSection}>
           <Reveal className="revealLeft" delay={0}>
             <h2 className={style.aboutTitle}>Sobre mí</h2>
+            <p className={style.aboutLead}>
+              No te vendo un servicio en concreto. Te ofrezco alguien con ganas de participar y sacar
+              adelante tu proyecto <strong>como si fuera propio</strong> — con el abanico de herramientas
+              que existen hoy para afrontar cualquier desafío y desarrollo que sea necesario.
+            </p>
             <div className={style.aboutGrid}>
               <div className={style.aboutText}>
                 <p>
@@ -380,33 +385,31 @@ export default function Home() {
                   Soy analítico y pragmático — eso me permite mantener la cabeza fría en momentos de conflicto y tomar decisiones con criterio.
                   Me interesa el cruce entre el producto, el marketing y la analítica: construir productos que no solo funcionen, sino que generen resultados medibles.
                 </p>
-                <p>
-                  Basado en Buenos Aires, Argentina. Abierto a proyectos remotos.
-                </p>
-                <div className={style.aboutDisclaimer}>
-                  <p>
-                    No te vendo un servicio en concreto. Te ofrezco alguien con ganas de participar y sacar adelante tu proyecto como si fuera propio — con el abanico de herramientas que existen hoy para afrontar cualquier desafío y desarrollo que sea necesario.
-                  </p>
-                </div>
               </div>
-              <div className={style.aboutCards}>
-                <div className={style.aboutCard}>
-                  <span className={style.aboutCardNum}>4+</span>
-                  <span className={style.aboutCardLabel}>años en la industria</span>
+              <dl className={style.aboutFacts}>
+                <div>
+                  <dt>Rol</dt>
+                  <dd>Responsable Técnico de Producto</dd>
                 </div>
-                <div className={style.aboutCard}>
-                  <span className={style.aboutCardNum}>RT</span>
-                  <span className={style.aboutCardLabel}>Responsable Técnico de Producto</span>
+                <div>
+                  <dt>Experiencia</dt>
+                  <dd>4+ años en la industria</dd>
                 </div>
-                <div className={style.aboutCard}>
-                  <span className={style.aboutCardNum}>BA</span>
-                  <span className={style.aboutCardLabel}>Buenos Aires, Argentina</span>
+                <div>
+                  <dt>Base</dt>
+                  <dd>Buenos Aires, Argentina · remoto</dd>
                 </div>
-                <div className={style.aboutCard}>
-                  <span className={style.aboutCardNum}>29</span>
-                  <span className={style.aboutCardLabel}>certificados profesionales</span>
+                <div>
+                  <dt>Foco</dt>
+                  <dd>Producto, marketing y analítica</dd>
                 </div>
-              </div>
+                <div>
+                  <dt>Formación</dt>
+                  <dd>
+                    <a href="#certificados">29 certificaciones →</a>
+                  </dd>
+                </div>
+              </dl>
             </div>
           </Reveal>
         </section>

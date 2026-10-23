@@ -214,11 +214,28 @@ a.secondary {
   margin: 0 0 clamp(20px, 3vw, 36px);
 }
 
+/* Frase de apertura: el resto atenuado, la idea clave a pleno */
+.aboutLead {
+  margin: 0 0 clamp(32px, 5vw, 64px);
+  max-width: 900px;
+  font-size: clamp(1.35rem, 2.8vw, 2.1rem);
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: color-mix(in srgb, var(--foreground) 45%, transparent);
+  text-wrap: pretty;
+}
+
+.aboutLead strong {
+  font-weight: 600;
+  color: var(--foreground);
+}
+
 .aboutGrid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 4vw, 56px);
-  align-items: center;
+  grid-template-columns: 1.2fr 1fr;
+  gap: clamp(28px, 5vw, 72px);
+  align-items: start;
 }
 
 .aboutText {
@@ -231,114 +248,63 @@ a.secondary {
   margin: 0;
   font-size: clamp(0.95rem, 1.8vw, 1.05rem);
   line-height: 1.75;
-  color: var(--text-secondary);
+  color: color-mix(in srgb, var(--foreground) 80%, transparent);
 }
 
-.aboutCards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px;
-}
-
-.aboutCard {
+/* Ficha: etiquetas mono como los índices 01/02/03 de las secciones */
+.aboutFacts {
+  margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: clamp(16px, 2.2vw, 22px);
-  border: 1px solid var(--button-secondary-border);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.02);
-  position: relative;
-  overflow: hidden;
-  transition: border-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  border-top: 2px solid var(--foreground);
 }
 
-/* Acento de color en el top de cada card */
-.aboutCard::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
-  border-radius: 14px 14px 0 0;
-  opacity: 0;
-  transition: opacity 200ms ease;
+.aboutFacts > div {
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 16px;
+  align-items: baseline;
+  padding: 14px 0;
+  border-top: 1px solid color-mix(in srgb, var(--foreground) 12%, transparent);
 }
 
-.aboutCard:nth-child(1)::before { background: linear-gradient(90deg, #6366f1, #a78bfa); }
-.aboutCard:nth-child(2)::before { background: linear-gradient(90deg, #0ea5e9, #38bdf8); }
-.aboutCard:nth-child(3)::before { background: linear-gradient(90deg, #f59e0b, #fbbf24); }
-.aboutCard:nth-child(4)::before { background: linear-gradient(90deg, #10b981, #34d399); }
-
-.aboutCard:hover {
-  border-color: transparent;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+.aboutFacts > div:first-child {
+  border-top: none;
 }
 
-.aboutCard:hover::before {
-  opacity: 1;
-}
-
-.aboutCardNum {
-  font-size: clamp(1.8rem, 3.2vw, 2.4rem);
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  line-height: 1;
-  color: var(--text-primary);
+.aboutFacts dt {
   font-family: var(--font-geist-mono), monospace;
-}
-
-.aboutCardLabel {
-  font-size: 0.74rem;
-  color: var(--text-secondary);
-  line-height: 1.4;
-  font-weight: 500;
+  font-size: 0.72rem;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
+  color: color-mix(in srgb, var(--foreground) 50%, transparent);
 }
 
-@media (prefers-color-scheme: dark) {
-  .aboutCard:hover {
-    box-shadow: 0 8px 28px rgba(0, 0, 0, 0.45);
-    background: rgba(255, 255, 255, 0.04);
-  }
-}
-
-.aboutDisclaimer {
-  padding: 14px 18px;
-  border-left: 2px solid var(--text-primary);
-  background: rgba(0, 0, 0, 0.03);
-  border-radius: 0 10px 10px 0;
-}
-
-.aboutDisclaimer p {
+.aboutFacts dd {
   margin: 0;
-  font-size: clamp(0.9rem, 1.6vw, 1rem) !important;
-  color: var(--text-primary) !important;
-  font-style: italic;
-  line-height: 1.65;
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--foreground);
 }
 
-@media (prefers-color-scheme: dark) {
-  .aboutDisclaimer {
-    background: rgba(255, 255, 255, 0.04);
-  }
+.aboutFacts a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--foreground) 30%, transparent);
+  text-underline-offset: 4px;
+  transition: text-decoration-color 160ms ease;
+}
+
+.aboutFacts a:hover {
+  text-decoration-color: var(--foreground);
 }
 
 @media (max-width: 760px) {
   .aboutGrid {
     grid-template-columns: 1fr;
   }
-  .aboutCards {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
-  .aboutCard {
-    background: rgba(255, 255, 255, 0.03);
+  .aboutFacts > div {
+    grid-template-columns: 96px 1fr;
   }
 }
 
@@ -369,10 +335,8 @@ a.secondary {
   display: block;
   width: 32px;
   height: 2px;
-  background: var(--text-secondary);
-  margin: 10px auto 0;
-  opacity: 0.4;
-  border-radius: 99px;
+  background: var(--foreground);
+  margin: 12px auto 0;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -408,13 +372,15 @@ a.secondary {
 .workCard:has(.carousel) h3::before {
   content: "0" counter(section-counter);
   display: block;
+  width: fit-content;
+  padding: 2px 7px;
   font-size: 0.72rem;
   letter-spacing: 0.14em;
-  color: var(--text-secondary);
+  color: var(--background);
+  background: var(--foreground);
   font-weight: 500;
-  margin-bottom: 6px;
+  margin-bottom: 10px;
   font-family: var(--font-geist-mono), monospace;
-  opacity: 0.65;
 }
 
 /* ── Bots ─────────────────────────────────────────────── */
@@ -868,33 +834,18 @@ a.secondary {
   display: inline-block;
   margin-top: 12px;
   padding: 10px 16px;
-  color: #111;
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.14);
+  color: var(--background);
+  background: var(--foreground);
+  border: 1px solid var(--foreground);
   border-radius: 10px;
   text-decoration: none;
   font-weight: bold;
-  transition: background 160ms ease, color 160ms ease, border-color 160ms ease, transform 140ms ease;
+  transition: opacity 160ms ease, transform 140ms ease;
 }
 
 .downloadBtn:hover {
-  background: #111;
-  color: #fff;
-  border-color: transparent;
+  opacity: 0.85;
   transform: translateY(-1px);
-}
-
-@media (prefers-color-scheme: dark) {
-  .downloadBtn {
-    color: #eee;
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.14);
-  }
-  .downloadBtn:hover {
-    background: #fff;
-    color: #111;
-    border-color: transparent;
-  }
 }
 
 @media (max-width: 800px) {

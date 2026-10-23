@@ -1,5 +1,6 @@
 :root {
-  --background: #ffffff;
+  /* Blanco roto: evita el blanco puro sin cambiar la paleta neutra */
+  --background: #f5f5f3;
   --foreground: #171717;
 }
 
@@ -76,9 +77,12 @@ html.lenis body {
 body {
   color: var(--foreground);
   background: var(--background);
-  /* Dot grid sutil de fondo */
-  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.055) 1px, transparent 1px);
-  background-size: 28px 28px;
+  /* Dot grid sutil + luz suave en la parte superior para dar profundidad */
+  background-image:
+    radial-gradient(circle, rgba(0, 0, 0, 0.07) 1px, transparent 1px),
+    radial-gradient(ellipse 80% 60% at 50% 0%, #ffffff 0%, rgba(255, 255, 255, 0) 70%);
+  background-size: 28px 28px, 100% 1400px;
+  background-repeat: repeat, no-repeat;
   /* Usa Geist (variable inyectada por next/font en layout.tsx) */
   font-family: var(--font-geist-sans), sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -100,6 +104,11 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+::selection {
+  background: var(--foreground);
+  color: var(--background);
 }
 
 @media (prefers-color-scheme: dark) {
