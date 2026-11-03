@@ -114,7 +114,7 @@ export default function TerminosPage() {
         <h2>9. Contacto</h2>
         <p>
           Consultas sobre estos términos:{" "}
-          <a href="mailto:francobusch130@gmail.com">francobusch130@gmail.com</a>.
+          <a href="mailto:contacto@buschfranco.com">contacto@buschfranco.com</a>.
         </p>
       </div>
     </main>

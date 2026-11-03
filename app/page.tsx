@@ -557,7 +557,7 @@ export default function Home() {
               WhatsApp
             </a>
             <a
-              href="mailto:francobusch130@gmail.com"
+              href="mailto:contacto@buschfranco.com"
               className={style.contactLink}
             >
               Email

@@ -21,7 +21,7 @@ export default function PrivacidadPage() {
           Este sitio web es operado por <strong>Franco Busch</strong>, desarrollador de software
           independiente con base en Buenos Aires, Argentina. Ante cualquier consulta relacionada con
           el tratamiento de tus datos podés contactarme en{" "}
-          <a href="mailto:francobusch130@gmail.com">francobusch130@gmail.com</a>.
+          <a href="mailto:contacto@buschfranco.com">contacto@buschfranco.com</a>.
         </p>
         <p>
           El tratamiento de datos personales se rige por la{" "}
@@ -131,7 +131,7 @@ export default function PrivacidadPage() {
         <p>
           Los mensajes del formulario se conservan mientras sean necesarios para gestionar tu
           consulta. Podés solicitar la eliminación de tus datos en cualquier momento escribiendo a{" "}
-          <a href="mailto:francobusch130@gmail.com">francobusch130@gmail.com</a>.
+          <a href="mailto:contacto@buschfranco.com">contacto@buschfranco.com</a>.
         </p>
       </div>
 
@@ -152,7 +152,7 @@ export default function PrivacidadPage() {
         </ul>
         <p>
           Para ejercer cualquiera de estos derechos escribí a{" "}
-          <a href="mailto:francobusch130@gmail.com">francobusch130@gmail.com</a>.
+          <a href="mailto:contacto@buschfranco.com">contacto@buschfranco.com</a>.
         </p>
       </div>
 
