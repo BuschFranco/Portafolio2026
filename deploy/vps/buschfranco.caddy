@@ -1,0 +1,19 @@
+# Portafolio en la VPS (/etc/caddy/sites/buschfranco.caddy).
+# Lo incluye el Caddyfile principal (el de Rebound) con: import /etc/caddy/sites/*.caddy
+# Cloudflare (nube naranja) está adelante en modo "Full (strict)"; la redirección a
+# https la hace Cloudflare ("Always Use HTTPS").
+
+buschfranco.com, http://buschfranco.com {
+	encode zstd gzip
+
+	# Antes en vercel.json: las rutas de idioma vuelven a la home.
+	redir /en / permanent
+	redir /es / permanent
+	redir /pt / permanent
+
+	reverse_proxy 127.0.0.1:3001
+}
+
+www.buschfranco.com, http://www.buschfranco.com {
+	redir https://buschfranco.com{uri} permanent
+}

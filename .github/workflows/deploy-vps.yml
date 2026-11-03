@@ -1,0 +1,62 @@
+# Publica el portafolio en la VPS de Hetzner en cada push a main.
+# Compila acá (la VPS tiene 1 GB de RAM) y sube solo la versión "standalone" lista para correr.
+# Secrets del repo: VPS_HOST, VPS_SSH_KEY (clave privada de deploy) y VPS_KNOWN_HOSTS.
+# Las variables de la app (Notion) viven en el servidor: /etc/portfolio/portfolio.env.
+# Ver deploy/vps/ para el resto.
+name: Deploy VPS
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+# Un deploy a la vez; si llegan dos pushes seguidos, se publica el último.
+concurrency:
+  group: deploy-vps
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      NEXT_OUTPUT: standalone
+      NEXT_TELEMETRY_DISABLED: "1"
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10.17.1
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm build
+
+      - name: Empaquetar la versión standalone
+        run: |
+          cp -r .next/static .next/standalone/.next/static
+          cp -r public .next/standalone/public
+          tar -czf portfolio.tgz -C .next/standalone .
+
+      - name: Subir y publicar en la VPS
+        env:
+          VPS_HOST: ${{ secrets.VPS_HOST }}
+          VPS_SSH_KEY: ${{ secrets.VPS_SSH_KEY }}
+          VPS_KNOWN_HOSTS: ${{ secrets.VPS_KNOWN_HOSTS }}
+        run: |
+          install -m 700 -d ~/.ssh
+          printf '%s\n' "$VPS_SSH_KEY" > ~/.ssh/deploy_key
+          chmod 600 ~/.ssh/deploy_key
+          printf '%s\n' "$VPS_KNOWN_HOSTS" > ~/.ssh/known_hosts
+          SSH="ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes"
+          scp -i ~/.ssh/deploy_key -o StrictHostKeyChecking=yes portfolio.tgz "deploy@$VPS_HOST:/srv/portfolio/incoming/$GITHUB_SHA.tgz"
+          $SSH "deploy@$VPS_HOST" "portfolio-deploy $GITHUB_SHA"
