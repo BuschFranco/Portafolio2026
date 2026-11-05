@@ -37,6 +37,7 @@ export default function GtmManager() {
       ad_personalization: "granted",
     });
     w.loadGTM?.();
+    w.loadOAIQ?.();
   };
 
   const decline = () => {

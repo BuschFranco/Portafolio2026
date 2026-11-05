@@ -81,6 +81,14 @@ export default function RootLayout({
           }
           window.loadGTM = loadGTM;
 
+          // Píxel de OpenAI: misma regla de consentimiento que GTM
+          function loadOAIQ() {
+            if (window.oaiq) return;
+            !function(w,d,s,u){if(w.oaiq)return;var q=function(){q.q.push(arguments)};q.q=[];w.oaiq=q;var j=d.createElement(s);j.async=1;j.src=u;var f=d.getElementsByTagName(s)[0];f.parentNode.insertBefore(j,f)}(window,document,"script","https://bzrcdn.openai.com/sdk/oaiq.min.js");
+            oaiq("init",{pixelId:"MHxyksXammgLStZfkyqe6o",debug:false});
+          }
+          window.loadOAIQ = loadOAIQ;
+
           var eu = isEU();
 
           gtag('consent', 'default', {
@@ -93,6 +101,7 @@ export default function RootLayout({
 
           if (!eu) {
             loadGTM();
+            loadOAIQ();
           } else if (localStorage.getItem('cookie-consent') === 'accepted') {
             gtag('consent', 'update', {
               analytics_storage:  'granted',
@@ -101,6 +110,7 @@ export default function RootLayout({
               ad_personalization: 'granted',
             });
             loadGTM();
+            loadOAIQ();
           }
         `}} />
         <script
