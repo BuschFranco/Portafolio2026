@@ -9,6 +9,7 @@ const getPool = () =>
 
 const ALLOWED_ORIGIN = "https://buschfranco.github.io";
 const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^\+?[\d\s().-]{6,30}$/;
 
 export async function OPTIONS() {
   return new NextResponse(null, {
@@ -29,6 +30,8 @@ export async function POST(req: NextRequest) {
     const name = typeof body?.name === "string" ? body.name.trim() : "";
     const email = typeof body?.email === "string" ? body.email.trim() : "";
     const message = typeof body?.message === "string" ? body.message.trim() : "";
+    // Opcional: vacío se guarda como null.
+    const phone = typeof body?.phone === "string" ? body.phone.trim() : "";
 
     if (!name || !email || !message) {
       return NextResponse.json(
@@ -36,7 +39,11 @@ export async function POST(req: NextRequest) {
         { status: 400, headers: corsHeaders }
       );
     }
-    if (!EMAIL_RE.test(email) || name.length > 200 || email.length > 320 || message.length > 5000) {
+    const phoneDigits = phone.replace(/\D/g, "").length;
+    if (
+      !EMAIL_RE.test(email) || name.length > 200 || email.length > 320 || message.length > 5000 ||
+      (phone && (!PHONE_RE.test(phone) || phoneDigits < 6 || phoneDigits > 20))
+    ) {
       return NextResponse.json(
         { message: "Revisá los datos del formulario." },
         { status: 400, headers: corsHeaders }
@@ -44,8 +51,8 @@ export async function POST(req: NextRequest) {
     }
 
     await getPool().query(
-      "insert into contact_messages (name, email, message) values ($1, $2, $3)",
-      [name, email, message]
+      "insert into contact_messages (name, email, phone, message) values ($1, $2, $3, $4)",
+      [name, email, phone || null, message]
     );
 
     return NextResponse.json({ ok: true }, { headers: corsHeaders });

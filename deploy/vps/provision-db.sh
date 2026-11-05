@@ -42,10 +42,13 @@ create table if not exists public.contact_messages (
   created_at timestamptz not null default now(),
   read_at    timestamptz
 );
+-- Número de teléfono/WhatsApp (opcional), agregado después.
+alter table public.contact_messages add column if not exists phone text
+  check (phone is null or char_length(phone) between 6 and 30);
 create index if not exists contact_messages_created_at_idx on public.contact_messages (created_at desc);
 
 revoke all on public.contact_messages from public, portfolio_web;
-grant insert (name, email, message) on public.contact_messages to portfolio_web;
+grant insert (name, email, phone, message) on public.contact_messages to portfolio_web;
 grant usage on sequence public.contact_messages_id_seq to portfolio_web;
 SQL
 
@@ -64,7 +67,7 @@ cat > /usr/local/bin/portfolio-mensajes <<'EOF'
 # Muestra los últimos mensajes del formulario del portafolio (por defecto 20). Uso (como root).
 sudo -u postgres psql -d portfolio -P pager=off -c \
   "select id, to_char(created_at at time zone 'America/Argentina/Buenos_Aires', 'DD/MM HH24:MI') as fecha,
-          name as nombre, email, left(message, 300) as mensaje
+          name as nombre, email, phone as numero, left(message, 300) as mensaje
      from contact_messages order by created_at desc limit ${1:-20};"
 EOF
 chmod 755 /usr/local/bin/portfolio-mensajes

@@ -5,10 +5,13 @@ import style from "../page.module.css";
 import { withBase } from "../basePath";
 
 const API_BASE = process.env.NEXT_PUBLIC_API_BASE || "";
+// Opcional: dígitos con +, espacios, guiones, puntos o paréntesis (entre 6 y 20 dígitos).
+const PHONE_RE = /^\+?[\d\s().-]{6,30}$/;
 
 export default function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [phone, setPhone] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState<{ ok: boolean; msg: string } | null>(null);
@@ -26,6 +29,10 @@ export default function ContactForm() {
       setStatus({ ok: false, msg: "Ingresá un email válido." });
       return;
     }
+    if (phone.trim() && !PHONE_RE.test(phone.trim())) {
+      setStatus({ ok: false, msg: "Ingresá un número válido o dejalo vacío." });
+      return;
+    }
 
     setLoading(true);
     setStatus(null);
@@ -34,7 +41,7 @@ export default function ContactForm() {
       const res = await fetch(`${API_BASE}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, email, message }),
+        body: JSON.stringify({ name, email, phone, message }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data?.message || "Error al enviar el mensaje.");
@@ -45,6 +52,7 @@ export default function ContactForm() {
       setStatus({ ok: true, msg: "¡Mensaje enviado con éxito!" });
       setName("");
       setEmail("");
+      setPhone("");
       setMessage("");
     } catch (err: any) {
       setStatus({ ok: false, msg: err?.message || "No se pudo enviar el mensaje." });
@@ -83,6 +91,20 @@ export default function ContactForm() {
             placeholder="tu@email.com"
             required
             aria-required="true"
+          />
+        </div>
+
+        <div className={style.formRow}>
+          <label className={style.formLabel} htmlFor="cf-phone">Número (opcional)</label>
+          <input
+            id="cf-phone"
+            className={style.formInput}
+            type="tel"
+            inputMode="tel"
+            autoComplete="tel"
+            value={phone}
+            onChange={(e) => setPhone(e.target.value)}
+            placeholder="+54 9 11 1234-5678"
           />
         </div>
 

@@ -38,7 +38,8 @@ export default function PrivacidadPage() {
         <ul>
           <li>
             <strong>Formulario de contacto:</strong> cuando completás el formulario se recopilan
-            tu nombre, dirección de correo electrónico y el mensaje que enviás.
+            tu nombre, dirección de correo electrónico, número de teléfono (opcional) y el mensaje
+            que enviás.
           </li>
           <li>
             <strong>Datos de navegación (analítica):</strong> a través de Google Analytics 4
