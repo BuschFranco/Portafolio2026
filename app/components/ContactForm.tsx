@@ -39,6 +39,9 @@ export default function ContactForm() {
       const data = await res.json();
       if (!res.ok) throw new Error(data?.message || "Error al enviar el mensaje.");
 
+      // Conversión del píxel de OpenAI (solo existe si el visitante dio consentimiento)
+      (window as any).oaiq?.("measure", "lead_created", { type: "customer_action" });
+
       setStatus({ ok: true, msg: "¡Mensaje enviado con éxito!" });
       setName("");
       setEmail("");

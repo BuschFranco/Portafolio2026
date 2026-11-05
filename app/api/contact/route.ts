@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Client } from "@notionhq/client";
+import { Pool } from "pg";
 
-const notion = new Client({ auth: process.env.NOTION_TOKEN });
-const DATABASE_ID = process.env.NOTION_CONTACT_DATABASE_ID!;
+// Postgres local de la VPS (base "portfolio"). El usuario de DATABASE_URL solo puede insertar
+// en contact_messages: ver deploy/vps/provision-db.sh.
+let pool: Pool | null = null;
+const getPool = () =>
+  (pool ??= new Pool({ connectionString: process.env.DATABASE_URL, max: 2 }));
 
 const ALLOWED_ORIGIN = "https://buschfranco.github.io";
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export async function OPTIONS() {
   return new NextResponse(null, {
@@ -21,32 +25,28 @@ export async function POST(req: NextRequest) {
   const corsHeaders = { "Access-Control-Allow-Origin": ALLOWED_ORIGIN };
 
   try {
-    const { name, email, message } = await req.json();
+    const body = await req.json();
+    const name = typeof body?.name === "string" ? body.name.trim() : "";
+    const email = typeof body?.email === "string" ? body.email.trim() : "";
+    const message = typeof body?.message === "string" ? body.message.trim() : "";
 
-    if (!name?.trim() || !email?.trim() || !message?.trim()) {
+    if (!name || !email || !message) {
       return NextResponse.json(
         { message: "Campos incompletos." },
         { status: 400, headers: corsHeaders }
       );
     }
+    if (!EMAIL_RE.test(email) || name.length > 200 || email.length > 320 || message.length > 5000) {
+      return NextResponse.json(
+        { message: "Revisá los datos del formulario." },
+        { status: 400, headers: corsHeaders }
+      );
+    }
 
-    await notion.pages.create({
-      parent: { database_id: DATABASE_ID },
-      properties: {
-        Nombre: {
-          title: [{ text: { content: name.trim() } }],
-        },
-        Email: {
-          email: email.trim(),
-        },
-        Mensaje: {
-          rich_text: [{ text: { content: message.trim() } }],
-        },
-        Fecha: {
-          date: { start: new Date().toISOString() },
-        },
-      },
-    });
+    await getPool().query(
+      "insert into contact_messages (name, email, message) values ($1, $2, $3)",
+      [name, email, message]
+    );
 
     return NextResponse.json({ ok: true }, { headers: corsHeaders });
   } catch (err) {

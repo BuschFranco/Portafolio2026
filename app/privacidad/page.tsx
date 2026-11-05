@@ -13,7 +13,7 @@ export default function PrivacidadPage() {
       <a href={withBase("/")} className={style.back}>← Volver al inicio</a>
 
       <h1 className={style.title}>Política de Privacidad</h1>
-      <p className={style.updated}>Última actualización: abril 2026</p>
+      <p className={style.updated}>Última actualización: noviembre 2026</p>
 
       <div className={style.section}>
         <h2>1. Responsable del sitio</h2>
@@ -75,13 +75,8 @@ export default function PrivacidadPage() {
         <ul>
           <li>
             <strong>Formulario de contacto:</strong> los mensajes se almacenan en una base de
-            datos de <strong>Notion</strong> (Notion Labs Inc., San Francisco, EE.UU.). Esta
-            transferencia internacional implica el envío de datos a un país fuera de Argentina y de
-            la Unión Europea. Podés consultar la política de privacidad de Notion en{" "}
-            <a href="https://www.notion.so/privacy" target="_blank" rel="noopener noreferrer">
-              notion.so/privacy
-            </a>
-            .
+            datos propia, en un servidor de <strong>Hetzner Online GmbH</strong> ubicado en
+            Alemania (Unión Europea). No se comparten con terceros.
           </li>
           <li>
             <strong>Google Analytics / Tag Manager:</strong> los datos de navegación se procesan
