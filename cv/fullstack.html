@@ -1,0 +1,360 @@
+<!doctype html>
+<!--
+  FUENTE DEL CV — FULL STACK
+  ───────────────────────────
+  Editá este archivo y regenerá el PDF con:   pnpm cv
+  (genera public/CV-FullStack.pdf)
+
+  Métricas: la página es A4 (793.7 × 1122.52 px @96dpi).
+  Los tamaños están en px para que coincidan con las mediciones
+  del diseño original (1pt = 1.3333px).
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<title>CV — Franco Busch — Full Stack</title>
+<style>
+  @page { size: A4; margin: 0; }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html, body {
+    background: #fff;
+    font-family: Arial, "Liberation Sans", Helvetica, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .page {
+    position: relative;
+    width: 793.7px;
+    height: 1122.52px;
+    display: flex;
+    overflow: hidden;
+    background: #fff;
+  }
+
+  /* ─────────────── SIDEBAR ─────────────── */
+  .sb {
+    width: 285.73px;
+    flex: 0 0 285.73px;
+    background: #1c1c1c;
+    padding: 0 28.73px 0 22.67px;
+    color: #e6e6e6;
+  }
+
+  .photo {
+    display: block;
+    width: 117.33px;
+    height: 117.33px;
+    margin: 34px 0 0 61.33px; /* centrada en la columna */
+  }
+
+  .sb-sec { margin-top: 30.55px; }
+  .sb-sec--formacion { margin-top: 19.74px; }
+  .sb-sec--idiomas   { margin-top: 19.59px; }
+
+  .sb-sec h2 {
+    font-size: 14.667px;
+    line-height: 14.667px;
+    font-weight: bold;
+    color: #fff;
+  }
+
+  .sb-rule {
+    height: 1.6px;
+    border: 0;
+    background: #666;
+    margin-top: 5.75px;
+  }
+
+  /* contacto */
+  .contacto { margin-top: 9.12px; list-style: none; }
+  .contacto li {
+    font-size: 10.267px;
+    line-height: 15.4px;
+    color: #e6e6e6;
+  }
+
+  /* formación: títulos + metadatos + skills */
+  .entry { margin-top: 8.46px; }
+  .entry:first-child { margin-top: 8.5px; }
+  .entry h3 {
+    font-size: 10.267px;
+    line-height: 12.7px;
+    font-weight: bold;
+    color: #fff;
+  }
+  .entry .meta {
+    font-size: 9.866px;
+    line-height: 14.3px;
+    color: #b8b8b8;
+    margin-top: -0.66px;
+  }
+  .entry .skills {
+    font-size: 10.267px;
+    line-height: 16.9px;
+    color: #e6e6e6;
+    margin-top: -0.6px;
+  }
+
+  /* idiomas */
+  .idiomas { margin-top: 9.05px; list-style: none; }
+  .idiomas li {
+    font-size: 10.267px;
+    line-height: 17.5px;
+    color: #e6e6e6;
+    padding-left: 6.4px;
+    text-indent: -6.4px;
+  }
+  .idiomas li::before { content: "•\00a0"; }
+
+  /* ─────────────── COLUMNA PRINCIPAL ─────────────── */
+  .main {
+    width: 451.28px;
+    flex: 0 0 451.28px;
+    margin-left: 26.46px;
+    color: #1c1c1c;
+  }
+
+  .main h1 {
+    margin-top: 34.03px;
+    font-size: 40px;
+    line-height: 39.2px;
+    font-weight: bold;
+    color: #1c1c1c;
+  }
+
+  .role {
+    margin-top: 7.21px;
+    font-size: 12px;
+    line-height: 14px;
+    color: #333;
+  }
+
+  .sec {
+    margin-top: 19.68px;
+    font-size: 17.333px;
+    line-height: 17.333px;
+    font-weight: bold;
+    color: #1c1c1c;
+  }
+  .sec--exp   { margin-top: 19.74px; }
+  .sec--proy  { margin-top: 19.38px; }
+
+  .rule {
+    height: 2.133px;
+    border: 0;
+    background: #1c1c1c;
+    margin-top: 5.53px;
+  }
+
+  .perfil {
+    margin-top: 10.63px;
+    font-size: 10.667px;
+    line-height: 16.55px;
+    color: #1c1c1c;
+  }
+  .perfil--linea { margin-top: 0; }
+
+  /* experiencia */
+  .job { margin-top: 10.2px; }
+  .job h3 {
+    font-size: 10.933px;
+    line-height: 13px;
+    font-weight: bold;
+    color: #1c1c1c;
+  }
+  .job .meta {
+    font-size: 9.866px;
+    line-height: 11.2px;
+    font-style: italic;
+    color: #555;
+    margin-top: -0.53px;
+  }
+  .bullets {
+    list-style: none;
+    margin-top: 3.1px;
+    font-size: 10.267px;
+    line-height: 16.6px;
+    color: #1c1c1c;
+  }
+  .bullets li {
+    position: relative;
+    padding-left: 14.3px;
+    text-indent: -0.8px;
+    margin-bottom: 1.05px;
+  }
+  .bullets li::before {
+    content: "▷";
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: 0;
+    font-size: 10.267px;
+  }
+
+  /* proyectos destacados */
+  .projects {
+    list-style: none;
+    margin-top: 10.49px;
+    font-size: 10.267px;
+    line-height: 15.5px;
+    color: #1c1c1c;
+  }
+  .projects li {
+    position: relative;
+    padding-left: 15.1px;
+    text-indent: -5.5px;
+    margin-bottom: 4.4px;
+  }
+  .projects li::before {
+    content: "▸";
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-indent: 0;
+    font-size: 10.267px;
+    font-family: "Segoe UI Symbol", "DejaVu Sans", Arial, sans-serif;
+  }
+  .projects b { font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ══════════════ SIDEBAR ══════════════ -->
+  <aside class="sb">
+    <img class="photo" src="photo.webp" alt="Foto de Franco Busch" />
+
+    <section class="sb-sec">
+      <h2>CONTACTO</h2>
+      <hr class="sb-rule" />
+      <ul class="contacto">
+        <li>(+54) 9 11 3150-6458</li>
+        <li>francobusch130@gmail.com</li>
+        <li>www.buschfranco.com</li>
+        <li>github.com/BuschFranco</li>
+        <li>Buenos Aires, Argentina</li>
+      </ul>
+    </section>
+
+    <section class="sb-sec sb-sec--formacion">
+      <h2>FORMACIÓN</h2>
+      <hr class="sb-rule" />
+
+      <div class="entry">
+        <h3>Ingeniería en Sistemas Informáticos</h3>
+        <p class="meta">Universidad Tecnológica Nacional<br />2020 — 2022</p>
+      </div>
+
+      <div class="entry">
+        <h3>Economía y Administración de Empresas</h3>
+        <p class="meta">EES N.01 "Dr. Alfredo L. Palacios"<br />2014 — 2019</p>
+      </div>
+
+      <div class="entry">
+        <h3>Frontend</h3>
+        <p class="skills">Next.js · React · React Native · Astro · TypeScript · Tailwind · JavaScript · WordPress</p>
+      </div>
+
+      <div class="entry">
+        <h3>Diseño &amp; UI</h3>
+        <p class="skills">Figma (handoff y maquetado fiel al diseño) · Photoshop (retoque y ajuste de assets/detalles) · Diseño y prototipado de UI con IA (Claude)</p>
+      </div>
+
+      <div class="entry">
+        <h3>Backend &amp; Cloud</h3>
+        <p class="skills">Node.js · NestJS · C# · X++ · PHP · Python · APIs REST · Medusa.js · Google Cloud Platform</p>
+      </div>
+
+      <div class="entry">
+        <h3>Bases de datos &amp; DevOps</h3>
+        <p class="skills">SQL · MongoDB · Docker · Git/GitHub</p>
+      </div>
+
+      <div class="entry">
+        <h3>IA &amp; Modelos</h3>
+        <p class="skills">Claude (Anthropic) · GPT (OpenAI) integrado en APIs · Gemini (Google) · n8n · Make</p>
+      </div>
+
+      <div class="entry">
+        <h3>ERP &amp; Metodologías</h3>
+        <p class="skills">Microsoft Dynamics 365 F&amp;O · Scrum · Waterfall</p>
+      </div>
+    </section>
+
+    <section class="sb-sec sb-sec--idiomas">
+      <h2>IDIOMAS</h2>
+      <hr class="sb-rule" />
+      <ul class="idiomas">
+        <li>Español — Nativo</li>
+        <li>Inglés — B1</li>
+      </ul>
+    </section>
+  </aside>
+
+  <!-- ══════════════ COLUMNA PRINCIPAL ══════════════ -->
+  <main class="main">
+    <h1>BUSCH<br />FRANCO</h1>
+    <p class="role">Desarrollador Full Stack · Next.js / React / NestJS · +4 años de experiencia</p>
+
+    <h2 class="sec">PERFIL</h2>
+    <hr class="rule" />
+    <p class="perfil">
+      Desarrollador <b>Full Stack con más de 4 años</b> construyendo productos web de punta a punta:
+      desde landing pages y APIs hasta plataformas con suscripción, e-commerce y paneles
+      internos. Trabajo con <b>Next.js, React, NestJS, Astro y Node.js</b>, e integro <b>IA</b>
+      (Claude, GPT, Gemini) en mi flujo y en sistemas productivos. Analítico y pragmático: me hago cargo de cada
+      proyecto como propio, propongo soluciones y mido resultados con datos. Más allá del código,
+      manejo el lado visual del frontend: con <b>criterio de diseño, Figma y Photoshop</b> llevo
+      interfaces de la idea al producto, cuidando el detalle sin depender de un equipo de diseño.
+    </p>
+    <p class="perfil perfil--linea">No es por mandarme la parte, pero sé centrar un div sin IA.</p>
+
+    <h2 class="sec sec--exp">EXPERIENCIA</h2>
+    <hr class="rule" />
+
+    <article class="job">
+      <h3>Desarrollador Full Stack — Media Digital Group</h3>
+      <p class="meta">Oct. 2024 – Actualidad · Buenos Aires (Híbrido)</p>
+      <ul class="bullets">
+        <li>Responsable técnico del desarrollo, escalado y mantenimiento de los <b>productos internos y externos</b> de la empresa.</li>
+        <li>Impulsé la <b>migración de los productos de la empresa a nuevas tecnologías</b> (Next.js, App Router + Server Components), con una <b>mejora del 97,1% en el tiempo de carga</b>; dicté un workshop interno sobre renderizado (SSG/SSR/ISR/CSR) y SEO.</li>
+        <li>Desarrollo de <b>landing pages orientadas a conversión</b> con backend en NestJS y APIs externas, con QA y debugging cross-device.</li>
+        <li>Construcción de <b>sistemas internos</b> (DashboardMDG en Astro + MongoDB, generador de solicitudes de desarrollo) y <b>bots con IA</b> (WhatsApp/Telegram/Discord) vía n8n.</li>
+        <li>Integración de <b>GPT en APIs y sistemas internos</b> y uso de Google Cloud Platform para soluciones escalables.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <h3>Desarrollador Microsoft Dynamics 365 F&amp;O — Jonxsoft</h3>
+      <p class="meta">Ago. 2022 – Oct. 2023 · Remoto</p>
+      <ul class="bullets">
+        <li>Soluciones personalizadas sobre <b>Microsoft Dynamics 365 F&amp;O</b> con <b>X++ y C#</b>, extendiendo funcionalidades y automatizando procesos financieros.</li>
+        <li>Colaboración con <b>equipos técnicos, funcionales y financieros</b>, combinando análisis funcional y comprensión técnica.</li>
+      </ul>
+    </article>
+
+    <article class="job">
+      <h3>Owner &amp; Desarrollador — Rebound</h3>
+      <p class="meta">2023 – Actualidad · Freelance</p>
+      <ul class="bullets">
+        <li>Fundador y responsable técnico de <b>Rebound</b>, e-commerce de indumentaria de básquet (Next.js): catálogo, checkout y <b>pedido por WhatsApp</b> con pago contra entrega y cuotas con Mercado Pago.</li>
+        <li>Operación de <b>envíos en CABA y Provincia</b> con entrega en 24-72 h, cambio gratis a 30 días y gestión de <b>stock, pedidos y repartidores</b>.</li>
+        <li>Integración de <b>Reby IA</b> (asistente de IA por WhatsApp) para automatizar pedidos y coordinar la logística de entrega.</li>
+      </ul>
+    </article>
+
+    <h2 class="sec sec--proy">PROYECTOS DESTACADOS</h2>
+    <hr class="rule" />
+    <ul class="projects">
+      <li><b>Reby IA</b> — Asistente de IA por WhatsApp para una tienda online: stock, pedidos, envíos y coordinación con repartidores.</li>
+      <li><b>Rebound Store</b> — E-commerce de indumentaria de básquet (Next.js): pedido por WhatsApp, pago contra entrega y envíos en CABA y Provincia.</li>
+      <li><b>1of1</b> — App de básquet callejero (Flutter + NestJS): mapa de canchas, sesiones registradas por GPS, estadísticas y ranking por temporada.</li>
+      <li><b>Infinitix</b> — Juego arcade roguelite para mobile con disparo automático y mejoras por ronda. 100% offline, sin ads ni compras.</li>
+    </ul>
+  </main>
+
+</div>
+</body>
+</html>
