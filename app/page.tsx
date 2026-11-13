@@ -385,6 +385,13 @@ export default function Home() {
                   Soy analítico y pragmático — eso me permite mantener la cabeza fría en momentos de conflicto y tomar decisiones con criterio.
                   Me interesa el cruce entre el producto, el marketing y la analítica: construir productos que no solo funcionen, sino que generen resultados medibles.
                 </p>
+                <p>
+                  Más allá del producto y el código, manejo la infraestructura donde todo vive:
+                  configuro y administro <strong>VPS para múltiples propósitos</strong> — hosting,
+                  servidores de aplicaciones, automatización y datos. Y en el lado del crecimiento,
+                  estoy <strong>certificado en marketing digital y e-commerce</strong>, con experiencia
+                  práctica en Google Analytics, Clarity, Google Ads, OpenAI Ads y Meta Ads.
+                </p>
               </div>
               <dl className={style.aboutFacts}>
                 <div>
@@ -402,6 +409,14 @@ export default function Home() {
                 <div>
                   <dt>Foco</dt>
                   <dd>Producto, marketing y analítica</dd>
+                </div>
+                <div>
+                  <dt>Infra</dt>
+                  <dd>VPS multi-propósito · hosting y apps</dd>
+                </div>
+                <div>
+                  <dt>Ads</dt>
+                  <dd>GA4 · Clarity · Google · Meta · OpenAI</dd>
                 </div>
                 <div>
                   <dt>Formación</dt>
