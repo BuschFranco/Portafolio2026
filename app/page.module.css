@@ -171,7 +171,12 @@ a.secondary {
   height: 1em;
   background: currentColor; /* usa el color del texto actual */
   margin-left: 4px;
-  animation: blink 1s steps(1, end) infinite;
+  /* Parpadea 5 s y queda fijo: un parpadeo infinito incumple WCAG 2.2.2 */
+  animation: blink 1s steps(1, end) 5;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .typewriterCaret { animation: none; }
 }
 
 @keyframes blink {
@@ -220,9 +225,9 @@ a.secondary {
   max-width: 900px;
   font-size: clamp(1.35rem, 2.8vw, 2.1rem);
   font-weight: 500;
-  line-height: 1.25;
+  line-height: 1.3;
   letter-spacing: -0.02em;
-  color: color-mix(in srgb, var(--foreground) 45%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
   text-wrap: pretty;
 }
 
@@ -277,7 +282,7 @@ a.secondary {
   font-size: 0.72rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
-  color: color-mix(in srgb, var(--foreground) 50%, transparent);
+  color: color-mix(in srgb, var(--foreground) 62%, transparent);
 }
 
 .aboutFacts dd {
@@ -460,7 +465,10 @@ a.secondary {
 .carousel {
   display: flex;
   gap: 12px;
-  padding-bottom: 8px;
+  /* Margen para que el anillo de foco no quede recortado por overflow-x: hidden;
+     el margen negativo conserva la posición original de las tarjetas */
+  padding: 6px 6px 8px;
+  margin: -6px -6px 0;
   overflow-x: hidden;
   touch-action: pan-y; /* browser maneja scroll vertical, JS maneja el horizontal */
 }
@@ -873,10 +881,10 @@ a.secondary {
   font-weight: 500;
   font-size: clamp(0.95rem, 2.2vw, 1.1rem);
   padding: 6px 8px;
-  color: rgb(104, 104, 104);
+  color: color-mix(in srgb, var(--foreground) 68%, transparent);
 
   &:hover {
-    color: var(--text-primary);
+    color: var(--foreground);
   }
 }
 
@@ -1140,6 +1148,10 @@ a.secondary {
   animation: techScroll 28s linear infinite;
 }
 
+.techCarousel:hover .techTrack {
+  animation-play-state: paused;
+}
+
 @keyframes techScroll {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
@@ -1395,7 +1407,7 @@ a.secondary {
 
 .formPrivacyNote {
   font-size: 0.8rem;
-  opacity: 0.45;
+  opacity: 0.65;
   line-height: 1.5;
   margin-top: 4px;
 }
@@ -1416,7 +1428,7 @@ a.secondary {
   padding-top: 1.25rem;
   border-top: 1px solid rgba(0, 0, 0, 0.07);
   font-size: 0.8rem;
-  opacity: 0.45;
+  opacity: 0.65;
 }
 
 .footerLegalLinks {

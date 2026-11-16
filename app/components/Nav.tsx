@@ -56,7 +56,8 @@ export default function Nav() {
       </header>
 
       {/* Menú mobile desplegable */}
-      <div className={`${style.drawer} ${open ? style.drawerOpen : ""}`} aria-hidden={!open}>
+      {/* inert: cerrado no recibe foco ni lo leen los lectores de pantalla */}
+      <div className={`${style.drawer} ${open ? style.drawerOpen : ""}`} inert={!open}>
         <nav className={style.drawerLinks}>
           {links.map((l) => (
             <a key={l.href} href={l.href} className={style.drawerLink} onClick={close}>

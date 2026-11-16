@@ -106,6 +106,12 @@ a {
   text-decoration: none;
 }
 
+/* Anillo de foco único para teclado, en el color del texto (negro / blanco en oscuro) */
+:focus-visible {
+  outline: 2px solid var(--foreground);
+  outline-offset: 3px;
+}
+
 ::selection {
   background: var(--foreground);
   color: var(--background);

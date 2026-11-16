@@ -5,7 +5,7 @@ import { withBase } from "./basePath";
 import Typewriter from "./components/Typewriter";
 import Reveal from "./components/Reveal";
 import ContactForm from "./components/ContactForm";
-import { useState, useEffect } from "react";
+import { useState, useEffect, type KeyboardEvent as ReactKeyboardEvent } from "react";
 import Modal, { ModalItem } from "./components/Modal";
 import AutoCarousel from "./components/AutoCarousel";
 import SkeletonImg from "./components/SkeletonImg";
@@ -31,6 +31,15 @@ export default function Home() {
 
   const truncate = (text: string, max: number = 120) =>
     text.length > max ? text.slice(0, max).trimEnd() + "..." : text;
+
+  // Las tarjetas son div role="button": como un <button>, se activan con Enter y con Espacio
+  // (preventDefault evita que Espacio además scrollee la página).
+  const onActivate = (fn: () => void) => (e: ReactKeyboardEvent) => {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      fn();
+    }
+  };
 
   const landingItems: WorkItem[] = [
     {
@@ -222,9 +231,7 @@ export default function Home() {
                     role="button"
                     tabIndex={0}
                     onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
-                    }}
+                    onKeyDown={onActivate(() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link }))}
                   >
                     <SkeletonImg className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
                     <div className={style.thumbOverlay}>
@@ -248,9 +255,7 @@ export default function Home() {
                     role="button"
                     tabIndex={0}
                     onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link })}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link });
-                    }}
+                    onKeyDown={onActivate(() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link }))}
                   >
                     <SkeletonImg className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
                     {it.badge && <span className={style.projectBadge}>{it.badge}</span>}
@@ -275,9 +280,7 @@ export default function Home() {
                     role="button"
                     tabIndex={0}
                     onClick={() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link, glitch: it.glitch })}
-                    onKeyDown={(e) => {
-                      if (e.key === "Enter") setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link, glitch: it.glitch });
-                    }}
+                    onKeyDown={onActivate(() => setSelectedItem({ title: it.title, description: it.description, imageSrc: it.imageSrc, link: it.link, glitch: it.glitch }))}
                   >
                     <SkeletonImg className={style.thumbImage} src={withBase(it.imageSrc)} alt={it.title} loading="lazy" decoding="async" />
                     {it.glitch && (
@@ -478,7 +481,7 @@ export default function Home() {
                 role="button"
                 tabIndex={0}
                 onClick={() => setSelectedCert(cert)}
-                onKeyDown={(e) => { if (e.key === "Enter") setSelectedCert(cert); }}
+                onKeyDown={onActivate(() => setSelectedCert(cert))}
               >
                 <SkeletonImg src={withBase(cert.src)} alt={cert.title} className={style.certImg} loading="lazy" decoding="async" />
                 <p className={style.certTitle}>{cert.title}</p>
@@ -505,31 +508,31 @@ export default function Home() {
              <span className={style.techItem}>Node.js</span>
              <span className={style.techItem}>Javascript</span>
              {/* Duplicado para bucle continuo */}
-             <span className={style.techItem}>TypeScript</span>
-             <span className={style.techItem}>React</span>
-             <span className={style.techItem}>Next.js</span>
-             <span className={style.techItem}>NestJs</span>
-             <span className={style.techItem}>Astro</span>
-             <span className={style.techItem}>Python</span>
-             <span className={style.techItem}>Tailwind CSS</span>
-             <span className={style.techItem}>MongoDB</span>
-             <span className={style.techItem}>Docker</span>
-             <span className={style.techItem}>n8n</span>
-             <span className={style.techItem}>Node.js</span>
-             <span className={style.techItem}>Javascript</span>
+             <span className={style.techItem} aria-hidden="true">TypeScript</span>
+             <span className={style.techItem} aria-hidden="true">React</span>
+             <span className={style.techItem} aria-hidden="true">Next.js</span>
+             <span className={style.techItem} aria-hidden="true">NestJs</span>
+             <span className={style.techItem} aria-hidden="true">Astro</span>
+             <span className={style.techItem} aria-hidden="true">Python</span>
+             <span className={style.techItem} aria-hidden="true">Tailwind CSS</span>
+             <span className={style.techItem} aria-hidden="true">MongoDB</span>
+             <span className={style.techItem} aria-hidden="true">Docker</span>
+             <span className={style.techItem} aria-hidden="true">n8n</span>
+             <span className={style.techItem} aria-hidden="true">Node.js</span>
+             <span className={style.techItem} aria-hidden="true">Javascript</span>
              {/* Duplicado para bucle continuo */}
-             <span className={style.techItem}>TypeScript</span>
-             <span className={style.techItem}>React</span>
-             <span className={style.techItem}>Next.js</span>
-             <span className={style.techItem}>NestJs</span>
-             <span className={style.techItem}>Astro</span>
-             <span className={style.techItem}>Python</span>
-             <span className={style.techItem}>Tailwind CSS</span>
-             <span className={style.techItem}>MongoDB</span>
-             <span className={style.techItem}>Docker</span>
-             <span className={style.techItem}>n8n</span>
-             <span className={style.techItem}>Node.js</span>
-             <span className={style.techItem}>Javascript</span>
+             <span className={style.techItem} aria-hidden="true">TypeScript</span>
+             <span className={style.techItem} aria-hidden="true">React</span>
+             <span className={style.techItem} aria-hidden="true">Next.js</span>
+             <span className={style.techItem} aria-hidden="true">NestJs</span>
+             <span className={style.techItem} aria-hidden="true">Astro</span>
+             <span className={style.techItem} aria-hidden="true">Python</span>
+             <span className={style.techItem} aria-hidden="true">Tailwind CSS</span>
+             <span className={style.techItem} aria-hidden="true">MongoDB</span>
+             <span className={style.techItem} aria-hidden="true">Docker</span>
+             <span className={style.techItem} aria-hidden="true">n8n</span>
+             <span className={style.techItem} aria-hidden="true">Node.js</span>
+             <span className={style.techItem} aria-hidden="true">Javascript</span>
            </div>
          </div>
        </section>

@@ -16,6 +16,8 @@ export default function AutoCarousel({ className, children }: Props) {
     if (!el) return;
 
     const isTouch = window.matchMedia("(hover: none) and (pointer: coarse)").matches;
+    // Con "reducir movimiento" no hay auto-scroll; el arrastre manual sigue funcionando.
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
     let pos = 0;
     let paused = false;
@@ -26,11 +28,25 @@ export default function AutoCarousel({ className, children }: Props) {
     let dragStartScroll = 0;
     let isDragging = false;
     let didDrag = false; // flag para bloquear el click tras un drag real
+    let focused = false; // una tarjeta tiene el foco del teclado: el carrusel se detiene
+
+    // Al llegar con Tab a una tarjeta, el carrusel se desplaza para mostrarla entera.
+    const revealFocused = (e: FocusEvent) => {
+      const card = (e.target as HTMLElement).closest<HTMLElement>("[role=button]");
+      if (!card || card.parentElement !== el) return;
+      const left = card.offsetLeft - el.offsetLeft;
+      const right = left + card.offsetWidth;
+      if (left < el.scrollLeft || right > el.scrollLeft + el.clientWidth) {
+        pos = Math.max(0, left - 8);
+        el.scrollLeft = pos;
+      }
+    };
+    el.addEventListener("focusin", revealFocused);
 
     // ── Auto-scroll + drag — solo desktop ─────────────────────
     if (!isTouch) {
       const tick = () => {
-        if (!paused && !offscreen) {
+        if (!paused && !offscreen && !focused && !reduceMotion) {
           pos += 0.5;
           const half = el.scrollWidth / 2;
           if (half > 0 && pos >= half) pos -= half;
@@ -55,6 +71,10 @@ export default function AutoCarousel({ className, children }: Props) {
       visibilityObserver.observe(el);
 
       const onEnter = () => { if (!isDragging) paused = true; };
+      const onFocusIn = () => { focused = true; };
+      const onFocusOut = (e: FocusEvent) => {
+        if (!el.contains(e.relatedTarget as Node | null)) focused = false;
+      };
       const onLeave = () => { if (!isDragging) paused = false; };
 
       // pointermove y pointerup se registran en document para capturar el puntero
@@ -106,6 +126,8 @@ export default function AutoCarousel({ className, children }: Props) {
       el.addEventListener("mouseleave", onLeave);
       el.addEventListener("pointerdown", onPointerDown);
       el.addEventListener("click", onClickCapture, true);
+      el.addEventListener("focusin", onFocusIn);
+      el.addEventListener("focusout", onFocusOut);
 
       rafId = requestAnimationFrame(waitForLayout);
 
@@ -119,6 +141,9 @@ export default function AutoCarousel({ className, children }: Props) {
         el.removeEventListener("mouseleave", onLeave);
         el.removeEventListener("pointerdown", onPointerDown);
         el.removeEventListener("click", onClickCapture, true);
+        el.removeEventListener("focusin", onFocusIn);
+        el.removeEventListener("focusout", onFocusOut);
+        el.removeEventListener("focusin", revealFocused);
       };
     }
 
@@ -158,6 +183,7 @@ export default function AutoCarousel({ className, children }: Props) {
       el.removeEventListener("pointermove", onPointerMove);
       el.removeEventListener("pointerup", onPointerUp);
       el.removeEventListener("pointercancel", onPointerUp);
+      el.removeEventListener("focusin", revealFocused);
     };
   }, []);
 
@@ -166,7 +192,9 @@ export default function AutoCarousel({ className, children }: Props) {
     React.isValidElement(child)
       ? React.cloneElement(child as React.ReactElement<Record<string, unknown>>, {
           key: `dup-${i}`,
+          // Copias solo visuales para el bucle: fuera del orden de foco y de los lectores de pantalla.
           "aria-hidden": true,
+          inert: true,
         })
       : child
   );

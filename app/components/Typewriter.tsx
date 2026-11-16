@@ -21,12 +21,19 @@ export default function Typewriter({
   className,
   showCaret = true,
 }: Props) {
-  const [displayed, setDisplayed] = useState("");
+  // Arranca con el texto completo: el HTML del servidor (buscadores, lectores de pantalla, sin JS)
+  // ya trae el título. La animación lo reescribe al montar, tapada por el preloader.
+  const [displayed, setDisplayed] = useState(text);
 
   useEffect(() => {
+    // Con "reducir movimiento" el texto queda completo, sin tipeo.
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
     let i = 0;
+    let id: number | undefined;
     const start = setTimeout(() => {
-      const id = setInterval(() => {
+      setDisplayed("");
+      id = window.setInterval(() => {
         i++;
         setDisplayed(text.slice(0, i));
         if (i >= text.length) {
@@ -37,6 +44,7 @@ export default function Typewriter({
 
     return () => {
       clearTimeout(start);
+      clearInterval(id);
     };
   }, [text, speed, startDelay]);
 
